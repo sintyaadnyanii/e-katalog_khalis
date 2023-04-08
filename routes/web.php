@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,10 +15,26 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/login', function () {
-    return view('login');
-});
+// Route::get('/login', function () {
+//     return view('login');
+// });
 
+Route::get('/',function(){
+    return view('frontpage.main');
+})->name('main');
+
+Route::get('/dashboard',function(){
+    return view('admin.dashboard-overview');
+})->name('dashboard')->middleware(['auth', 'admin']);
+
+Route::controller(UserController::class)->group(function(){
+    Route::get('/register','register')->name('register');
+    Route::post('/register','attemptRegister')->name('attempt_register');
+    Route::get('/login','login')->name('login')->middleware('guest');
+    Route::post('/login','attemptLogin')->name('attempt_login');
+    Route::get('/logout','logout')->name('logout');
+
+});
 // Route::middleware(['auth', 'admin'])->controller(CategoryController::class)->group(function () {
 //     Route::get('/dashboard/categories', 'allCategory')->name('manage_category.all');
 //     Route::get('/dashboard/category/create', 'createCategory')->name('manage_category.create');

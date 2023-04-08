@@ -17,10 +17,7 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
-    protected $fillable = [
-        'name',
-        'email',
-        'password',
+    protected $fillable = ['name','email','password','phone','address'
     ];
 
     /**
@@ -41,4 +38,15 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public static function boot()
+    {
+        parent::boot();
+
+        self::creating(function($model){
+            $model->level='user';
+        });
+        
+
+    }
 }

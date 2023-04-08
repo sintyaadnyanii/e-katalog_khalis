@@ -1507,6 +1507,11 @@ video {
   color: rgb(17 24 39 / var(--tw-text-opacity));
 }
 
+.text-red-500 {
+  --tw-text-opacity: 1;
+  color: rgb(239 68 68 / var(--tw-text-opacity));
+}
+
 .text-slate-400 {
   --tw-text-opacity: 1;
   color: rgb(148 163 184 / var(--tw-text-opacity));
@@ -1967,6 +1972,11 @@ video {
     margin-bottom: 0px;
   }
 
+  .xl\:mx-2 {
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+  }
+
   .xl\:-mt-5 {
     margin-top: -1.25rem;
   }
@@ -1989,6 +1999,18 @@ video {
 
   .xl\:mt-8 {
     margin-top: 2rem;
+  }
+
+  .xl\:mt-4 {
+    margin-top: 1rem;
+  }
+
+  .xl\:mt-2 {
+    margin-top: 0.5rem;
+  }
+
+  .xl\:mt-5 {
+    margin-top: 1.25rem;
   }
 
   .xl\:block {
@@ -2051,6 +2073,10 @@ video {
 
   .xl\:pb-16 {
     padding-bottom: 4rem;
+  }
+
+  .xl\:pt-3 {
+    padding-top: 0.75rem;
   }
 
   .xl\:text-left {

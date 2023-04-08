@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Models\User;
+use Illuminate\Auth\Access\Response;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Gate;
 
@@ -25,6 +27,18 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        //
+        Gate::define('isAdmin',function(User $user){
+            return $user->level=='admin'
+            ?Response::allow()
+            :Response::deny('You must be an administrator!');
+        });
+
+        Gate::define('isUser',function(User $user){
+            return $user->level=='user'
+            ?Response::allow()
+            :Response::deny('You must sign-in your account first!');
+        });
+
+        
     }
 }
