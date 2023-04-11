@@ -31,7 +31,7 @@ class UserController extends Controller
         'name'=>'required|string|min:8|max:50',
         'email'=>'required|email:dns',
         'phone'=>'required|numeric',
-        'address'=>'required|string',
+        'address'=>'nullable',
         'password'=>'required|string',
         'password_confirm'=>'required|same:password'
     ]);
@@ -80,10 +80,10 @@ class UserController extends Controller
     return redirect()->back()->with('error','Login Failed! Please Try Again!');
    }
 
-   public function logout(){
+   public function logout(Request $request){
         Auth::logout();
-        request()->session()->invalidate();
-        request()->session()->regenerateToken();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
         return redirect()->route('login')->with('success','You Has Been Logged Out!');
    }
 }

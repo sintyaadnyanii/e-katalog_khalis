@@ -39,6 +39,10 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    public function feedback(){
+        return $this->hasMany(Feedback::class,'user_id');
+    }
+
     public static function boot()
     {
         parent::boot();

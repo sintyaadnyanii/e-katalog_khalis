@@ -3,7 +3,7 @@
     <div class="p-5">
         <div class="intro-y flex items-center mt-3">
             <h2 class="text-lg font-medium mr-auto">
-                Add New Category
+                Update Category
             </h2>
         </div>
         <div class="grid grid-cols-12 gap-6 mt-5">

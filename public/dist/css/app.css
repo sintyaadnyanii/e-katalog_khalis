@@ -628,6 +628,11 @@ video {
   margin-bottom: 2.5rem;
 }
 
+.my-2 {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
 .my-4 {
   margin-top: 1rem;
   margin-bottom: 1rem;
@@ -669,6 +674,14 @@ video {
 
 .-ml-5 {
   margin-left: -1.25rem;
+}
+
+.-mt-0 {
+  margin-top: -0px;
+}
+
+.-mt-0\.5 {
+  margin-top: -0.125rem;
 }
 
 .-mt-1 {
@@ -1071,6 +1084,10 @@ video {
   justify-content: center;
 }
 
+.gap-1 {
+  gap: 0.25rem;
+}
+
 .gap-3 {
   gap: 0.75rem;
 }
@@ -1081,6 +1098,10 @@ video {
 
 .gap-6 {
   gap: 1.5rem;
+}
+
+.gap-2 {
+  gap: 0.5rem;
 }
 
 .gap-x-6 {
@@ -1224,6 +1245,10 @@ video {
 
 .p-6 {
   padding: 1.5rem;
+}
+
+.p-8 {
+  padding: 2rem;
 }
 
 .px-0 {
@@ -1575,6 +1600,20 @@ video {
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
 
+.star {
+  cursor: pointer;
+  fill: #94a3b8;
+  stroke: none;
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
+.active {
+  fill: #eab308;
+  stroke: none;
+}
+
 .before\:absolute::before {
   content: var(--tw-content);
   position: absolute;
@@ -1709,6 +1748,10 @@ video {
 
   .sm\:ml-auto {
     margin-left: auto;
+  }
+
+  .sm\:mr-2 {
+    margin-right: 0.5rem;
   }
 
   .sm\:mr-auto {
@@ -1972,11 +2015,6 @@ video {
     margin-bottom: 0px;
   }
 
-  .xl\:mx-2 {
-    margin-left: 0.5rem;
-    margin-right: 0.5rem;
-  }
-
   .xl\:-mt-5 {
     margin-top: -1.25rem;
   }
@@ -1999,18 +2037,6 @@ video {
 
   .xl\:mt-8 {
     margin-top: 2rem;
-  }
-
-  .xl\:mt-4 {
-    margin-top: 1rem;
-  }
-
-  .xl\:mt-2 {
-    margin-top: 0.5rem;
-  }
-
-  .xl\:mt-5 {
-    margin-top: 1.25rem;
   }
 
   .xl\:block {
@@ -2073,10 +2099,6 @@ video {
 
   .xl\:pb-16 {
     padding-bottom: 4rem;
-  }
-
-  .xl\:pt-3 {
-    padding-top: 0.75rem;
   }
 
   .xl\:text-left {

@@ -54,7 +54,7 @@
             </a>
         </li>
         <li>
-            <a href="side-menu-light-file-product.html"
+            <a href="{{ route('manage_feedback.all') }}"
                 class="side-menu {{ Request::is('dashboard/products') ? 'side-menu--active' : '' }}">
                 <div class="side-menu__icon"> <i data-lucide="package"></i> </div>
                 <div class="side-menu__title"> Products </div>

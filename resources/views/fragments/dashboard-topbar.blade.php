@@ -17,8 +17,8 @@
         <div class="dropdown-menu w-56">
             <ul class="dropdown-content bg-primary text-white">
                 <li class="p-2">
-                    <div class="font-medium">{{ auth()->user()->name }}</div>
-                    <div class="text-xs text-white/70 mt-0.5">{{ auth()->user()->level }}</div>
+                    <div class="font-medium">{{ auth()->user()->name ?? 'Admin' }}</div>
+                    <div class="text-xs text-white/70 mt-0.5">{{ auth()->user()->level ?? 'Administrator' }}</div>
                 </li>
                 <li>
                     <hr class="dropdown-divider border-white/[0.08]">

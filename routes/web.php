@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\FeedbackController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -32,7 +33,7 @@ Route::controller(UserController::class)->group(function(){
     Route::post('/register','attemptRegister')->name('attempt_register');
     Route::get('/login','login')->name('login')->middleware('guest');
     Route::post('/login','attemptLogin')->name('attempt_login');
-    Route::get('/logout','logout')->name('logout');
+    Route::get('/logout','logout')->name('logout')->middleware('auth');
 
 });
 // Route::middleware(['auth', 'admin'])->controller(CategoryController::class)->group(function () {
@@ -47,9 +48,18 @@ Route::controller(UserController::class)->group(function(){
 
 Route::controller(CategoryController::class)->group(function () {
     Route::get('/dashboard/categories', 'allCategory')->name('manage_category.all');
-    Route::get('/dashboard/categories/create', 'createCategory')->name('manage_category.create');
-    Route::post('/dashboard/categories/create', 'storeCategory')->name('manage_category.store');
-    Route::get('/dashboard/categories/{category:id}/update', 'updateCategory')->name('manage_category.update');
+    Route::get('/dashboard/category/create', 'createCategory')->name('manage_category.create');
+    Route::post('/dashboard/category/create', 'storeCategory')->name('manage_category.store');
+    Route::get('/dashboard/category/{category:id}/update', 'updateCategory')->name('manage_category.update');
     Route::patch('/dashboard/category/{category:id}/update','patchCategory')->name('manage_category.patch');
     Route::delete('/dashboard/category/{category:id}/delete','deleteCategory')->name('manage_category.delete');
+});
+
+Route::controller(FeedbackController::class)->group(function(){
+    Route::get('/dashboard/feedback', 'allFeedback')->name('manage_feedback.all');
+    Route::get('/dashboard/feedback/create', 'createFeedback')->name('manage_feedback.create');
+    Route::post('/dashboard/feedback/create', 'storeFeedback')->name('manage_feedback.store');
+    Route::get('/dashboard/feedback/{feedback:id}/update', 'updateFeedback')->name('manage_feedback.update');
+    Route::patch('/dashboard/feedback/{feedback:id}/update','patchFeedback')->name('manage_feedback.patch');
+    Route::delete('/dashboard/feedback/{feedback:id}/delete','deleteFeedback')->name('manage_feedback.delete');
 });
