@@ -34,17 +34,9 @@ Route::controller(UserController::class)->group(function(){
     Route::get('/login','login')->name('login')->middleware('guest');
     Route::post('/login','attemptLogin')->name('attempt_login');
     Route::get('/logout','logout')->name('logout')->middleware('auth');
+    Route::get('/dashboard/customers', 'allCustomer')->name('manage_customer.all');
 
 });
-// Route::middleware(['auth', 'admin'])->controller(CategoryController::class)->group(function () {
-//     Route::get('/dashboard/categories', 'allCategory')->name('manage_category.all');
-//     Route::get('/dashboard/category/create', 'createCategory')->name('manage_category.create');
-//     Route::post('/dashboard/category/create', 'storeCategory')->name('manage_category.store');
-//     Route::get('/dashboard/category/{category:id}', 'detailCategory')->name('manage_category.detail');
-//     Route::get('/dashboard/category/{category:id}/update', 'updateCategory')->name('manage_category.update');
-//     Route::patch('/dashboard/category/{category:id}', 'patchCategory')->name('manage_category.patch');
-//     Route::delete('/dashboard/category/{category:id}/delete', 'deleteCategory')->name('manage_category.delete');
-// });
 
 Route::controller(CategoryController::class)->group(function () {
     Route::get('/dashboard/categories', 'allCategory')->name('manage_category.all');
@@ -53,6 +45,15 @@ Route::controller(CategoryController::class)->group(function () {
     Route::get('/dashboard/category/{category:id}/update', 'updateCategory')->name('manage_category.update');
     Route::patch('/dashboard/category/{category:id}/update','patchCategory')->name('manage_category.patch');
     Route::delete('/dashboard/category/{category:id}/delete','deleteCategory')->name('manage_category.delete');
+});
+
+Route::controller(ProductController::class)->group(function(){
+    Route::get('/dashboard/products', 'allProduct')->name('manage_product.all');
+    Route::get('/dashboard/product/create', 'createProduct')->name('manage_product.create');
+    Route::post('/dashboard/product/create', 'storeProduct')->name('manage_product.store');
+    Route::get('/dashboard/product/{Product:id}/update', 'updateProduct')->name('manage_product.update');
+    Route::patch('/dashboard/product/{Product:id}/update','patchProduct')->name('manage_product.patch');
+    Route::delete('/dashboard/product/{Product:id}/delete','deleteProduct')->name('manage_product.delete');
 });
 
 Route::controller(FeedbackController::class)->group(function(){

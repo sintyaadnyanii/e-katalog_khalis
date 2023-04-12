@@ -14,7 +14,7 @@
                     @method('patch')
                     <div class="intro-y box p-8">
                         <div class="mt-2">
-                            <label for="name" class="form-label">Customer
+                            <label for="user_id" class="form-label">Customer
                                 Name</label>
                             <select name="user_id" id="user_id" data-placeholder="Choose User" class="tom-select w-full">
                                 <option value="0">Anonymous</option>
@@ -35,7 +35,7 @@
                                 <i data-lucide="star" class="star"></i>
                             </div>
                             <input id="rating" name="rating" type="hidden"
-                                value="{{ $feedback->rating ?? old('rating') }}" placeholder="0/5">
+                                value="{{ old('rating') ?? $feedback->rating }}" placeholder="0/5">
                         </div>
 
                         <div class="mt-2">
@@ -49,12 +49,12 @@
                             <div class="flex flex-col sm:flex-row mt-2">
                                 <div class="form-check mr-2"> <input id="status_show" class="form-check-input"
                                         type="radio" name="status" value="show"
-                                        {{ $feedback->status = 1 ? 'checked' : '' }}>
+                                        {{ $feedback->status ? 'checked' : '' }}>
                                     <label class="form-check-label" for="status_show">Show</label>
                                 </div>
                                 <div class="form-check mr-2 mt-2 sm:mt-0"> <input id="status_hide" class="form-check-input"
                                         type="radio" name="status" value="hide"
-                                        {{ $feedback->status = 0 ? 'checked' : '' }}>
+                                        {{ $feedback->status ? '' : 'checked' }}>
                                     <label class="form-check-label" for="status_hide">Hide</label>
                                 </div>
                             </div>
@@ -73,5 +73,5 @@
     </div>
 @endsection
 @section('script')
-    <script src="{{ asset('dist/js/view/manage-all.js') }}" defer></script>
+    <script src="{{ asset('dist/js/view/rating.js') }}" defer></script>
 @endsection

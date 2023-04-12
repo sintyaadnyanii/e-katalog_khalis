@@ -5,7 +5,6 @@
             <h2 class="text-lg font-medium mr-auto">
                 Add New Feedback
             </h2>
-            {!! session()->get('error') !!}
         </div>
         <div class="grid grid-cols-12 gap-6 mt-5">
             <div class="intro-y col-span-12">
@@ -14,8 +13,11 @@
                     @csrf
                     <div class="intro-y box p-8">
                         <div class="mt-2">
-                            <label for="name" class="form-label">Customer
+                            <label for="user_id" class="form-label">Customer
                                 Name</label>
+                            @error('user_id')
+                                <small class="text-xs text-red-500 ml-1">{{ '*' . $message }}</small>
+                            @enderror
                             <select name="user_id" id="user_id" data-placeholder="Choose User" class="tom-select w-full">
                                 <option value="0">Anonymous</option>
                                 @foreach ($users as $item)
@@ -27,6 +29,9 @@
                         </div>
                         <div class="mt-2">
                             <label for="rating" class="form-label mt-3">Rating</label>
+                            @error('rating')
+                                <small class="text-xs text-red-500 ml-1">{{ '*' . $message }}</small>
+                            @enderror
                             <div class="flex gap-1">
                                 <i data-lucide="star" class="star"></i>
                                 <i data-lucide="star" class="star"></i>
@@ -34,18 +39,24 @@
                                 <i data-lucide="star" class="star"></i>
                                 <i data-lucide="star" class="star"></i>
                             </div>
-                            <input id="rating" name="rating" type="text" value="{{ old('rating') }}"
+                            <input id="rating" name="rating" type="hidden" value="{{ old('rating') }}"
                                 placeholder="0/5">
                         </div>
 
                         <div class="mt-2">
                             <label for="message" class="form-label mt-3">
                                 Message</label>
+                            @error('message')
+                                <small class="text-xs text-red-500 ml-1">{{ '*' . $message }}</small>
+                            @enderror
                             <textarea id="message" name="message" type="text" class="form-control" placeholder="Input Your Message">{!! old('message') !!}</textarea>
                         </div>
                         <div class="my-2">
                             <label for="status" class="form-label mt-3">
                                 Status</label>
+                            @error('status')
+                                <small class="text-xs text-red-500 ml-1">{{ '*' . $message }}</small>
+                            @enderror
                             <div class="flex flex-col sm:flex-row mt-2">
                                 <div class="form-check mr-2"> <input id="status_show" class="form-check-input"
                                         type="radio" name="status" value="show"
@@ -73,5 +84,5 @@
     </div>
 @endsection
 @section('script')
-    <script src="{{ asset('dist/js/view/manage-all.js') }}" defer></script>
+    <script src="{{ asset('dist/js/view/rating.js') }}" defer></script>
 @endsection

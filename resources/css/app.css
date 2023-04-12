@@ -9,3 +9,15 @@
 .active {
     @apply stroke-none fill-yellow-500;
 }
+
+.menu-active {
+    @apply border-white border-l-4 drop-shadow-md;
+}
+
+.alert {
+    @apply fixed top-0 left-0 bottom-0 right-0 flex items-center justify-center z-[999999] bg-black bg-opacity-60 rounded-none border-none;
+}
+
+.alert-container {
+    @apply relative bg-white text-white font-bold rounded-lg border shadow-lg p-8 w-3/4 lg:w-[480px];
+}

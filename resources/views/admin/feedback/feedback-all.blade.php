@@ -53,7 +53,7 @@
                             <td class="text-center">
                                 <p class="font-medium whitespace-nowrap">{{ $item->user->name ?? 'anonymous' }}</p>
                                 <div class="text-slate-500 text-xs whitespace-nowrap mt-0.5">
-                                    {{ $item->user->email ?? 'anonymous' }}
+                                    {{ $item->user->email ?? 'unknown' }}
                                 </div>
                             </td>
                             <td class="text-center">
@@ -64,7 +64,7 @@
                                     {{ Str::words(html_entity_decode(strip_tags($item->message)), 30, '...') }}</div>
                             </td>
                             <td class="text-center">
-                                {{ $item->status = 1 ? 'show' : 'hide' }}
+                                {{ $item->status ? 'show' : 'hide' }}
                             </td>
                             <td class="table-report__action w-56">
                                 <div class="flex justify-center items-center">

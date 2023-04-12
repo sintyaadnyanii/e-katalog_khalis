@@ -6,6 +6,15 @@
     <!-- END: CSS Assets-->
 @endsection
 @section('base-body')
+    @if (session()->has('warning'))
+        @include('fragments.warning')
+    @endif
+    @if (session()->has('error'))
+        @include('fragments.error')
+    @endif
+    @if (session()->has('success'))
+        @include('fragments.success')
+    @endif
     <div class="py-5 px-5 bg-primary">
         <!-- BEGIN: Mobile Menu -->
         @include('fragments.dashboard-mobile-menu')
@@ -44,6 +53,14 @@
         });
     </script>
     <!-- END: Tinymce-->
+
+    <!-- BEGIN: Alert Popup -->
+    <script>
+        function btnClose() {
+            document.getElementById("alert").style.display = "none";
+        }
+    </script>
+    <!-- END Alert Popup -->
     @yield('script')
 
 

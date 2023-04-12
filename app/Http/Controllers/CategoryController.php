@@ -33,16 +33,16 @@ class CategoryController extends Controller
 
     public function storeCategory(Request $request){
         $validator=Validator::make($request->all(),[
-            'category_name'=>'required|max:50',
-            'category_description'=>'required',
+            'name'=>'required|max:50',
+            'description'=>'required',
         ]);
         if($validator->fails()){
             return redirect()->back()->withErrors($validator)->withInput()->with('error','Oops, there must be something wrong with the input!');
         }
         $validated=$validator->validated();
         $created_category=Category::create([
-            'name'=>$validated['category_name'],
-            'description'=>$validated['category_description'],
+            'name'=>$validated['name'],
+            'description'=>$validated['description'],
         ]);
         if($created_category){
             return redirect()->route('manage_category.all')->with('success','New Category Created Successfully');
@@ -52,16 +52,16 @@ class CategoryController extends Controller
 
     public function patchCategory(Request $request, Category $category){
         $validator=Validator::make($request->all(),[
-            'category_name'=>'required|max:50',
-            'category_description'=>'required',
+            'name'=>'required|max:50',
+            'description'=>'required',
         ]);
         if($validator->fails()){
             return redirect()->back()->withErrors($validator)->withInput()->with('error','Oops, there must be something wrong with the input!');
         }
         $validated=$validator->validated();
         $updated_category=$category->update([
-            'name'=>$validated['category_name'],
-            'description'=>$validated['category_description'],
+            'name'=>$validated['name'],
+            'description'=>$validated['description'],
         ]);
         if($updated_category){
             return redirect()->route('manage_category.all')->with('success','Category Updated Successfully');

@@ -54,22 +54,22 @@
             </a>
         </li>
         <li>
-            <a href="{{ route('manage_feedback.all') }}"
+            <a href="{{ route('manage_product.all') }}"
                 class="side-menu {{ Request::is('dashboard/products') ? 'side-menu--active' : '' }}">
                 <div class="side-menu__icon"> <i data-lucide="package"></i> </div>
                 <div class="side-menu__title"> Products </div>
             </a>
         </li>
         <li>
-            <a href="side-menu-light-feedback.html"
+            <a href="{{ route('manage_feedback.all') }}"
                 class="side-menu {{ Request::is('dashboard/feedback') ? 'side-menu--active' : '' }}">
                 <div class="side-menu__icon"> <i data-lucide="message-square"></i> </div>
                 <div class="side-menu__title"> Feedback </div>
             </a>
         </li>
         <li>
-            <a href="side-menu-light-customer.html"
-                class="side-menu {{ Request::is('dashboard/users') ? 'side-menu--active' : '' }}">
+            <a href="{{ route('manage_customer.all') }}"
+                class="side-menu {{ Request::is('dashboard/customers') ? 'side-menu--active' : '' }}">
                 <div class="side-menu__icon"> <i data-lucide="users"></i> </div>
                 <div class="side-menu__title"> Customers </div>
             </a>

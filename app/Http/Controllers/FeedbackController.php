@@ -46,7 +46,7 @@ class FeedbackController extends Controller
         }
         $validated=$validator->validated();
         $created_feedback=Feedback::create([
-            'user_id'=>$validated['user_id'],
+            'user_id'=>$validated['user_id']==0?null:$validated['user_id'],
             'rating'=>$validated['rating'],
             'message'=>$validated['message'],
             'status'=>$validated['status']=='show'?1:0,
@@ -68,7 +68,7 @@ class FeedbackController extends Controller
         }
         $validated=$validator->validated();
         $updated_feedback=$feedback->update([
-            'user_id'=>$validated['user_id'],
+            'user_id'=>$validated['user_id']=0?null:$validated['user_id'],
             'rating'=>$validated['rating'],
             'message'=>$validated['message'],
             'status'=>$validated['status']=='show'?1:0,
