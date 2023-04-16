@@ -11,14 +11,23 @@
                 <!-- BEGIN: Form Layout -->
                 <form action="{{ route('manage_category.store') }}" method="post">
                     @csrf
+                    <input type="hidden" name="category_id" id="category_id" value="0">
                     <div class="intro-y box p-5">
                         <div>
                             <label for="name" class="form-label">Category Name</label>
                             @error('name')
                                 <small class="text-xs text-red-500 ml-1">{{ '*' . $message }}</small>
                             @enderror
-                            <input id="name" name="name" type="text" class="form-control w-full"
-                                placeholder="Input text" value="{{ old('name') }}">
+                            <input id="category_name" name="name" type="text" class="form-control w-full"
+                                placeholder="Input text" value="{{ old('name') }}" onchange="getSlug(this.value)">
+                        </div>
+                        <div>
+                            <label for="slug" class="form-label mt-3">Slug</label>
+                            @error('slug')
+                                <small class="text-xs text-red-500 ml-1">{{ '*' . $message }}</small>
+                            @enderror
+                            <input id="category_slug" name="slug" type="text" class="form-control w-full"
+                                placeholder="Slug will be generated automatically" value="{{ old('slug') }}"readonly>
                         </div>
                         <div>
                             <label for="description" class="form-label mt-3">Description</label>
@@ -39,4 +48,7 @@
             </div>
         </div>
     </div>
+@endsection
+@section('script')
+    <script src="{{ asset('dist/js/view/manage-all.js') }}"></script>
 @endsection

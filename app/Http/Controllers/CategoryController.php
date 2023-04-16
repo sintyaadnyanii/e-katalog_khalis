@@ -34,7 +34,7 @@ class CategoryController extends Controller
     public function storeCategory(Request $request){
         $validator=Validator::make($request->all(),[
             'name'=>'required|string|max:50',
-            'slug'=>'required|string',
+            'slug'=>'required',
             'description'=>'required|string',
         ]);
         if($validator->fails()){
@@ -55,7 +55,7 @@ class CategoryController extends Controller
     public function patchCategory(Request $request, Category $category){
         $validator=Validator::make($request->all(),[
             'name'=>'required|string|max:50',
-            'slug'=>'required|string',
+            'slug'=>'required',
             'description'=>'required|string',
         ]);
         if($validator->fails()){
@@ -78,5 +78,9 @@ class CategoryController extends Controller
             return redirect()->route('manage_category.all')->with('success',$category->name.'Category Deleted Successfully');
         }
         return redirect()->back()->with('error','Error Occured, Please Try Again!');
+    }
+
+    public function getSlug(Request $request){
+        return response()->json(['status'=>true,'data'=>Category::sluged($request->name,$request->id),'id'=>$request->id]);
     }
 }

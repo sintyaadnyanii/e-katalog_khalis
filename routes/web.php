@@ -45,6 +45,8 @@ Route::controller(CategoryController::class)->group(function () {
     Route::get('/dashboard/category/{category:id}/update', 'updateCategory')->name('manage_category.update');
     Route::patch('/dashboard/category/{category:id}/update','patchCategory')->name('manage_category.patch');
     Route::delete('/dashboard/category/{category:id}/delete','deleteCategory')->name('manage_category.delete');
+    //additional
+    Route::get('/dashboard/category/get-slug','getSlug');
 });
 
 Route::controller(ProductController::class)->group(function(){
