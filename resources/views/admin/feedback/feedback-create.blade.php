@@ -84,5 +84,5 @@
     </div>
 @endsection
 @section('script')
-    <script src="{{ asset('dist/js/view/rating.js') }}" defer></script>
+    <script src="{{ asset('dist/js/view/manage-all.js') }}"></script>
 @endsection

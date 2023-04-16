@@ -41,6 +41,8 @@
     {{-- <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>
         <script src="https://maps.googleapis.com/maps/api/js?key=["your-google-map-api"]&libraries=places"></script> --}}
     <script src="{{ asset('dist/js/app.js') }}"></script>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"
+        integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
 
     <!-- BEGIN: Tinymce -->
     <script src="https://cdn.tiny.cloud/1/za5uofdzyu47c9jrtt2g8dkm5h583ou8yqetl3p4f7s8bqjh/tinymce/6/tinymce.min.js"

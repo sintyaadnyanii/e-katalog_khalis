@@ -33,8 +33,9 @@ class CategoryController extends Controller
 
     public function storeCategory(Request $request){
         $validator=Validator::make($request->all(),[
-            'name'=>'required|max:50',
-            'description'=>'required',
+            'name'=>'required|string|max:50',
+            'slug'=>'required|string',
+            'description'=>'required|string',
         ]);
         if($validator->fails()){
             return redirect()->back()->withErrors($validator)->withInput()->with('error','Oops, there must be something wrong with the input!');
@@ -42,6 +43,7 @@ class CategoryController extends Controller
         $validated=$validator->validated();
         $created_category=Category::create([
             'name'=>$validated['name'],
+            'slug'=>$validated['slug'],
             'description'=>$validated['description'],
         ]);
         if($created_category){
@@ -52,8 +54,9 @@ class CategoryController extends Controller
 
     public function patchCategory(Request $request, Category $category){
         $validator=Validator::make($request->all(),[
-            'name'=>'required|max:50',
-            'description'=>'required',
+            'name'=>'required|string|max:50',
+            'slug'=>'required|string',
+            'description'=>'required|string',
         ]);
         if($validator->fails()){
             return redirect()->back()->withErrors($validator)->withInput()->with('error','Oops, there must be something wrong with the input!');
@@ -61,6 +64,7 @@ class CategoryController extends Controller
         $validated=$validator->validated();
         $updated_category=$category->update([
             'name'=>$validated['name'],
+            'slug'=>$validated['slug'],
             'description'=>$validated['description'],
         ]);
         if($updated_category){
