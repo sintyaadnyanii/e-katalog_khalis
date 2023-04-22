@@ -7,7 +7,7 @@
     <div class="side-nav__devider my-6"></div>
     <ul>
         <li>
-            <a href="javascript:;.html"
+            <a href="{{ route('dashboard') }}"
                 class="side-menu {{ Request::is('dashboard/overwiew') ? 'side-menu--active' : '' }} ">
                 <div class="side-menu__icon"> <i data-lucide="home"></i> </div>
                 <div class="side-menu__title">

@@ -42,7 +42,7 @@ class FeedbackController extends Controller
 
         ]);
         if($validator->fails()){
-            return redirect()->back()->withErrors($validator)->withInput()->with('error','Oops, there must be something wrong with the input!');
+            return redirect()->back()->withErrors($validator)->withInput()->with('error','There must be something wrong with the input!');
         }
         $validated=$validator->validated();
         $created_feedback=Feedback::create([
@@ -64,7 +64,7 @@ class FeedbackController extends Controller
             'status'=>'required',
         ]);
         if($validator->fails()){
-            return redirect()->back()->withErrors($validator)->withInput()->with('error','Oops, there must be something wrong with the input!');
+            return redirect()->back()->withErrors($validator)->withInput()->with('error','There must be something wrong with the input!');
         }
         $validated=$validator->validated();
         $updated_feedback=$feedback->update([

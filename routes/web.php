@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\FeedbackController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -53,9 +54,9 @@ Route::controller(ProductController::class)->group(function(){
     Route::get('/dashboard/products', 'allProduct')->name('manage_product.all');
     Route::get('/dashboard/product/create', 'createProduct')->name('manage_product.create');
     Route::post('/dashboard/product/create', 'storeProduct')->name('manage_product.store');
-    Route::get('/dashboard/product/{Product:id}/update', 'updateProduct')->name('manage_product.update');
-    Route::patch('/dashboard/product/{Product:id}/update','patchProduct')->name('manage_product.patch');
-    Route::delete('/dashboard/product/{Product:id}/delete','deleteProduct')->name('manage_product.delete');
+    Route::get('/dashboard/product/{product:product_code}/update', 'updateProduct')->name('manage_product.update');
+    Route::patch('/dashboard/product/{product:product_code}/update','patchProduct')->name('manage_product.patch');
+    Route::delete('/dashboard/product/{product:product_code}/delete','deleteProduct')->name('manage_product.delete');
 });
 
 Route::controller(FeedbackController::class)->group(function(){

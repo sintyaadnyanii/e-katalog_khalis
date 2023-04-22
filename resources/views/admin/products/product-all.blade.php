@@ -1,9 +1,9 @@
 @extends('layouts.dashboard-layout')
 @section('dashboard-content')
-    <h2 class="intro-y text-lg font-medium mt-10">Categories</h2>
+    <h2 class="intro-y text-lg font-medium mt-10">Products</h2>
     <div class="grid grid-cols-12 gap-6 mt-5">
         <div class="intro-y col-span-12 flex flex-wrap sm:flex-nowrap items-center mt-2">
-            <a href="{{ route('manage_category.create') }}" class="btn btn-primary shadow-md mr-2">Add New Category</a>
+            <a href="{{ route('manage_product.create') }}" class="btn btn-primary shadow-md mr-2">Add New Product</a>
             <div class="dropdown">
                 <button class="dropdown-toggle btn px-2 box" aria-expanded="false" data-tw-toggle="dropdown">
                     <span class="w-5 h-5 flex items-center justify-center"> <i class="w-4 h-4" data-lucide="plus"></i>
@@ -40,38 +40,50 @@
                 <thead>
                     <tr>
                         <th class="text-center whitespace-nowrap">NO</th>
-                        <th class="text-center whitespace-nowrap">NAME & DESCRIPTION</th>
-                        <th class="text-center whitespace-nowrap">PRODUCT QTY</th>
+                        <th class="text-center whitespace-nowrap">PRODUCT CODE</th>
+                        <th class="text-center whitespace-nowrap">IMAGE</th>
+                        <th class="text-center whitespace-nowrap">NAME & CATEGORY</th>
+                        <th class="text-center whitespace-nowrap">DESCRIPTION</th>
                         <th class="text-center whitespace-nowrap">ACTIONS</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @forelse ($categories as $index=>$item)
+                    @forelse ($products as $index=>$item)
                         <tr class="intro-x">
                             <td class="text-center w-20"> {{ $loop->iteration }} </td>
+                            <td class="text-center">{{ $item->product_code }}</td>
                             <td class="text-center">
-                                <a href="" class="font-medium whitespace-nowrap">{{ $item->name }}</a>
-                                <div class="text-slate-500 text-xs whitespace-nowrap mt-0.5">
-                                    {{ Str::words(html_entity_decode(strip_tags($item->description)), 30, '...') }}</div>
+                                <img class="rounded-md"
+                                    src="{{ asset($item->images->count() ? 'storage/' . $item->images->first()->thumb : 'dist/images/preview-1.jpg') }}"
+                                    alt="{{ $item->images->count() ? $item->images->first()->alt : 'product_image' }}">
                             </td>
-                            <td class="text-center w-20"> {{ $item->count() }} </td>
+                            <td class="text-center">
+                                <p class="font-medium whitespace-nowrap">{{ $item->name }}
+                                </p>
+                                <div class="text-slate-500 text-xs whitespace-nowrap mt-0.5">
+                                    {{ $item->category->name }}
+                                </div>
+                            </td>
+                            <td class="text-center">
+                                {{ Str::words(html_entity_decode(strip_tags($item->description)), 30, '...') }}
+                            </td>
                             <td class="table-report__action w-56">
                                 <div class="flex justify-center items-center">
                                     <a class="flex items-center mr-3"
-                                        href="{{ route('manage_category.update', ['category' => $item]) }}"> <i
+                                        href="{{ route('manage_product.update', ['product' => $item]) }}"> <i
                                             data-lucide="check-square" class="w-4 h-4 mr-1"></i> Edit </a>
                                     <a class="flex items-center text-danger" href="javascript:;" data-tw-toggle="modal"
                                         data-tw-target="#delete-confirmation-modal"
                                         onclick="deleteModalHandler({{ $index }})"> <i data-lucide="trash-2"
                                             class="w-4 h-4 mr-1"></i> Delete </a>
                                     <input type="hidden" id="delete_route_{{ $index }}"
-                                        value="{{ route('manage_category.delete', ['category' => $item]) }}">
+                                        value="{{ route('manage_product.delete', ['product' => $item]) }}">
                                 </div>
                             </td>
                         </tr>
                     @empty
                         <tr>
-                            <td class="text-center text-muted" colspan="4">No Data</td>
+                            <td class="text-center text-muted" colspan="5">No Data</td>
                         </tr>
                     @endforelse
 
@@ -142,5 +154,5 @@
     <!-- END: Delete Confirmation Modal -->
 @endsection
 @section('script')
-    <script src="{{ asset('dist/js/view/dashboard/manage-category.js') }}"></script>
+    <script src="{{ asset('dist/js/view/dashboard/manage-product.js') }}"></script>
 @endsection

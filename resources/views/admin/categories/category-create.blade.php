@@ -50,5 +50,5 @@
     </div>
 @endsection
 @section('script')
-    <script src="{{ asset('dist/js/view/manage-all.js') }}"></script>
+    <script src="{{ asset('dist/js/view/dashboard/manage-category.js') }}"></script>
 @endsection

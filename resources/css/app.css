@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
+/* rating */
 .star {
     @apply stroke-none fill-slate-400 cursor-pointer transition-colors;
 }
@@ -9,11 +10,15 @@
 .active {
     @apply stroke-none fill-yellow-500;
 }
+/* rating */
 
+/* side-menu mobile */
 .menu-active {
     @apply border-white border-l-4 drop-shadow-md;
 }
+/* side-menu mobile */
 
+/* alert */
 .alert {
     @apply fixed top-0 left-0 bottom-0 right-0 flex items-center justify-center z-[999999] bg-black bg-opacity-60 rounded-none border-none;
 }
@@ -21,3 +26,32 @@
 .alert-container {
     @apply relative bg-white text-white font-bold rounded-lg border shadow-lg p-8 w-3/4 lg:w-[480px];
 }
+/* alert */
+
+/* Images Upload */
+.input-container {
+    @apply mt-4;
+}
+
+.input-image {
+    @apply w-[0.1px] h-[0.1px] opacity-0 overflow-hidden absolute -z-[1];
+}
+.upload__btn {
+    @apply transition-all ease-linear duration-300 cursor-pointer;
+}
+.images-container {
+    @apply flex flex-wrap m-[-10px];
+}
+.image-wrap {
+    @apply w-44 p-2 mb-2;
+}
+.image-close {
+    @apply w-6 h-6 rounded-full bg-black opacity-50 absolute top-[10px] right-[10px] text-center leading-6 z-[1] cursor-pointer;
+}
+.image-close:after {
+    @apply content-['\2716'] text-sm text-white text-center;
+}
+.image-bg {
+    @apply bg-no-repeat bg-center bg-cover relative pb-[100%] rounded-md;
+}
+/* Images Upload */
