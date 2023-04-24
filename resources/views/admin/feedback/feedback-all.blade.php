@@ -40,8 +40,8 @@
                 <thead>
                     <tr>
                         <th class="text-center whitespace-nowrap">NO</th>
-                        <th class="text-center whitespace-nowrap">NAME & EMAIL</th>
-                        <th class="text-center whitespace-nowrap">FEEDBACK</th>
+                        <th class="text-center whitespace-nowrap">NAME</th>
+                        <th class="text-center whitespace-nowrap">SATISFACTION RATE</th>
                         <th class="text-center whitespace-nowrap">STATUS</th>
                         <th class="text-center whitespace-nowrap">ACTIONS</th>
                     </tr>
@@ -61,14 +61,17 @@
                                         data-lucide="star" class="active w-4 ml-0.5 -mt-0.5"></i>
                                 </div>
                                 <div class="text-slate-500 text-xs whitespace-nowrap mt-0.5">
-                                    {{ Str::words(html_entity_decode(strip_tags($item->message)), 30, '...') }}</div>
+                                    {{ Str::words(html_entity_decode(strip_tags($item->message)), 10, '...') }}</div>
                             </td>
                             <td class="text-center">
-                                {{ $item->status ? 'show' : 'hide' }}
+                                {{ $item->status == 'show' ? 'Shown' : 'Hidden' }}
                             </td>
                             <td class="table-report__action w-56">
-                                <div class="flex justify-center items-center">
-                                    <a class="flex items-center mr-3"
+                                <div class="flex justify-center items-center gap-3">
+                                    <a class="flex items-center"
+                                        href="{{ route('manage_feedback.detail', ['feedback' => $item]) }}"> <i
+                                            data-lucide="view" class="w-4 h-4 mr-1"></i> Detail </a>
+                                    <a class="flex items-center"
                                         href="{{ route('manage_feedback.update', ['feedback' => $item]) }}"> <i
                                             data-lucide="check-square" class="w-4 h-4 mr-1"></i> Edit </a>
                                     <a class="flex items-center text-danger" href="javascript:;" data-tw-toggle="modal"

@@ -8,7 +8,7 @@
     <ul>
         <li>
             <a href="{{ route('dashboard') }}"
-                class="side-menu {{ Request::is('dashboard/overwiew') ? 'side-menu--active' : '' }} ">
+                class="side-menu {{ Request::is('dashboard/overwiew**') ? 'side-menu--active' : '' }} ">
                 <div class="side-menu__icon"> <i data-lucide="home"></i> </div>
                 <div class="side-menu__title">
                     Dashboard
@@ -48,28 +48,28 @@
         <!-- Menu With Dropdown -->
         <li>
             <a href="{{ route('manage_category.all') }}"
-                class="side-menu {{ Request::is('dashboard/categories') ? 'side-menu--active' : '' }}">
+                class="side-menu {{ Request::is('dashboard/categor**') ? 'side-menu--active' : '' }}">
                 <div class="side-menu__icon"> <i data-lucide="layout-list"></i> </div>
                 <div class="side-menu__title">Categories</div>
             </a>
         </li>
         <li>
             <a href="{{ route('manage_product.all') }}"
-                class="side-menu {{ Request::is('dashboard/products') ? 'side-menu--active' : '' }}">
+                class="side-menu {{ Request::is('dashboard/product**') ? 'side-menu--active' : '' }}">
                 <div class="side-menu__icon"> <i data-lucide="package"></i> </div>
                 <div class="side-menu__title"> Products </div>
             </a>
         </li>
         <li>
             <a href="{{ route('manage_feedback.all') }}"
-                class="side-menu {{ Request::is('dashboard/feedback') ? 'side-menu--active' : '' }}">
+                class="side-menu {{ Request::is('dashboard/feedback**') ? 'side-menu--active' : '' }}">
                 <div class="side-menu__icon"> <i data-lucide="message-square"></i> </div>
                 <div class="side-menu__title"> Feedback </div>
             </a>
         </li>
         <li>
             <a href="{{ route('manage_customer.all') }}"
-                class="side-menu {{ Request::is('dashboard/customers') ? 'side-menu--active' : '' }}">
+                class="side-menu {{ Request::is('dashboard/customer**') ? 'side-menu--active' : '' }}">
                 <div class="side-menu__icon"> <i data-lucide="users"></i> </div>
                 <div class="side-menu__title"> Customers </div>
             </a>

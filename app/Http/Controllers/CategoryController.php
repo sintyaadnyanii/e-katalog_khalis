@@ -25,10 +25,18 @@ class CategoryController extends Controller
 
     public function updateCategory(Category $category){
         $data=[
-            'title'=>'Update Category | E-Katalog Khalis Bali Bamboo',
+            'title'=>'Category Update | E-Katalog Khalis Bali Bamboo',
             'category'=>$category,
         ];
         return view('admin.categories.category-update',$data);
+    }
+
+    public function detailCategory(Category $category){
+        $data=[
+            'title'=>'Category Detail | E-Katalog Khalis Bali Bamboo',
+            'category'=>$category,
+        ];
+        return view('admin.categories.category-detail',$data);
     }
 
     public function storeCategory(Request $request){

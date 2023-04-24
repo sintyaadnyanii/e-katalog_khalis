@@ -43,9 +43,10 @@ Route::controller(CategoryController::class)->group(function () {
     Route::get('/dashboard/categories', 'allCategory')->name('manage_category.all');
     Route::get('/dashboard/category/create', 'createCategory')->name('manage_category.create');
     Route::post('/dashboard/category/create', 'storeCategory')->name('manage_category.store');
-    Route::get('/dashboard/category/{category:id}/update', 'updateCategory')->name('manage_category.update');
-    Route::patch('/dashboard/category/{category:id}/update','patchCategory')->name('manage_category.patch');
-    Route::delete('/dashboard/category/{category:id}/delete','deleteCategory')->name('manage_category.delete');
+    Route::get('/dashboard/category/{category:slug}/update', 'updateCategory')->name('manage_category.update');
+    Route::patch('/dashboard/category/{category:slug}/update','patchCategory')->name('manage_category.patch');
+    Route::get('/dashboard/category/{category:slug}/detail', 'detailCategory')->name('manage_category.detail');
+    Route::delete('/dashboard/category/{category:slug}/delete','deleteCategory')->name('manage_category.delete');
     //extend
     Route::get('/dashboard/category/get-slug','getSlug');
 });
@@ -67,5 +68,6 @@ Route::controller(FeedbackController::class)->group(function(){
     Route::post('/dashboard/feedback/create', 'storeFeedback')->name('manage_feedback.store');
     Route::get('/dashboard/feedback/{feedback:id}/update', 'updateFeedback')->name('manage_feedback.update');
     Route::patch('/dashboard/feedback/{feedback:id}/update','patchFeedback')->name('manage_feedback.patch');
+    Route::get('/dashboard/feedback/{feedback:id}/detail', 'detailFeedback')->name('manage_feedback.detail');
     Route::delete('/dashboard/feedback/{feedback:id}/delete','deleteFeedback')->name('manage_feedback.delete');
 });

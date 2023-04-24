@@ -3,7 +3,7 @@
     <div class="p-5">
         <div class="intro-y flex items-center mt-3">
             <h2 class="text-lg font-medium mr-auto">
-                Update Feedback
+                Feedback Update
             </h2>
         </div>
         <div class="grid grid-cols-12 gap-6 mt-5">
@@ -59,10 +59,10 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="text-right mt-5">
-                        <a href="{{ route('manage_feedback.all') }}" class="btn btn-outline-secondary w-24 mr-1">Cancel</a>
-                        <button type="submit" class="btn btn-primary text-primary w-24 ">Save</button>
+                        <div class="text-right mt-5">
+                            <a href="{{ url()->previous() }}" class="btn btn-outline-secondary w-24 mr-1">Cancel</a>
+                            <button type="submit" class="btn btn-primary text-primary w-24 ">Save</button>
+                        </div>
                     </div>
             </div>
             </form>

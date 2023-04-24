@@ -12,7 +12,7 @@
                  class="w-8 h-8 text-white transform -rotate-90"></i> </a>
          <ul class="scrollable__content py-2">
              <li>
-                 <a href="#" class="menu {{ Request::is('dashboard/overwiew') ? 'menu-active' : '' }} ">
+                 <a href="#" class="menu {{ Request::is('dashboard/overwiew**') ? 'menu-active' : '' }} ">
                      <div class="menu__icon"> <i data-lucide="home"></i> </div>
                      <div class="menu__title"> Dashboard </div>
                  </a>
@@ -46,28 +46,28 @@
              </li> --}}
              <li>
                  <a href="{{ route('manage_category.all') }}"
-                     class="menu {{ Request::is('dashboard/categories') ? 'menu-active' : '' }} ">
+                     class="menu {{ Request::is('dashboard/categor**') ? 'menu-active' : '' }} ">
                      <div class="menu__icon"> <i data-lucide="layout-list"></i> </div>
                      <div class="menu__title"> Categories </div>
                  </a>
              </li>
              <li>
                  <a href="{{ route('manage_product.all') }}"
-                     class="menu {{ Request::is('dashboard/products') ? 'menu-active' : '' }} ">
+                     class="menu {{ Request::is('dashboard/product**') ? 'menu-active' : '' }} ">
                      <div class="menu__icon"> <i data-lucide="package"></i> </div>
                      <div class="menu__title"> Products </div>
                  </a>
              </li>
              <li>
                  <a href="{{ route('manage_feedback.all') }}"
-                     class="menu {{ Request::is('dashboard/feedback') ? 'menu-active' : '' }} ">
+                     class="menu {{ Request::is('dashboard/feedback**') ? 'menu-active' : '' }} ">
                      <div class="menu__icon"> <i data-lucide="message-square"></i> </div>
                      <div class="menu__title"> Feedback </div>
                  </a>
              </li>
              <li>
                  <a href="{{ route('manage_customer.all') }}"
-                     class="menu {{ Request::is('dashboard/customers') ? 'menu-active' : '' }} ">
+                     class="menu {{ Request::is('dashboard/customer**') ? 'menu-active' : '' }} ">
                      <div class="menu__icon"> <i data-lucide="users"></i> </div>
                      <div class="menu__title"> Customers </div>
                  </a>

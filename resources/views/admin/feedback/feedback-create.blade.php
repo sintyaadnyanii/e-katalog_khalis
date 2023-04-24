@@ -71,8 +71,7 @@
                             </div>
                         </div>
                         <div class="text-right mt-5">
-                            <a href="{{ route('manage_feedback.all') }}"
-                                class="btn btn-outline-secondary w-24 mr-1">Cancel</a>
+                            <a href="{{ url()->previous() }}" class="btn btn-outline-secondary w-24 mr-1">Cancel</a>
                             <button type="submit" class="btn btn-primary text-primary w-24 ">Save</button>
                         </div>
                     </div>

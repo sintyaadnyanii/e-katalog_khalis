@@ -65,7 +65,7 @@
                                 </div>
                             </td>
                             <td class="text-center">
-                                {{ Str::words(html_entity_decode(strip_tags($item->description)), 30, '...') }}
+                                {{ Str::words(html_entity_decode(strip_tags($item->description)), 10, '...') }}
                             </td>
                             <td class="table-report__action w-56">
                                 <div class="flex justify-center items-center">

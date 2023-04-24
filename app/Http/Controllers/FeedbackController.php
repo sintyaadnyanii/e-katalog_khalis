@@ -26,11 +26,19 @@ class FeedbackController extends Controller
 
     public function updateFeedback(Feedback $feedback){
         $data=[
-            'title'=>'Add Feedback | E-Katalog Khalis Bali Bamboo',
+            'title'=>'Feedback Update | E-Katalog Khalis Bali Bamboo',
             'users'=>User::latest()->get(),
             'feedback'=>$feedback
         ];
         return view('admin.feedback.feedback-update',$data);
+    }
+
+    public function detailFeedback(Feedback $feedback){
+        $data=[
+            'title'=>'Feedback Detail | E-Katalog Khalis Bali Bamboo',
+            'feedback'=>$feedback
+        ];
+        return view('admin.feedback.feedback-detail',$data);
     }
 
     public function storeFeedback(Request $request){

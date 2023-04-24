@@ -40,7 +40,8 @@
                 <thead>
                     <tr>
                         <th class="text-center whitespace-nowrap">NO</th>
-                        <th class="text-center whitespace-nowrap">NAME & DESCRIPTION</th>
+                        <th class="text-center whitespace-nowrap">NAME</th>
+                        <th class="text-center whitespace-nowrap">DESCRIPTION</th>
                         <th class="text-center whitespace-nowrap">PRODUCT QTY</th>
                         <th class="text-center whitespace-nowrap">ACTIONS</th>
                     </tr>
@@ -51,13 +52,18 @@
                             <td class="text-center w-20"> {{ $loop->iteration }} </td>
                             <td class="text-center">
                                 <a href="" class="font-medium whitespace-nowrap">{{ $item->name }}</a>
-                                <div class="text-slate-500 text-xs whitespace-nowrap mt-0.5">
-                                    {{ Str::words(html_entity_decode(strip_tags($item->description)), 30, '...') }}</div>
+                                <div class="text-slate-500 text-xs whitespace-nowrap mt-0.5">{{ $item->slug }}</div>
                             </td>
-                            <td class="text-center w-20"> {{ $item->count() }} </td>
+                            <td class="text-center">
+                                {{ Str::words(html_entity_decode(strip_tags($item->description)), 10, '...') }}
+                            </td>
+                            <td class="text-center w-20"> {{ $item->product->count() }} </td>
                             <td class="table-report__action w-56">
-                                <div class="flex justify-center items-center">
-                                    <a class="flex items-center mr-3"
+                                <div class="flex justify-center items-center gap-3">
+                                    <a class="flex items-center"
+                                        href="{{ route('manage_category.detail', ['category' => $item]) }}"> <i
+                                            data-lucide="view" class="w-4 h-4 mr-1"></i> Detail </a>
+                                    <a class="flex items-center"
                                         href="{{ route('manage_category.update', ['category' => $item]) }}"> <i
                                             data-lucide="check-square" class="w-4 h-4 mr-1"></i> Edit </a>
                                     <a class="flex items-center text-danger" href="javascript:;" data-tw-toggle="modal"
