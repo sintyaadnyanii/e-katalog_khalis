@@ -35,7 +35,7 @@ Route::controller(UserController::class)->group(function(){
     Route::get('/login','login')->name('login')->middleware('guest');
     Route::post('/login','attemptLogin')->name('attempt_login');
     Route::get('/logout','logout')->name('logout')->middleware('auth');
-    Route::get('/dashboard/customers', 'allCustomer')->name('manage_customer.all');
+    Route::get('/dashboard/customers', 'allCustomers')->name('manage_customer.all');
 
 });
 
@@ -46,7 +46,7 @@ Route::controller(CategoryController::class)->group(function () {
     Route::get('/dashboard/category/{category:id}/update', 'updateCategory')->name('manage_category.update');
     Route::patch('/dashboard/category/{category:id}/update','patchCategory')->name('manage_category.patch');
     Route::delete('/dashboard/category/{category:id}/delete','deleteCategory')->name('manage_category.delete');
-    //additional
+    //extend
     Route::get('/dashboard/category/get-slug','getSlug');
 });
 
@@ -57,6 +57,8 @@ Route::controller(ProductController::class)->group(function(){
     Route::get('/dashboard/product/{product:product_code}/update', 'updateProduct')->name('manage_product.update');
     Route::patch('/dashboard/product/{product:product_code}/update','patchProduct')->name('manage_product.patch');
     Route::delete('/dashboard/product/{product:product_code}/delete','deleteProduct')->name('manage_product.delete');
+    // extended
+     Route::get('/dashboard/product/get-product-code','getProductCode');
 });
 
 Route::controller(FeedbackController::class)->group(function(){

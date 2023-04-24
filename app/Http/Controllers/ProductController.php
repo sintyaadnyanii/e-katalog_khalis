@@ -36,7 +36,7 @@ class ProductController extends Controller
 
     public function storeProduct(Request $request){
         $validator=Validator::make($request->all(),[
-            'product_code'=>'required|string|max:10|unique:products,product_code',
+            'product_code'=>'required|string|max:8|unique:products,product_code',
             'category_id'=>'required|integer',
             'name'=>'required|string|max:50',
             'dimensions'=>'required|string',
@@ -44,6 +44,7 @@ class ProductController extends Controller
             'color'=>'required|string',
             'description'=>'nullable|string',
             'link_shopee'=>'nullable|string',
+            'images.*'=>'required|image|mimes:jpeg,jpg,png|max:2048'
         ]);
     if($validator->fails()){
         return redirect()->back()->withErrors($validator)->withInput()->with('error','There must be something wrong with the input!');
@@ -90,6 +91,7 @@ class ProductController extends Controller
         'color'=>'required|string',
         'description'=>'nullable|string',
         'link_shopee'=>'nullable|string',
+        'images.*'=>'required|image|mimes:jpeg,jpg,png|max:2048'
     ]);
     if($validator->fails()){
         return redirect()->back()->withErrors($validator)->withInput()->with('error','There must be something wrong with the input!');
@@ -116,5 +118,9 @@ class ProductController extends Controller
             return redirect()->route('manage_product.all')->with('success', 'This Product Successfully Deleted');
         }
         return redirect()->back()->with('error', 'Error Occured, Please Try Again!');
+    }
+
+    public function getProductCode(Request $request){
+        return response()->json(['data'=>Product::generatedCode($request->category_id)]);
     }
 }

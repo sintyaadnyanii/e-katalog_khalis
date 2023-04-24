@@ -20,23 +20,14 @@
                             @error('category_id')
                                 <small class="text-xs text-red-500 ml-1">{{ '*' . $message }}</small>
                             @enderror
-                            <select name="category_id" id="category_id" data-placeholder="Choose User"
-                                class="tom-select w-full">
-                                @foreach ($categories as $item)
-                                    <option value="{{ $item->id }}"
-                                        {{ $product->category_id == $item->id ? 'selected' : null }}>
-                                        {{ $item->name }}</option>
-                                @endforeach
-                            </select>
+                            <input type="hidden" id="category_id" name="category_id" value="{{ $product->category_id }}">
+                            <input type="text" class="form-control w-full" value="{{ $product->category->name }}"
+                                readonly>
                         </div>
                         <div>
                             <label for="product_code" class="form-label mt-3">Product Code</label>
-                            @error('product_code')
-                                <small class="text-xs text-red-500 ml-1">{{ '*' . $message }}</small>
-                            @enderror
-                            <input id="product_code" name="product_code" type="text" class="form-control w-full"
-                                placeholder="Input Product Code"
-                                value="{{ old('product_code') ?? $product->product_code }}">
+                            <input name="product_code" type="text" class="form-control w-full"
+                                placeholder="Input Product Code" value="{{ $product->product_code }}" readonly>
                         </div>
                         <div>
                             <label for="name" class="form-label mt-3">Product Name</label>
@@ -96,7 +87,7 @@
                                     <p id="btnLabel">Choose Image to Upload</p>
                                     <input type="file" name="images[]" multiple data-max_length="20" class="input-image">
                                 </label>
-                                @error('images[]')
+                                @error('images.*')
                                     <small class="text-xs text-red-500 ml-1">{{ '*' . $message }}</small>
                                 @enderror
                             </div>

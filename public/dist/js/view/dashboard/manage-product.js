@@ -1,6 +1,7 @@
 $(document).ready(function(){
     deleteModalHandler();
     imageUpload();
+    getProductCode($("#category_id").val());
 });
 
 //  delete modal
@@ -77,4 +78,24 @@ function imageUpload() {
         }
         $(this).parent().parent().remove();
     });
+}
+
+//generate product_code
+function getProductCode(category_id){
+$.ajax({
+    type: "get",
+    url: "/dashboard/product/get-product-code",
+    data: {
+        category_id:category_id
+    },
+    beforeSend:()=>{
+            $("#product_code").val("Generating Product Code...");
+        },
+    success: (result)=>{
+            setTimeout(()=>{
+                $("#product_code").val(result.data);
+            },300);
+        }
+});
+
 }

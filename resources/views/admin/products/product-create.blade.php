@@ -18,7 +18,7 @@
                                 <small class="text-xs text-red-500 ml-1">{{ '*' . $message }}</small>
                             @enderror
                             <select name="category_id" id="category_id" data-placeholder="Choose User"
-                                class="tom-select w-full">
+                                class="tom-select w-full" onchange="getProductCode(this.value)">
                                 @foreach ($categories as $item)
                                     <option value="{{ $item->id }}"
                                         {{ old('category_id') == $item->id ? 'selected' : null }}>
@@ -32,7 +32,7 @@
                                 <small class="text-xs text-red-500 ml-1">{{ '*' . $message }}</small>
                             @enderror
                             <input id="product_code" name="product_code" type="text" class="form-control w-full"
-                                placeholder="Input Product Code" value="{{ old('product_code') }}">
+                                placeholder="Input Product Code" value="{{ old('product_code') }}" readonly>
                         </div>
                         <div>
                             <label for="name" class="form-label mt-3">Product Name</label>
@@ -89,7 +89,7 @@
                                     <p id="btnLabel">Choose Image to Upload</p>
                                     <input type="file" name="images[]" multiple data-max_length="20" class="input-image">
                                 </label>
-                                @error('images[]')
+                                @error('images.*')
                                     <small class="text-xs text-red-500 ml-1">{{ '*' . $message }}</small>
                                 @enderror
                             </div>

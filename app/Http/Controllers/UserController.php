@@ -86,4 +86,14 @@ class UserController extends Controller
         $request->session()->regenerateToken();
         return redirect()->route('login')->with('success','You Has Been Logged Out!');
    }
+
+   public function allCustomers(){
+    $data=[
+        'title'=>'All Customers | E-Katalog Khalis Bali Bamboo',
+        'customers'=>User::where('id','!=',1)->where('level','!=','admin')->latest()->get()
+    ];
+    return view('admin.customers.customers-all',$data);
+
+   }
+
 }

@@ -75,12 +75,12 @@ class CategoryController extends Controller
 
     public function deleteCategory(Category $category){
         if($category->delete()){
-            return redirect()->route('manage_category.all')->with('success',$category->name.'Category Deleted Successfully');
+            return redirect()->route('manage_category.all')->with('success','Category "'.$category->name.'" Deleted Successfully');
         }
         return redirect()->back()->with('error','Error Occured, Please Try Again!');
     }
 
     public function getSlug(Request $request){
-        return response()->json(['status'=>true,'data'=>Category::sluged($request->name,$request->id),'id'=>$request->id]);
+        return response()->json(['data'=>Category::sluged($request->name,$request->id)]);
     }
 }
