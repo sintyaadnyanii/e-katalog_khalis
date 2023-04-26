@@ -66,7 +66,14 @@
                             <input id="color" name="color" type="text" class="form-control w-full"
                                 placeholder="Input Product's Color" value="{{ old('color') }}">
                         </div>
-
+                        <div>
+                            <label for="price" class="form-label mt-3">Price</label>
+                            @error('price')
+                                <small class="text-xs text-red-500 ml-1">{{ '*' . $message }}</small>
+                            @enderror
+                            <input id="price" name="price" type="text" class="form-control w-full"
+                                placeholder="Input Product's Price" value="{{ old('price') }}">
+                        </div>
                         <div class="mt-2">
                             <label for="description" class="form-label mt-3">Description</label>
                             @error('description')

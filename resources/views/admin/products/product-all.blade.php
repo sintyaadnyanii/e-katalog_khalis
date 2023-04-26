@@ -42,8 +42,8 @@
                         <th class="text-center whitespace-nowrap">NO</th>
                         <th class="text-center whitespace-nowrap">PRODUCT CODE</th>
                         <th class="text-center whitespace-nowrap">IMAGE</th>
-                        <th class="text-center whitespace-nowrap">NAME & CATEGORY</th>
-                        <th class="text-center whitespace-nowrap">DESCRIPTION</th>
+                        <th class="text-center whitespace-nowrap">NAME</th>
+                        <th class="text-center whitespace-nowrap">PRICE</th>
                         <th class="text-center whitespace-nowrap">ACTIONS</th>
                     </tr>
                 </thead>
@@ -53,8 +53,8 @@
                             <td class="text-center w-20"> {{ $loop->iteration }} </td>
                             <td class="text-center">{{ $item->product_code }}</td>
                             <td class="text-center">
-                                <img class="rounded-md"
-                                    src="{{ asset($item->images->count() ? 'storage/' . $item->images->first()->thumb : 'dist/images/preview-1.jpg') }}"
+                                <img class="rounded-md w-36"
+                                    src="{{ asset($item->images->count() ? 'storage/' . $item->images->first()->thumb : 'dist/images/post-1.jpg') }}"
                                     alt="{{ $item->images->count() ? $item->images->first()->alt : 'product_image' }}">
                             </td>
                             <td class="text-center">
@@ -64,12 +64,13 @@
                                     {{ $item->category->name }}
                                 </div>
                             </td>
-                            <td class="text-center">
-                                {{ Str::words(html_entity_decode(strip_tags($item->description)), 10, '...') }}
-                            </td>
+                            <td class="text-center">Rp {{ number_format($item->price, 0, ',', '.') }}</td>
                             <td class="table-report__action w-56">
-                                <div class="flex justify-center items-center">
-                                    <a class="flex items-center mr-3"
+                                <div class="flex justify-center items-center gap-3">
+                                    <a class="flex items-center"
+                                        href="{{ route('manage_product.detail', ['product' => $item]) }}"> <i
+                                            data-lucide="view" class="w-4 h-4 mr-1"></i> Detail </a>
+                                    <a class="flex items-center"
                                         href="{{ route('manage_product.update', ['product' => $item]) }}"> <i
                                             data-lucide="check-square" class="w-4 h-4 mr-1"></i> Edit </a>
                                     <a class="flex items-center text-danger" href="javascript:;" data-tw-toggle="modal"

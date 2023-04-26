@@ -82,6 +82,7 @@ class CategoryController extends Controller
     }
 
     public function deleteCategory(Category $category){
+        $category->products()->delete();
         if($category->delete()){
             return redirect()->route('manage_category.all')->with('success','Category "'.$category->name.'" Deleted Successfully');
         }

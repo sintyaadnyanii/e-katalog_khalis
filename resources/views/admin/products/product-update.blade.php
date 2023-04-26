@@ -63,6 +63,14 @@
                             <input id="color" name="color" type="text" class="form-control w-full"
                                 placeholder="Input Product's Color" value="{{ old('color') ?? $product->color }}">
                         </div>
+                        <div>
+                            <label for="price" class="form-label mt-3">Price</label>
+                            @error('price')
+                                <small class="text-xs text-red-500 ml-1">{{ '*' . $message }}</small>
+                            @enderror
+                            <input id="price" name="price" type="text" class="form-control w-full"
+                                placeholder="Input Product's Price" value="{{ old('price') ?? $product->price }}">
+                        </div>
 
                         <div class="mt-2">
                             <label for="description" class="form-label mt-3">Description</label>
@@ -85,7 +93,8 @@
                             <div class="mb-3">
                                 <label class="btn-upload btn btn-primary">
                                     <p id="btnLabel">Choose Image to Upload</p>
-                                    <input type="file" name="images[]" multiple data-max_length="20" class="input-image">
+                                    <input type="file" name="images[]" multiple data-max_length="20"
+                                        class="input-image">
                                 </label>
                                 @error('images.*')
                                     <small class="text-xs text-red-500 ml-1">{{ '*' . $message }}</small>

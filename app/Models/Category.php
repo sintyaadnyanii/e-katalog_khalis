@@ -32,7 +32,7 @@ class Category extends Model
         return $slug;
     }
 
-    public function product(){
+    public function products(){
         return $this->hasMany(Product::class,'category_id');
     }
 }

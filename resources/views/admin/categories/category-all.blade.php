@@ -57,7 +57,7 @@
                             <td class="text-center">
                                 {{ Str::words(html_entity_decode(strip_tags($item->description)), 10, '...') }}
                             </td>
-                            <td class="text-center w-20"> {{ $item->product->count() }} </td>
+                            <td class="text-center w-20"> {{ $item->products->count() }} </td>
                             <td class="table-report__action w-56">
                                 <div class="flex justify-center items-center gap-3">
                                     <a class="flex items-center"

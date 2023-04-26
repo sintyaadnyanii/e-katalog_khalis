@@ -2,6 +2,7 @@ $(document).ready(function(){
     deleteModalHandler();
     imageUpload();
     getProductCode($("#category_id").val());
+    imageSlider();
 });
 
 //  delete modal
@@ -83,11 +84,11 @@ function imageUpload() {
 //generate product_code
 function getProductCode(category_id){
 $.ajax({
-    type: "get",
     url: "/dashboard/product/get-product-code",
     data: {
         category_id:category_id
     },
+    type: "get",
     beforeSend:()=>{
             $("#product_code").val("Generating Product Code...");
         },
@@ -97,5 +98,30 @@ $.ajax({
             },300);
         }
 });
+}
 
+// product images detail with slider
+function imageSlider(){
+let thumbnails=document.getElementsByClassName('product-thumbnail');
+let activeImages=document.getElementsByClassName('active-thumbnail');
+for(var i=0;i<thumbnails.length;i++){
+    thumbnails[i].addEventListener('mouseover',function(){
+        // console.log(activeImages)
+        if(activeImages.length>0){
+            activeImages[0].classList.remove('active-thumbnail');
+        }
+        this.classList.add('active-thumbnail');
+        document.getElementsByClassName('product-image')[0].src=this.src;       
+    });
+}
+
+let btnLeft=document.getElementById('arrow-left');
+let btnRight=document.getElementById('arrow-right');
+
+btnLeft.addEventListener('click',function(){
+    document.getElementById('thumbnail-slider').scrollLeft-=180;
+});
+btnRight.addEventListener('click',function(){
+    document.getElementById('thumbnail-slider').scrollLeft+=180;
+});
 }

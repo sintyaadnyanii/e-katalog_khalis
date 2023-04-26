@@ -12,7 +12,7 @@ class Product extends Model
     public $incrementing = false;
     protected $keyType = 'string';
     protected $primaryKey='product_code';
-    protected $fillable=['product_code','category_id','name','dimensions','color','materials','description','link_shopee'];
+    protected $fillable=['product_code','category_id','name','dimensions','color','materials','price','description','link_shopee'];
 
     // relations
     public function category(){
@@ -27,28 +27,32 @@ class Product extends Model
     public static function generatedCode($category_id){
         $first_char=[];
         $code_numbers=[];
-        // mengambil slug berdasarkan berdasarkan category_id dan membuat inisial slug dalam format uppercase
-        $category=Category::where('id',$category_id)->first();
-        $slug_words=explode('-',$category->slug);
-        foreach ($slug_words as $word) {
-        $first_char[] = $word[0];
-        }
-        $slug_initial=Str::upper(implode('',$first_char));
-        if(Product::where('category_id',$category_id)->get()->count()){
-             /*mengambil 3 digit terakhir dari product_code milik setiap produk
-            dalam kategori tertentu berdasarkan category_id dan mengubahnya ke integer*/
-            $products=Product::where('category_id',$category_id)->get();
-             foreach ($products as $product){
-                $code_number=substr($product->product_code,-3);
-                $code_numbers[]=(int)$code_number;
+        if(Category::where('id',$category_id)->get()->count()){
+            // mengambil slug berdasarkan berdasarkan category_id dan membuat inisial slug dalam format uppercase
+            $category=Category::where('id',$category_id)->first();
+            $slug_words=explode('-',$category->slug);
+            foreach ($slug_words as $word) {
+                $first_char[] = $word[0];
             }
-            $max_num=max($code_numbers); //mengambil nilai terbesar dari seluruh product_code
-        }else{
-            $max_num=0;
-        }     
-        //membuat product_code
-        $product_code='KH-'.$slug_initial.str_pad($max_num+1,3,0,STR_PAD_LEFT);
-        return $product_code;
+            $slug_initial=Str::upper(implode('',$first_char));
+
+            if(Product::where('category_id',$category_id)->get()->count()){
+                /*mengambil 3 digit terakhir dari product_code milik setiap produk
+                dalam kategori tertentu berdasarkan category_id dan mengubahnya ke integer*/
+                $products=Product::where('category_id',$category_id)->get();
+                foreach ($products as $product){
+                    $code_number=substr($product->product_code,-3);
+                    $code_numbers[]=(int)$code_number;
+                }
+                $max_num=max($code_numbers); //mengambil nilai terbesar dari seluruh product_code
+            }else{
+                $max_num=0;
+            }     
+            //membuat product_code
+            $product_code='KH-'.$slug_initial.str_pad($max_num+1,3,0,STR_PAD_LEFT);
+            return $product_code;
+        }
+		
     }
     // generate product code
 

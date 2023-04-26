@@ -55,3 +55,30 @@
     @apply bg-no-repeat bg-center bg-cover relative pb-[100%] rounded-md;
 }
 /* Images Upload */
+
+/* Wishlist */
+.liked {
+    @apply stroke-none fill-gray-500;
+}
+/* Wishlist */
+
+/* Dashboard Product Image Slider */
+.product-image {
+    @apply w-full aspect-square object-cover rounded;
+}
+.slider-wrapper {
+    @apply my-2 mx-3 flex items-center justify-center;
+}
+
+.thumbnail-slider {
+    @apply flex flex-row flex-nowrap overflow-x-hidden gap-2 w-full;
+}
+
+.product-thumbnail {
+    @apply w-[50px] aspect-square object-cover rounded cursor-pointer opacity-60 hover:opacity-100;
+}
+
+.active-thumbnail {
+    @apply opacity-100;
+}
+/* Dashboard Product Image Slider */

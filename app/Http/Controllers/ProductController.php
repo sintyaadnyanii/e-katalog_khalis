@@ -27,11 +27,19 @@ class ProductController extends Controller
 
     public function updateProduct(Product $product){
         $data=[
-            'title'=>'Update Product | E-Katalog Khalis Bali Bamboo',
+            'title'=>'Product Update | E-Katalog Khalis Bali Bamboo',
             'categories'=>Category::latest()->get(),
             'product'=>$product
         ];
         return view('admin.products.product-update',$data);
+    }
+
+    public function detailProduct(Product $product){
+        $data=[
+            'title'=>'Product Detail | E-Katalog Khalis Bali Bamboo',
+            'product'=>$product
+        ];
+        return view('admin.products.product-detail',$data);
     }
 
     public function storeProduct(Request $request){
@@ -42,6 +50,7 @@ class ProductController extends Controller
             'dimensions'=>'required|string',
             'materials'=>'required|string',
             'color'=>'required|string',
+            'price'=>'required|numeric',
             'description'=>'nullable|string',
             'link_shopee'=>'nullable|string',
             'images.*'=>'required|image|mimes:jpeg,jpg,png|max:2048'
@@ -57,8 +66,9 @@ class ProductController extends Controller
         'dimensions'=>$validated['dimensions'],
         'materials'=>$validated['materials'],
         'color'=>$validated['color'],
+        'price'=>$validated['price'],
         'description'=>$validated['description'],
-        'link_shopee='=>$validated['link_shopee'],
+        'link_shopee'=>$validated['link_shopee'],
     ]);
     if($created_product){
         return redirect()->route('manage_product.all')->with('success','New Product Created Successfully');
@@ -89,6 +99,7 @@ class ProductController extends Controller
         'dimensions'=>'required|string',
         'materials'=>'required|string',
         'color'=>'required|string',
+        'price'=>'required|numeric',
         'description'=>'nullable|string',
         'link_shopee'=>'nullable|string',
         'images.*'=>'required|image|mimes:jpeg,jpg,png|max:2048'
@@ -104,8 +115,9 @@ class ProductController extends Controller
         'dimensions'=>$validated['dimensions'],
         'materials'=>$validated['materials'],
         'color'=>$validated['color'],
+        'price'=>$validated['price'],
         'description'=>$validated['description'],
-        'link_shopee='=>$validated['link_shopee'],
+        'link_shopee'=>$validated['link_shopee'],
     ]);
     if($updated_product){
         return redirect()->route('manage_product.all')->with('success','New Product Created Successfully');

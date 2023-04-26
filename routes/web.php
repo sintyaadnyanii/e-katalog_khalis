@@ -57,6 +57,7 @@ Route::controller(ProductController::class)->group(function(){
     Route::post('/dashboard/product/create', 'storeProduct')->name('manage_product.store');
     Route::get('/dashboard/product/{product:product_code}/update', 'updateProduct')->name('manage_product.update');
     Route::patch('/dashboard/product/{product:product_code}/update','patchProduct')->name('manage_product.patch');
+    Route::get('/dashboard/product/{product:product_code}/detail', 'detailProduct')->name('manage_product.detail');
     Route::delete('/dashboard/product/{product:product_code}/delete','deleteProduct')->name('manage_product.delete');
     // extended
      Route::get('/dashboard/product/get-product-code','getProductCode');

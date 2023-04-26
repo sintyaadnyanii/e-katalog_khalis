@@ -20,6 +20,7 @@ class CreateProductsTable extends Migration
             $table->string('dimensions');
             $table->string('materials');
             $table->string('color');
+            $table->string('price');
             $table->text('description')->nullable();
             $table->string('link_shopee')->nullable();
             $table->timestamps();

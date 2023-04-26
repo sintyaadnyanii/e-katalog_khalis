@@ -19,7 +19,7 @@
                     </div>
                     <div class="flex flex-row gap-1 mt-2">
                         <div class="basis-1/2 md:basis-1/4 font-medium">Number of Products</div>
-                        <div class="basis-1/2 md:basis-3/4">{{ ': ' . $category->product->count() }}</div>
+                        <div class="basis-1/2 md:basis-3/4">{{ ': ' . $category->products->count() }}</div>
                     </div>
                     <div class="flex flex-row gap-1 mt-2">
                         <div class="basis-1/2 md:basis-1/4 font-medium">Description</div>
