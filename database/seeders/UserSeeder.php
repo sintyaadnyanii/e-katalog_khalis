@@ -26,7 +26,7 @@ class UserSeeder extends Seeder
             'name'=>'User1',
             'email'=>'imteeyaa31@gmail.com',
             'password'=>Hash::make('user@12345'),
-            'phone'=>'089655026608',
+            'phone'=>'081339317472',
             'level'=>'user'
         ]);
     }

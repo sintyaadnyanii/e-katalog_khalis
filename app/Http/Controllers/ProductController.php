@@ -12,7 +12,8 @@ class ProductController extends Controller
     public function allProduct(){
         $data=[
             'title'=>'All Products| E-Katalog Khalis Bali Bamboo',
-            'products'=>Product::latest()->paginate(15)
+            'products'=>Product::latest()->filter(request(['search','category']))->paginate(15)->withQueryString(),
+            'categories'=>Category::latest()->get()
         ];
         return view('admin.products.product-all',$data);
     }

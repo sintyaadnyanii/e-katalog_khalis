@@ -11,7 +11,7 @@ class CategoryController extends Controller
     public function allCategory(){
         $data=[
             'title'=>'Categories | E-Katalog Khalis Bali Bamboo',
-            'categories'=> Category::latest()->paginate(15)->withQueryString(),
+            'categories'=> Category::latest()->filter(request(['search']))->paginate(15)->withQueryString(),
         ];
         return view('admin.categories.category-all',$data);
     }

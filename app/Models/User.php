@@ -39,9 +39,22 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    // relationship
     public function feedback(){
         return $this->hasMany(Feedback::class,'user_id');
     }
+    // relationship
+
+     // Scopes
+    public function scopeFilter($query,array $filters){
+        $query->when($filters['search']??false,function($query,$search){
+            return $query->where('name','like','%'.$search.'%')
+            ->orWhere('email','like','%'.$search.'%')
+            ->orWhere('address','like','%'.$search.'%')->orWhere('phone','like','%'.$search.'%');
+        });
+    } 
+    // Scopes
+
 
     public static function boot()
     {

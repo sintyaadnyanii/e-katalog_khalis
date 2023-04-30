@@ -90,7 +90,7 @@ class UserController extends Controller
    public function allCustomers(){
     $data=[
         'title'=>'All Customers | E-Katalog Khalis Bali Bamboo',
-        'customers'=>User::where('id','!=',1)->where('level','!=','admin')->latest()->paginate(15)
+        'customers'=>User::where('id','!=',1)->where('level','!=','admin')->latest()->filter(request(['search']))->paginate(15)->withQueryString()
     ];
     return view('admin.customers.customer-all',$data);
    }

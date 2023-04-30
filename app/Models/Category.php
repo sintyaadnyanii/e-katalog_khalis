@@ -11,6 +11,24 @@ class Category extends Model
     use HasFactory;
     protected $fillable=['name','description','slug'];
 
+
+    // Relationship
+    public function products(){
+        return $this->hasMany(Product::class,'category_id');
+    }
+    // Relationship
+
+
+    // Scopes
+    public function scopeFilter($query,array $filters){
+        $query->when($filters['search']??false,function($query,$search){
+            return $query->where('name','like','%'.$search.'%')->orWhere('slug','like','%'.$search.'%');
+        });
+    } 
+    // Scopes
+
+
+    // Slug
     public static function slugable($category,$slug){
         if($category>0){
             $slug .= '-'.$category;
@@ -31,8 +49,5 @@ class Category extends Model
 
         return $slug;
     }
-
-    public function products(){
-        return $this->hasMany(Product::class,'category_id');
-    }
+    // Slug
 }

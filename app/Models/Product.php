@@ -23,6 +23,22 @@ class Product extends Model
     }
     // relations
 
+
+    // scopes
+    public function scopeFilter($query,array $filters){
+        $query->when($filters['category']??false,function($query,$category){
+            return $query->WhereHas('category',function($query)use($category){
+                $query->where('slug',$category);
+            });
+        });
+        $query->when($filters['search']??false,function($query,$search){
+            return $query->where('name','like','%'.$search.'%')->orWhere('product_code','like','%'.$search.'%')->orWhereHas('category',function($query)use($search){
+               $query->where('name','like','%'.$search.'%')->orWhere('slug','like','%'.$search.'%');
+            });
+        });
+    } 
+    // scopes
+
     // generate product code
     public static function generatedCode($category_id){
         $first_char=[];

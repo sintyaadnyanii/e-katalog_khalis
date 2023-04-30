@@ -29,7 +29,7 @@
                     @error('old_password')
                         <small class="text-xs text-red-500 ml-1">{{ '*' . $message }}</small>
                     @enderror
-                    <input id="old_password" name="old_password" type="text"
+                    <input id="old_password" name="old_password" type="password"
                         class="form-control form-control-sm text-sm w-full" placeholder="Input Old Password"
                         value="{{ old('old_password') }}">
                 </div>
@@ -38,7 +38,7 @@
                     @error('new_password')
                         <small class="text-xs text-red-500 ml-1">{{ '*' . $message }}</small>
                     @enderror
-                    <input id="new_password" name="new_password" type="text"
+                    <input id="new_password" name="new_password" type="password"
                         class="form-control form-control-sm text-sm w-full" placeholder="Input New Password"
                         value="{{ old('new_password') }}">
                 </div>
@@ -47,7 +47,7 @@
                     @error('confirm_password')
                         <small class="text-xs text-red-500 ml-1">{{ '*' . $message }}</small>
                     @enderror
-                    <input id="confirm_password" name="confirm_password" type="text"
+                    <input id="confirm_password" name="confirm_password" type="password"
                         class="form-control form-control-sm text-sm w-full" placeholder="Confirm New Password"
                         value="{{ old('confirm_password') }}">
                 </div>

@@ -2,7 +2,7 @@
 @section('dashboard-content')
     <h2 class="intro-y text-lg font-medium mt-10">Products</h2>
     <div class="grid grid-cols-12 gap-6 mt-5">
-        <div class="intro-y col-span-12 flex flex-wrap sm:flex-nowrap items-center mt-2">
+        {{-- <div class="intro-y col-span-12 flex flex-wrap sm:flex-nowrap items-center mt-2">
             <a href="{{ route('manage_product.create') }}" class="btn btn-primary shadow-md mr-2">Add New Product</a>
             <div class="dropdown">
                 <button class="dropdown-toggle btn px-2 box" aria-expanded="false" data-tw-toggle="dropdown">
@@ -33,6 +33,42 @@
                     <i class="w-4 h-4 absolute my-auto inset-y-0 mr-3 right-0" data-lucide="search"></i>
                 </div>
             </div>
+        </div> --}}
+        <div class="intro-y col-span-12 flex flex-row justify-between items-center mt-2">
+            <div class="flex items-center">
+                <a href="{{ route('manage_product.create') }}" class="btn btn-primary shadow-md mr-2">Add New Product</a>
+                <div class="dropdown">
+                    <button class="dropdown-toggle btn px-2 py-2 box" aria-expanded="false" data-tw-toggle="dropdown"><i
+                            class="w-5 h-5 fill-[#455452] stroke-none" data-lucide="filter"></i>
+                    </button>
+                    <div class="dropdown-menu w-52">
+                        <ul class="dropdown-content h-52 overflow-y-auto">
+                            <li>
+                                <a href="/dashboard/products" class="dropdown-item">All</a>
+                            </li>
+                            @foreach ($categories as $item)
+                                <li>
+                                    <a href="/dashboard/products?category={{ $item->slug }}"
+                                        class="dropdown-item">{{ $item->name }}</a>
+                                </li>
+                            @endforeach
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="rounded-md shadow text-slate-500 bg-white">
+                <form action="{{ route('manage_product.all') }}" method="get" class="flex items-center">
+                    @if (request('category'))
+                        <input type="hidden" name="category" value="{{ request('category') }}">
+                    @endif
+                    <input type="text" name="search" class="py-2 w-20 md:w-44 border-0 shadow-none rounded-l-md"
+                        placeholder="Search...">
+                    <button type="submit" class="py-2 px-1 border-s"><i data-lucide="search"
+                            class="w-4 stroke-slate-700"></i></button>
+                </form>
+            </div>
         </div>
         <!-- BEGIN: Data List -->
         <div class="intro-y col-span-12 overflow-auto lg:overflow-visible">
@@ -52,7 +88,7 @@
                         <tr class="intro-x">
                             <td class="text-center w-20"> {{ $products->firstItem() + $loop->index }} </td>
                             <td class="text-center">{{ $item->product_code }}</td>
-                            <td class="text-center flex justify-center items-center">
+                            <td class="text-center justify-center items-center">
                                 <img class="rounded-md w-32 aspect-[4/3] object-cover"
                                     src="{{ asset($item->images->count() ? 'storage/' . $item->images->first()->thumb : 'dist/images/post-1.jpg') }}"
                                     alt="{{ $item->images->count() ? $item->images->first()->alt : 'product_image' }}">
