@@ -46,10 +46,10 @@ class Image extends Model
 
         self::deleted(function ($image){
             if (Storage::disk('public')->exists($image->src)) {
-                Storage::delete($image->src);
+                Storage::disk('public')->delete($image->src);
             }
-            elseif (Storage::disk('public')->exists($image->thumb)) {
-                Storage::delete($image->thumb);
+            if(Storage::disk('public')->exists($image->thumb)) {
+                Storage::disk('public')->delete($image->thumb);
             }
         });
     }

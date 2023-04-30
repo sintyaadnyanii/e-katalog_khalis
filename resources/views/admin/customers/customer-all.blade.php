@@ -49,7 +49,7 @@
                 <tbody>
                     @forelse ($customers as $index=>$item)
                         <tr class="intro-x">
-                            <td class="text-center w-20"> {{ $loop->iteration }} </td>
+                            <td class="text-center w-20"> {{ $customers->firstItem() + $loop->index }} </td>
                             <td class="text-center">{{ $item->name }}</td>
                             <td class="text-center">{{ $item->phone }}</td>
                             <td class="text-center">{{ $item->email }}</td>
@@ -66,36 +66,11 @@
         </div>
         <!-- END: Data List -->
         <!-- BEGIN: Pagination -->
-        <div class="intro-y col-span-12 flex flex-wrap sm:flex-row sm:flex-nowrap items-center">
-            <nav class="w-full sm:w-auto sm:mr-auto">
-                <ul class="pagination">
-                    <li class="page-item">
-                        <a class="page-link" href="#"> <i class="w-4 h-4" data-lucide="chevrons-left"></i> </a>
-                    </li>
-                    <li class="page-item">
-                        <a class="page-link" href="#"> <i class="w-4 h-4" data-lucide="chevron-left"></i> </a>
-                    </li>
-                    <li class="page-item"> <a class="page-link" href="#">...</a> </li>
-                    <li class="page-item"> <a class="page-link" href="#">1</a> </li>
-                    <li class="page-item active"> <a class="page-link" href="#">2</a> </li>
-                    <li class="page-item"> <a class="page-link" href="#">3</a> </li>
-                    <li class="page-item"> <a class="page-link" href="#">...</a> </li>
-                    <li class="page-item">
-                        <a class="page-link" href="#"> <i class="w-4 h-4" data-lucide="chevron-right"></i> </a>
-                    </li>
-                    <li class="page-item">
-                        <a class="page-link" href="#"> <i class="w-4 h-4" data-lucide="chevrons-right"></i> </a>
-                    </li>
-                </ul>
-            </nav>
-            <select class="w-20 form-select box mt-3 sm:mt-0">
-                <option>10</option>
-                <option>25</option>
-                <option>35</option>
-                <option>50</option>
-            </select>
+        <div class="intro-y col-span-12 flex flex-wrap sm:flex-row sm:flex-nowrap justify-end items-center">
+            {{ $customers->links('fragments.pagination') }}
         </div>
         <!-- END: Pagination -->
+
     </div>
     {{-- <!-- BEGIN: Delete Confirmation Modal -->
     <div id="delete-confirmation-modal" class="modal" tabindex="-1" aria-hidden="true">

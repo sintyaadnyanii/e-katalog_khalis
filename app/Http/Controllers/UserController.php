@@ -32,11 +32,11 @@ class UserController extends Controller
         'email'=>'required|email:dns',
         'phone'=>'required|numeric',
         'address'=>'nullable',
-        'password'=>'required|string',
+        'password'=>'required|string|min:8',
         'password_confirm'=>'required|same:password'
     ]);
     if($validator->fails()){
-        return redirect()->back()->withErrors($validator)->withInput()->with('error','Oops, An Error Occured During Registration!');
+        return redirect()->back()->withErrors($validator)->withInput()->with('error','An Error Occured During Registration!');
     }
     $validated=$validator->validate();
     $created_user=User::create([
@@ -65,7 +65,7 @@ class UserController extends Controller
    {
     $validator=Validator::make($request->all(),[
         'email'=>'required|email:dns',
-        'password'=>'required|string',
+        'password'=>'required|string|min:8',
     ]);
     if($validator->fails()){
         return redirect()->back()->withErrors($validator)->withInput()->with('error','There is Something Wrong With The Input, Please Try Again!');
@@ -90,10 +90,83 @@ class UserController extends Controller
    public function allCustomers(){
     $data=[
         'title'=>'All Customers | E-Katalog Khalis Bali Bamboo',
-        'customers'=>User::where('id','!=',1)->where('level','!=','admin')->latest()->get()
+        'customers'=>User::where('id','!=',1)->where('level','!=','admin')->latest()->paginate(15)
     ];
-    return view('admin.customers.customers-all',$data);
+    return view('admin.customers.customer-all',$data);
+   }
+
+   public function updateProfile(){
+    $data=[
+        'title'=>'Edit Profile | E-Katalog Khalis Bali Bamboo',
+        'user'=>Auth::user()
+    ];
+    return view('update-profile',$data);
+   }
+
+   public function updatePassword(){
+    $data=[
+        'title'=>'Change Password | E-Katalog Khalis Bali Bamboo'
+    ];
+    return view('update-password',$data);
+   }
+
+   public function patchProfile(Request $request, User $user){
+    if($request->email!=$user->email){
+        if(User::where('email',$user->email)->where('id','!=',$user->id)->count()){
+            return redirect()->back()->withInput()->with('error', 'This email has been registered, please input another email');
+        }else{
+            $email_validator = Validator::make($request->all(), [
+                'email' => 'required|email:dns|unique:users,email',
+            ]);
+
+            if ($email_validator->fails()) {
+                return redirect()->back()->withErrors($email_validator)->withInput()->with('error', 'Error Occured, Please Try Again!');
+            }
+            $validated_email = $email_validator->validate();
+            $user->update(['email' => $validated_email['email']]);
+        }
+    }
+    $validator=Validator::make($request->all(),[
+        'name'=>'required|string|min:8|max:50',
+        'phone'=>'required|numeric',
+        'address'=>'nullable'
+    ]);
+    if($validator->fails()){
+        return redirect()->back()->withErrors($validator)->withInput()->with('error','An Error Occured During Updating!');
+    }
+    $validated=$validator->validate();
+    $updated_user=$user->update([
+        'name'=>$validated['name'],
+        'phone'=>$validated['phone'],
+        'address'=>$validated['address']
+    ]);
+    if($updated_user){
+        return redirect()->route('dashboard')->with('success','Your Profile Has Been Updated Successfully');
+    }
+    return redirect()->back()->withInput()->with('error','Update Profile Failed! Please Try Again!');
 
    }
 
+   public function patchPassword(Request $request){
+    $validator=Validator::make($request->all(),[
+        'old_password'=>'required|string|min:8',
+        'new_password'=>'required|string|min:8',
+        'confirm_password'=>'required|same:new_password',
+    ]);
+    if($validator->fails()){
+        return redirect()->back()->withErrors($validator)->withInput()->with('error','There is Something Wrong With The Input, Please Try Again!');
+    }
+    $validated=$validator->validate();
+    if(Hash::check($validated['old_password'], auth()->user()->password)){
+        $updated_password=User::where('id',auth()->user()->id)->update([
+        'password'=>Hash::make($validated['new_password'])
+        ]);
+        if($updated_password){
+            return redirect()->route('dashboard')->with('success','Your Password Has Been Changed Successfully');
+        }
+        return redirect()->back()->withInput()->with('error','Change Password Failed! Please Try Again!');
+    }
+    return redirect()->back()->with('error',"Password Doesn't Match, Please Try Again!");
+
+   }
 }

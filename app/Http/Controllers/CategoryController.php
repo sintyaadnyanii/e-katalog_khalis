@@ -11,7 +11,7 @@ class CategoryController extends Controller
     public function allCategory(){
         $data=[
             'title'=>'Categories | E-Katalog Khalis Bali Bamboo',
-            'categories'=> Category::latest()->get(),
+            'categories'=> Category::latest()->paginate(15)->withQueryString(),
         ];
         return view('admin.categories.category-all',$data);
     }
@@ -25,7 +25,7 @@ class CategoryController extends Controller
 
     public function updateCategory(Category $category){
         $data=[
-            'title'=>'Category Update | E-Katalog Khalis Bali Bamboo',
+            'title'=>'Update Category | E-Katalog Khalis Bali Bamboo',
             'category'=>$category,
         ];
         return view('admin.categories.category-update',$data);
@@ -46,7 +46,7 @@ class CategoryController extends Controller
             'description'=>'required|string',
         ]);
         if($validator->fails()){
-            return redirect()->back()->withErrors($validator)->withInput()->with('error','Oops, there must be something wrong with the input!');
+            return redirect()->back()->withErrors($validator)->withInput()->with('error','There must be something wrong with the input!');
         }
         $validated=$validator->validated();
         $created_category=Category::create([
@@ -67,7 +67,7 @@ class CategoryController extends Controller
             'description'=>'required|string',
         ]);
         if($validator->fails()){
-            return redirect()->back()->withErrors($validator)->withInput()->with('error','Oops, there must be something wrong with the input!');
+            return redirect()->back()->withErrors($validator)->withInput()->with('error','There must be something wrong with the input!');
         }
         $validated=$validator->validated();
         $updated_category=$category->update([
@@ -76,7 +76,7 @@ class CategoryController extends Controller
             'description'=>$validated['description'],
         ]);
         if($updated_category){
-            return redirect()->route('manage_category.all')->with('success','Category Updated Successfully');
+            return redirect()->route('manage_category.all')->with('success','Category "'.$category->name.'" Updated Successfully');
         }
         return redirect()->back()->with('error','Error Occured, Please Try Again!');
     }

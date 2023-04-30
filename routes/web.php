@@ -36,10 +36,13 @@ Route::controller(UserController::class)->group(function(){
     Route::post('/login','attemptLogin')->name('attempt_login');
     Route::get('/logout','logout')->name('logout')->middleware('auth');
     Route::get('/dashboard/customers', 'allCustomers')->name('manage_customer.all');
-
+    Route::get('/profile/update','updateProfile')->name('profile.update')->middleware('auth');
+    Route::get('/password/change','updatePassword')->name('password.update')->middleware('auth');
+    Route::patch('/profile/{user:email}/update','patchProfile')->name('profile.patch')->middleware('auth');
+    Route::patch('/password/change','patchPassword')->name('password.patch')->middleware('auth');
 });
 
-Route::controller(CategoryController::class)->group(function () {
+Route::middleware(['auth','admin'])->controller(CategoryController::class)->group(function () {
     Route::get('/dashboard/categories', 'allCategory')->name('manage_category.all');
     Route::get('/dashboard/category/create', 'createCategory')->name('manage_category.create');
     Route::post('/dashboard/category/create', 'storeCategory')->name('manage_category.store');
@@ -51,7 +54,7 @@ Route::controller(CategoryController::class)->group(function () {
     Route::get('/dashboard/category/get-slug','getSlug');
 });
 
-Route::controller(ProductController::class)->group(function(){
+Route::middleware(['auth','admin'])->controller(ProductController::class)->group(function(){
     Route::get('/dashboard/products', 'allProduct')->name('manage_product.all');
     Route::get('/dashboard/product/create', 'createProduct')->name('manage_product.create');
     Route::post('/dashboard/product/create', 'storeProduct')->name('manage_product.store');
@@ -63,7 +66,7 @@ Route::controller(ProductController::class)->group(function(){
      Route::get('/dashboard/product/get-product-code','getProductCode');
 });
 
-Route::controller(FeedbackController::class)->group(function(){
+Route::middleware(['auth','admin'])->controller(FeedbackController::class)->group(function(){
     Route::get('/dashboard/feedback', 'allFeedback')->name('manage_feedback.all');
     Route::get('/dashboard/feedback/create', 'createFeedback')->name('manage_feedback.create');
     Route::post('/dashboard/feedback/create', 'storeFeedback')->name('manage_feedback.store');

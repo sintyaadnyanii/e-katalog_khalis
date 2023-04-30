@@ -12,7 +12,7 @@ class ProductController extends Controller
     public function allProduct(){
         $data=[
             'title'=>'All Products| E-Katalog Khalis Bali Bamboo',
-            'products'=>Product::latest()->get()
+            'products'=>Product::latest()->paginate(15)
         ];
         return view('admin.products.product-all',$data);
     }
@@ -27,7 +27,7 @@ class ProductController extends Controller
 
     public function updateProduct(Product $product){
         $data=[
-            'title'=>'Product Update | E-Katalog Khalis Bali Bamboo',
+            'title'=>'Update Product | E-Katalog Khalis Bali Bamboo',
             'categories'=>Category::latest()->get(),
             'product'=>$product
         ];
@@ -86,7 +86,7 @@ class ProductController extends Controller
             ]);
 
             if ($code_validator->fails()) {
-                return redirect()->back()->withErrors($code_validator)->withInput()->with('error', 'OPPS! <br> An Error Occurred During Updating!');
+                return redirect()->back()->withErrors($code_validator)->withInput()->with('error', 'Error Occured, Please Try Again!');
             }
 
             $validated_code = $code_validator->validate();
@@ -120,14 +120,14 @@ class ProductController extends Controller
         'link_shopee'=>$validated['link_shopee'],
     ]);
     if($updated_product){
-        return redirect()->route('manage_product.all')->with('success','New Product Created Successfully');
+        return redirect()->route('manage_product.all')->with('success','Product "'.$product->name.'" Updated Successfully');
     }
     return redirect()->back()->with('error','Error Occured, Please Try Again!');
     }
 
     public function deleteProduct(Product $product){
          if ($product->delete()) {
-            return redirect()->route('manage_product.all')->with('success', 'This Product Successfully Deleted');
+            return redirect()->route('manage_product.all')->with('success', 'Product "'.$product->name.'" Deleted Successfully');
         }
         return redirect()->back()->with('error', 'Error Occured, Please Try Again!');
     }

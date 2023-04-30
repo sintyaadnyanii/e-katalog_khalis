@@ -120,4 +120,29 @@
 @endsection
 @section('script')
     <script src="{{ asset('dist/js/view/dashboard/manage-product.js') }}"></script>
+    <script>
+        $(document).ready(function() {
+            let thumbnails = document.getElementsByClassName('product-thumbnail');
+            let activeImages = document.getElementsByClassName('active-thumbnail');
+            for (let i = 0; i < thumbnails.length; i++) {
+                thumbnails[i].addEventListener('mouseover', function() {
+                    if (activeImages.length > 0) {
+                        activeImages[0].classList.remove('active-thumbnail');
+                    }
+                    this.classList.add('active-thumbnail');
+                    document.getElementsByClassName('product-image')[0].src = this.src;
+                });
+            }
+
+            let btnLeft = document.getElementById('arrow-left');
+            let btnRight = document.getElementById('arrow-right');
+
+            btnLeft.addEventListener('click', function() {
+                document.getElementById('thumbnail-slider').scrollLeft -= 180;
+            });
+            btnRight.addEventListener('click', function() {
+                document.getElementById('thumbnail-slider').scrollLeft += 180;
+            });
+        });
+    </script>
 @endsection
