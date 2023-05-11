@@ -13,9 +13,9 @@ class CreateFeedbackTable extends Migration
      */
     public function up()
     {
-        Schema::create('feedback', function (Blueprint $table) {
-            $table->id();
-            $table->integer('user_id')->nullable();
+        Schema::create('feedbacks', function (Blueprint $table) {
+            $table->increments('id');
+            $table->integer('user_id')->unsigned();
             $table->tinyInteger('rating')->unsigned();
             $table->boolean('status')->default(false);
             $table->text('message');
@@ -30,6 +30,6 @@ class CreateFeedbackTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('feedback');
+        Schema::dropIfExists('feedbacks');
     }
 }

@@ -17,10 +17,10 @@ class CreateProductsTable extends Migration
             $table->string('product_code',10);
             $table->integer('category_id')->unsigned();
             $table->string('name',50);
-            $table->string('dimensions');
+            $table->string('dimensions',50);
             $table->string('materials');
-            $table->string('color');
-            $table->string('price');
+            $table->string('color',50);
+            $table->string('price',50);
             $table->text('description')->nullable();
             $table->string('link_shopee')->nullable();
             $table->timestamps();
