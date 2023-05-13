@@ -1,6 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import flowbite;
 
 /* rating */
 .star {
@@ -82,3 +83,21 @@
     @apply opacity-100;
 }
 /* Dashboard Product Image Slider */
+
+/* Frontpage */
+.hamburger-line {
+    @apply w-[30px] h-[2px] my-2 block bg-black;
+}
+.nav-hover {
+    @apply hover:border-b-2 hover:border-black px-1 pb-1;
+}
+.nav-active {
+    @apply border-b-2 border-black px-1 pb-1;
+}
+.sidenav-active {
+    @apply bg-[#3B4846];
+}
+.sidenav-hover {
+    @apply hover:bg-[#3B4846];
+}
+/* Frontpage */

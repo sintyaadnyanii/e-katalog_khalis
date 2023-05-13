@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\FeedbackController;
+use App\Http\Controllers\MainController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -24,6 +25,14 @@ use Illuminate\Support\Facades\Route;
 Route::get('/',function(){
     return view('frontpage.main');
 })->name('main');
+
+Route::get('/about-us',function(){return view('frontpage.about-us');})->name('main.about-us');
+Route::get('/contact-us',function(){return view('frontpage.contact-us');})->name('main.contact-us');
+
+Route::controller(MainController::class)->group(function(){
+    Route::get('/products','products')->name('main.product');
+});
+
 
 Route::get('/dashboard',function(){
     return view('admin.dashboard-overview');
@@ -63,7 +72,7 @@ Route::middleware(['auth','admin'])->controller(ProductController::class)->group
     Route::get('/dashboard/product/{product:product_code}/detail', 'detailProduct')->name('manage_product.detail');
     Route::delete('/dashboard/product/{product:product_code}/delete','deleteProduct')->name('manage_product.delete');
     // extended
-     Route::get('/dashboard/product/get-product-code','getProductCode');
+    Route::get('/dashboard/product/get-product-code','getProductCode');
 });
 
 Route::middleware(['auth','admin'])->controller(FeedbackController::class)->group(function(){
