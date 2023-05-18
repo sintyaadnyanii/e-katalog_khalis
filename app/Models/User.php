@@ -17,7 +17,7 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
-    protected $fillable = ['name','email','password','phone','address','level'
+    protected $fillable = ['name','email','password','phone','address','level',
     ];
 
     /**
@@ -55,15 +55,4 @@ class User extends Authenticatable
     } 
     // Scopes
 
-
-    public static function boot()
-    {
-        parent::boot();
-
-        self::creating(function($model){
-            $model->level='user';
-        });
-        
-
-    }
 }

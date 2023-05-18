@@ -38,7 +38,7 @@
                                 </span>
                             </div>
                             <h4 class="font-medium text-primary">
-                                {{ 'Rp' . number_format($product->price, 0, ',', '.') }}</h4>
+                                {{ pricing($product->price) }}</h4>
                             <div class="mt-2">{{ strip_tags($product->description) }}</div>
                             <hr class="mt-0.5">
                             <div class="w-full md:w-1/2 mt-3">

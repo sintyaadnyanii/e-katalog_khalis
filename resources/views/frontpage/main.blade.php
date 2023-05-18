@@ -129,4 +129,7 @@
         </button>
     </div>
     {{-- heading carousel --}}
+    <div class="relative h-50 w-full bg-red-400">
+        konten
+    </div>
 @endsection

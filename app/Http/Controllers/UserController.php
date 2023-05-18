@@ -45,6 +45,7 @@ class UserController extends Controller
         'phone'=>$validated['phone'],
         'address'=>$validated['address'],
         'password'=>Hash::make($validated['password']),
+        'level'=>'user'
     ]);
     if($created_user){
         if($request->redirect_login){

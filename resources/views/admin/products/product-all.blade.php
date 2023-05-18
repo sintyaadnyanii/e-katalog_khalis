@@ -88,8 +88,8 @@
                         <tr class="intro-x">
                             <td class="text-center w-20"> {{ $products->firstItem() + $loop->index }} </td>
                             <td class="text-center">{{ $item->product_code }}</td>
-                            <td class="text-center justify-center items-center">
-                                <img class="rounded-md w-32 aspect-[4/3] object-cover"
+                            <td class="w-40">
+                                <img class="rounded-md w-full aspect-[4/3] object-cover"
                                     src="{{ asset($item->images->count() ? 'storage/' . $item->images->first()->thumb : 'dist/images/post-1.jpg') }}"
                                     alt="{{ $item->images->count() ? $item->images->first()->alt : 'product_image' }}">
                             </td>
@@ -100,7 +100,7 @@
                                     {{ $item->category->name }}
                                 </div>
                             </td>
-                            <td class="text-center">Rp {{ number_format($item->price, 0, ',', '.') }}</td>
+                            <td class="text-center">{{ pricing($item->price) }}</td>
                             <td class="table-report__action w-56">
                                 <div class="flex justify-center items-center gap-3">
                                     <a class="flex items-center"

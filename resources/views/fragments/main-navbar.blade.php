@@ -1,8 +1,8 @@
 {{-- begin navbar --}}
 <div class="flex flex-wrap place-items-center top-0 left-0">
-    <section class="relative mx-auto">
+    <section class="relative mx-auto w-full">
         <!-- navbar -->
-        <nav class="flex justify-between bg-white w-screen">
+        <nav class="flex justify-between bg-white">
             <div class="px-5 xl:px-12 py-5 flex w-full items-center">
                 <a class="text-3xl font-bold font-heading" href="#">
                     <img class="w-12" src="{{ asset('dist/images/logo_khalis.png') }}" alt="logo">
@@ -12,12 +12,12 @@
                     <li class="{{ Request::is('/') ? 'nav-active' : 'nav-hover' }}"><a
                             href="{{ route('main') }}">Home</a>
                     </li>
-                    <li class="{{ Request::is('/product**') ? 'nav-active' : 'nav-hover' }}"><a
+                    <li class="{{ Request::is('product**') ? 'nav-active' : 'nav-hover' }}"><a
                             href="{{ route('main.product') }}">Products</a></li>
-                    <li class="{{ Request::is('/about**') ? 'nav-active' : 'nav-hover' }}"><a
+                    <li class="{{ Request::is('about**') ? 'nav-active' : 'nav-hover' }}"><a
                             href="{{ route('main.about-us') }}">About
                             Us</a></li>
-                    <li class="{{ Request::is('/contact**') ? 'nav-active' : 'nav-hover' }}"><a
+                    <li class="{{ Request::is('contact**') ? 'nav-active' : 'nav-hover' }}"><a
                             href="{{ route('main.contact-us') }}">Contact
                             Us</a></li>
                 </ul>
@@ -26,7 +26,7 @@
                     @auth
                         {{-- Wishlist --}}
                         <a class="flex items-center" href="#">
-                            <i class="far fa-heart text-xl font-medium"></i>
+                            <i class="fa-regular fa-heart text-xl font-medium"></i>
                             <span class="flex absolute -mt-3 ml-4">
                                 {{-- <span class="animate-ping absolute inline-flex h-3 w-3 rounded-full bg-pink-400 opacity-75"></span> --}}
                                 <span class="relative inline-flex rounded-full h-4 w-4 bg-pink-300">
@@ -37,11 +37,11 @@
                         </a>
                         {{-- Profile --}}
                         <button class="flex items-center" type="button" onclick="userMenuDropdown()">
-                            <i class="far fa-user-circle text-xl font-medium"></i>
+                            <i class="fa-regular fa-user-circle text-xl font-medium"></i>
                         </button>
                     @else
                         <a href="{{ route('login') }}" class="flex items-center font-semibold font-heading"><i
-                                class="fa-solid fa-sign-in text-xl font-medium mr-2"></i>Login</a>
+                                class="fa-solid fa-sign-in text-xl font-medium mr-2"></i></a>
                     @endauth
 
                 </div>
@@ -50,7 +50,7 @@
             {{-- wishlist --}}
             @auth
                 <a class="md:hidden flex mr-4 items-center" href="#">
-                    <i class="far fa-heart text-xl font-medium"></i>
+                    <i class="fa-regular fa-heart text-xl font-medium"></i>
                     <span class="flex absolute -mt-3 ml-4">
                         {{-- <span class="animate-ping absolute inline-flex h-3 w-3 rounded-full bg-pink-400 opacity-75"></span> --}}
                         <span class="relative inline-flex rounded-full h-4 w-4 bg-pink-300">
@@ -81,7 +81,7 @@
         <ul class="mt-6">
             @auth
                 <li class="px-4 py-2 mb-2 text-center">
-                    <i class="far fa-user-circle text-xl font-medium"></i>
+                    <i class="fa-regular fa-user-circle text-xl font-medium"></i>
                     <div class="text-base font-medium">{{ auth()->user()->name ?? 'Admin' }}</div>
                     <div class="text-xs text-white/70 mt-0.5">{{ auth()->user()->level ?? 'Administrator' }}</div>
                 </li>
@@ -90,12 +90,12 @@
             <li class="{{ Request::is('/') ? 'sidenav-active' : 'sidenav-hover' }}"><a href="{{ route('main') }}"
                     class="block py-2 px-4  text-base font-medium">Home</a>
             </li>
-            <li class="{{ Request::is('/product**') ? 'sidenav-active' : 'sidenav-hover' }}"><a
+            <li class="{{ Request::is('product**') ? 'sidenav-active' : 'sidenav-hover' }}"><a
                     href="{{ route('main.product') }}" class="block py-2 px-4 text-base font-medium">Products</a>
             </li>
-            <li class="{{ Request::is('/about**') ? 'sidenav-active' : 'sidenav-hover' }}"><a
+            <li class="{{ Request::is('about**') ? 'sidenav-active' : 'sidenav-hover' }}"><a
                     href="{{ route('main.about-us') }}" class="block py-2 px-4 text-base font-medium">About Us</a></li>
-            <li class="{{ Request::is('/contact**') ? 'sidenav-active' : 'sidenav-hover' }}"><a
+            <li class="{{ Request::is('contact**') ? 'sidenav-active' : 'sidenav-hover' }}"><a
                     href="{{ route('main.contact-us') }}" class="block py-2 px-4 text-base font-medium">Contact Us</a>
             </li>
             @auth
