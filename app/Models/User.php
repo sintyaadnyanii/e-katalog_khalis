@@ -43,6 +43,10 @@ class User extends Authenticatable
     public function feedback(){
         return $this->hasMany(Feedback::class,'user_id');
     }
+
+    public function wishlist(){
+        return $this->hasMany(Wishlist::class,'user_id');
+    }
     // relationship
 
      // Scopes

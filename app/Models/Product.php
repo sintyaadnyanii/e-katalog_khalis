@@ -23,7 +23,10 @@ class Product extends Model
     }
     // relations
 
-
+    public function wishlist(){
+        return $this->hasMany(Wishlist::class,'product_code');
+    }
+    
     // scopes
     public function scopeFilter($query,array $filters){
         $query->when($filters['category']??false,function($query,$category){

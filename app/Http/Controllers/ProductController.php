@@ -127,7 +127,7 @@ class ProductController extends Controller
     }
 
     public function deleteProduct(Product $product){
-         if ($product->delete()) {
+        if ($product->delete()) {
             return redirect()->route('manage_product.all')->with('success', 'Product "'.$product->name.'" Deleted Successfully');
         }
         return redirect()->back()->with('error', 'Error Occured, Please Try Again!');

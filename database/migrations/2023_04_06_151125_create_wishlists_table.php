@@ -17,7 +17,6 @@ class CreateWishlistsTable extends Migration
             $table->increments('id');
             $table->string('product_code',10);
             $table->integer('user_id')->unsigned();
-            $table->boolean('status');
             $table->timestamps();
         });
     }

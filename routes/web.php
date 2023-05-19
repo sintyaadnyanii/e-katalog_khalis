@@ -31,6 +31,9 @@ Route::get('/contact-us',function(){return view('frontpage.contact-us');})->name
 
 Route::controller(MainController::class)->group(function(){
     Route::get('/products','products')->name('main.product');
+    Route::post('/add-to-wishlist','addWishlist')->name('main.add-wishlist');
+    Route::get('/wishlist','wishlist')->name('main.wishlist');
+    Route::delete('/wishlist/{wishlist:product_code}/delete','deleteWishlist')->name('main.wishlist_delete');
 });
 
 

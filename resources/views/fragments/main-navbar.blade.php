@@ -25,13 +25,14 @@
                 <div class="hidden md:flex space-x-5 items-center">
                     @auth
                         {{-- Wishlist --}}
-                        <a class="flex items-center" href="#">
+                        <a class="flex items-center" href="{{ route('main.wishlist') }}">
                             <i class="fa-regular fa-heart text-xl font-medium"></i>
                             <span class="flex absolute -mt-3 ml-4">
-                                {{-- <span class="animate-ping absolute inline-flex h-3 w-3 rounded-full bg-pink-400 opacity-75"></span> --}}
-                                <span class="relative inline-flex rounded-full h-4 w-4 bg-pink-300">
-                                    <span
-                                        class="text-[10px] font-medium flex justify-center items-center h-full w-full">12</span>
+                                {{-- <span class="animate-ping absolute inline-flex h-4 w-4 rounded-full bg-pink-400 opacity-75"></span> --}}
+                                <span
+                                    class="relative flex justify-center items-center text-[11px] font-medium rounded-full h-4 w-4 bg-[#E6A2A8] border border-white"
+                                    id="added_product">
+                                    {{ auth()->user()->wishlist->count() }}
                                 </span>
                             </span>
                         </a>
@@ -49,12 +50,13 @@
             <!-- Responsive navbar -->
             {{-- wishlist --}}
             @auth
-                <a class="md:hidden flex mr-4 items-center" href="#">
+                <a class="md:hidden flex mr-4 items-center" href="{{ route('main.wishlist') }}">
                     <i class="fa-regular fa-heart text-xl font-medium"></i>
                     <span class="flex absolute -mt-3 ml-4">
-                        {{-- <span class="animate-ping absolute inline-flex h-3 w-3 rounded-full bg-pink-400 opacity-75"></span> --}}
-                        <span class="relative inline-flex rounded-full h-4 w-4 bg-pink-300">
-                            <span class="text-[10px] font-medium flex justify-center items-center h-full w-full">12</span>
+                        <span
+                            class="relative flex justify-center items-center text-[11px] font-medium rounded-full h-4 w-4 bg-[#E6A2A8] border border-white"
+                            id="added_product">
+                            {{ auth()->user()->wishlist->count() }}
                         </span>
                     </span>
                 </a>
