@@ -21,7 +21,7 @@ class ProductController extends Controller
     public function createProduct(){
         $data=[
             'title'=>'Add New Product | E-Katalog Khalis Bali Bamboo',
-            'categories'=>Category::latest()->get()
+            'categories'=>Category::orderBy('name','asc')->get()
         ];
         return view('admin.products.product-create',$data);
     }
@@ -29,7 +29,7 @@ class ProductController extends Controller
     public function updateProduct(Product $product){
         $data=[
             'title'=>'Update Product | E-Katalog Khalis Bali Bamboo',
-            'categories'=>Category::latest()->get(),
+            'categories'=>Category::orderBy('name','asc')->get(),
             'product'=>$product
         ];
         return view('admin.products.product-update',$data);

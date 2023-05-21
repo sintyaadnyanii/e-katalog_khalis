@@ -129,7 +129,64 @@
         </button>
     </div>
     {{-- heading carousel --}}
-    <div class="relative h-50 w-full bg-red-400">
-        konten
+    <div class="w-full bg-gray-100 px-8 py-10 flex flex-col items-center justify-center">
+        <div class="mb-6">
+            <strong class="text-center text-2xl md:text-3xl">Top Liked Products</strong>
+        </div>
+        {{-- product list --}}
+        <div class="flex flex-col gap-4 md:flex-row items-center justify-center">
+            {{-- product card --}}
+            @forelse ($top_products->take(3) as $index=>$item)
+                <div class="bg-white rounded-md shadow border border-gray-200 px-4 py-4 md:basis-1/5">
+                    <div class="relative mb-2">
+                        <img class="object-cover w-full aspect-square rounded"
+                            src="{{ asset($item->images->count() ? 'storage/' . $item->images->first()->src : 'dist/images/post-1.jpg') }}"
+                            alt="{{ $item->images->count() ? $item->images->first()->alt : 'product_image' }}">
+                        {{-- banner --}}
+                        {{-- <div class="absolute top-2 left-0 bg-[#CD9347] text-white px-2 py-1 rounded-e-md">
+                                $99.99
+                            </div> --}}
+                    </div>
+                    <div class="mb-3">
+                        <h2 class="font-semibold text-lg uppercase">{{ $item->name }}</h2>
+                        <h3 class="text-sm font-medium text-[#B0B0B0] -mt-1">{{ $item->category->name }}</h3>
+                        <h2 class="font-semibold text-lg text-[#B57E30]">
+                            {{ pricing($item->price) }}</h2>
+                        <div class="flex items-center gap-1 mt-2">
+                            @auth
+                                <button class="w-8 aspect-square text-black border-2 border-gray-600 rounded" type="button"
+                                    onclick="addWishlist('{{ $item->product_code }}','{{ $index }}')"><i
+                                        class="{{ $item->wishlists->where('user_id', auth()->user()->id)->count() ? 'fa-solid fa-heart text-[#D76A73]' : 'fa-regular fa-heart' }}"
+                                        id="like_icon_{{ $index }}"></i></button>
+                            @else
+                                <button class="w-8 aspect-square text-black border-2 border-gray-600 rounded" type="button"
+                                    onclick="showAlert()"><i class="fa-regular fa-heart"></i></button>
+                            @endauth
+                            <a href="{{ route('main.product_detail', ['product' => $item]) }}"
+                                class="w-8 aspect-square text-black border-2 border-gray-600 rounded flex items-center justify-center"><i
+                                    class="fa-solid fa-circle-info"></i></a>
+                        </div>
+                        <h5 class="text-xs mt-1">
+                            <span>Liked by</span>
+                            <span id="likes_{{ $index }}" class="mx-0.5">{{ $item->wishlists->count() }}</span>
+                            <span>{{ $item->wishlists->count() > 1 ? 'users' : 'user' }}</span>
+                        </h5>
+                    </div>
+                    {{-- <div id="wishlist_notif"
+                            class="relative bottom-0 left-0 rounded w-full z-10 shadow-sm py-1 px-2 text-white bg-slate-400">
+                            <h2>
+                                <span class="text-sm" id="notif_msg">Messages</span>
+                                <span><a id="wishlist_link" href="http://" class="text-sm underline">Check here</a></span>
+                            </h2>
+                        </div> --}}
+                </div>
+            @empty
+                <div class="bg-white rounded-md shadow border border-gray-200 px-2 py-2 md:col-span-full self-start">
+                    No Data
+                </div>
+            @endforelse
+
+        </div>
+        {{-- end product list --}}
     </div>
 @endsection

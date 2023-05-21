@@ -36,18 +36,10 @@ class Wishlist extends Model
                 });
             });
         });
-        // $query->when($filters['category']??false,function($query,$category){
-        //     return $query->WhereHas('category',function($query)use($category){
-        //         $query->where('slug',$category);
-        //     });
-        // });
         $query->when($filters['search']??false,function($query,$search){
             return $query->WhereHas('product',function($query)use($search){
                 $query->where('name','like','%'.$search.'%')->orWhere('product_code','like','%'.$search.'%');
             });
-            // return $query->where('name','like','%'.$search.'%')->orWhere('product_code','like','%'.$search.'%')->orWhereHas('category',function($query)use($search){
-            //    $query->where('name','like','%'.$search.'%')->orWhere('slug','like','%'.$search.'%');
-            // });
         });
     } 
     // scopes

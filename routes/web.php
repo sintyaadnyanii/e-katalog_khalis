@@ -22,15 +22,17 @@ use Illuminate\Support\Facades\Route;
 //     return view('login');
 // });
 
-Route::get('/',function(){
-    return view('frontpage.main');
-})->name('main');
+// Route::get('/',function(){
+//     return view('frontpage.main');
+// })->name('main');
 
 Route::get('/about-us',function(){return view('frontpage.about-us');})->name('main.about-us');
 Route::get('/contact-us',function(){return view('frontpage.contact-us');})->name('main.contact-us');
 
 Route::controller(MainController::class)->group(function(){
+    Route::get('/','main')->name('main');
     Route::get('/products','products')->name('main.product');
+    Route::get('/product/{product:product_code}/detail','detailProduct')->name('main.product_detail');
     Route::post('/add-to-wishlist','addWishlist')->name('main.add-wishlist');
     Route::get('/wishlist','wishlist')->name('main.wishlist');
     Route::delete('/wishlist/{wishlist:product_code}/delete','deleteWishlist')->name('main.wishlist_delete');

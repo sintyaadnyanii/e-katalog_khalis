@@ -32,6 +32,12 @@ function categoryDropdown(){
     $("#icon-dropdown").toggleClass("fa-caret-up");
 }
 
+function myAccDropdown() {
+    $("#my-account-menu").toggleClass("hidden");
+    $("#icon-dropdown").toggleClass("fa-caret-down");
+    $("#icon-dropdown").toggleClass("fa-caret-up");
+}
+
 function showAlert() {
         Swal.fire({
             icon: 'warning',

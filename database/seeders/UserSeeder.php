@@ -29,5 +29,33 @@ class UserSeeder extends Seeder
             'phone'=>'081339317472',
             'level'=>'user'
         ]);
+        User::create([
+            'name'=>'User2',
+            'email'=>'user2khalis@gmail.com',
+            'password'=>Hash::make('user@12345'),
+            'phone'=>'081339317472',
+            'level'=>'user'
+        ]);
+        User::create([
+            'name'=>'User3',
+            'email'=>'user3khalis@gmail.com',
+            'password'=>Hash::make('user@12345'),
+            'phone'=>'081339317472',
+            'level'=>'user'
+        ]);
+        User::create([
+            'name'=>'User4',
+            'email'=>'user4khalis@gmail.com',
+            'password'=>Hash::make('user@12345'),
+            'phone'=>'081339317472',
+            'level'=>'user'
+        ]);
+        User::create([
+            'name'=>'User5',
+            'email'=>'user5khalis@gmail.com',
+            'password'=>Hash::make('user@12345'),
+            'phone'=>'081339317472',
+            'level'=>'user'
+        ]);
     }
 }

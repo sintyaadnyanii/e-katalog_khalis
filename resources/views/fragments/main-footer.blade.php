@@ -60,15 +60,25 @@
             <h2 class="text-lg font-bold text-white uppercase">Accounts</h2>
             <ul class="mt-2">
                 @auth
-                    <li class="flex text-white">
-                        <a href="http://">My Account</a>
+                    <li class="text-white">
+                        <button type="button" onclick="myAccDropdown()">My Account<i id="icon-dropdown"
+                                class="fa-solid fa-caret-down ml-1"></i></button>
+                        <ul id="my-account-menu" class="hidden text-white pl-4 my-1"">
+                            <li class="flex text-white">
+                                <a href="{{ route('profile.update') }}">Edit Profile</a>
+                            </li>
+                            <li class="flex tex-white">
+                                <a href="{{ route('password.update') }}">Change Password</a>
+                            </li>
+                        </ul>
                     </li>
                     <li class="flex text-white">
                         <a href="http://">My Wishlist</a>
                     </li>
                 @else
                     <li class="flex text-white">
-                        <button type="button" onclick="showAlert()">My Account</button>
+                        <button type="button" onclick="showAlert()">My Account<i id="icon-dropdown"
+                                class="fa-solid fa-caret-down ml-1"></i></button>
                     </li>
                     <li class="flex text-white">
                         <button type="button" onclick="showAlert()">My Wishlist</button>

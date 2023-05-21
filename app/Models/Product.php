@@ -23,7 +23,7 @@ class Product extends Model
     }
     // relations
 
-    public function wishlist(){
+    public function wishlists(){
         return $this->hasMany(Wishlist::class,'product_code');
     }
     

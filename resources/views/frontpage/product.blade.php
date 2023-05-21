@@ -97,19 +97,20 @@
                                 @auth
                                     <button class="w-8 aspect-square text-black border-2 border-gray-600 rounded" type="button"
                                         onclick="addWishlist('{{ $item->product_code }}','{{ $index }}')"><i
-                                            class="{{ $item->wishlist->where('user_id', auth()->user()->id)->count() ? 'fa-solid fa-heart text-[#D76A73]' : 'fa-regular fa-heart' }}"
+                                            class="{{ $item->wishlists->where('user_id', auth()->user()->id)->count() ? 'fa-solid fa-heart text-[#D76A73]' : 'fa-regular fa-heart' }}"
                                             id="like_icon_{{ $index }}"></i></button>
                                 @else
                                     <button class="w-8 aspect-square text-black border-2 border-gray-600 rounded" type="button"
                                         onclick="showAlert()"><i class="fa-regular fa-heart"></i></button>
                                 @endauth
-                                <button class="w-8 aspect-square text-black border-2 border-gray-600 rounded"><i
-                                        class="fa-solid fa-circle-info"></i></button>
+                                <a href="{{ route('main.product_detail', ['product' => $item]) }}"
+                                    class="w-8 aspect-square text-black border-2 border-gray-600 rounded flex items-center justify-center"><i
+                                        class="fa-solid fa-circle-info"></i></a>
                             </div>
                             <h5 class="text-xs mt-1">
                                 <span>Liked by</span>
-                                <span id="likes_{{ $index }}" class="mx-0.5">{{ $item->wishlist->count() }}</span>
-                                <span>{{ $item->wishlist->count() > 1 ? 'users' : 'user' }}</span>
+                                <span id="likes_{{ $index }}" class="mx-0.5">{{ $item->wishlists->count() }}</span>
+                                <span>{{ $item->wishlists->count() > 1 ? 'users' : 'user' }}</span>
                             </h5>
                         </div>
                         {{-- <div id="wishlist_notif"

@@ -9,15 +9,16 @@
         <div class="grid grid-cols-12 gap-6 mt-5">
             <div class="intro-y col-span-12">
                 <div class="intro-y box p-5">
-                    <div class="flex flex-col md:flex-row gap-3">
-                        <div class="px-8 md:px-0 md:basis-1/3 justify-center items-center">
-                            <div class="border-dashed border-2 border-slate-600 rounded-md p-5">
+                    <div class="flex flex-col md:flex-row gap-5">
+                        {{-- Product Images --}}
+                        <div class="px-2 py-1 md:p-0.5 md:basis-1/3 justify-center items-center">
+                            <div>
                                 <img class="product-image"
                                     src="{{ asset($product->images->count() ? 'storage/' . $product->images->first()->src : 'dist/images/post-1.jpg') }}"
                                     alt="{{ asset($product->images->count() ? 'storage/' . $product->images->first()->alt : 'no-image') }}">
                             </div>
-                            <div class="slider-wrapper">
-                                <i id="arrow-left" data-lucide="chevron-left"></i>
+                            <div class="slider-wrapper mt-5 gap-2">
+                                <i id="arrow-left" class="w-8 h-8" data-lucide="chevron-left"></i>
                                 <div id="thumbnail-slider" class="thumbnail-slider">
                                     @foreach ($product->images as $index => $image)
                                         <img class="product-thumbnail {{ $index == 0 ? 'active-thumbnail' : '' }}"
@@ -25,19 +26,22 @@
                                             alt="product-image-{{ $loop->iteration }}">
                                     @endforeach
                                 </div>
-                                <i id="arrow-right" data-lucide="chevron-right"></i>
+                                <i id="arrow-right" class="w-8 h-8" data-lucide="chevron-right"></i>
 
                             </div>
                         </div>
+                        {{-- Product Images --}}
+
+                        {{-- Product Info --}}
                         <div class="md:basis-2/3">
-                            <h3 class="font-semibold text-base">{{ $product->name }}</h3>
-                            <div class="flex items-center">
-                                <i class="mr-1 w-3 fill-gray-700" data-lucide="heart"></i>
-                                <span>
-                                    <h4 class="font-medium text-xs">Loved by 100 customers</h4>
-                                </span>
-                            </div>
-                            <h4 class="font-medium text-primary">
+                            <h3 class="font-semibold text-lg">{{ $product->name }}</h3>
+                            <h4 class="font-medium text-sm">
+                                <span>Liked by</span>
+                                <span id="likes_{{ 0 }}"
+                                    class="mx-0.5">{{ $product->wishlists->count() }}</span>
+                                <span>{{ $product->wishlists->count() > 1 ? 'users' : 'user' }}</span>
+                            </h4>
+                            <h4 class="font-bold text-primary text-base">
                                 {{ pricing($product->price) }}</h4>
                             <div class="mt-2">{{ strip_tags($product->description) }}</div>
                             <hr class="mt-0.5">
@@ -73,6 +77,7 @@
                             </div>
 
                         </div>
+                        {{-- Product Info --}}
                     </div>
                     <div class="text-right mt-8">
                         <a class="btn btn-outline-primary w-24 mr-1"

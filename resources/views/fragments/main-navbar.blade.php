@@ -32,7 +32,7 @@
                                 <span
                                     class="relative flex justify-center items-center text-[11px] font-medium rounded-full h-4 w-4 bg-[#E6A2A8] border border-white"
                                     id="added_product">
-                                    {{ auth()->user()->wishlist->count() }}
+                                    {{ auth()->user()->wishlists->count() }}
                                 </span>
                             </span>
                         </a>
@@ -56,7 +56,7 @@
                         <span
                             class="relative flex justify-center items-center text-[11px] font-medium rounded-full h-4 w-4 bg-[#E6A2A8] border border-white"
                             id="added_product">
-                            {{ auth()->user()->wishlist->count() }}
+                            {{ auth()->user()->wishlists->count() }}
                         </span>
                     </span>
                 </a>
@@ -105,11 +105,11 @@
                     <button type="button" class="block py-2 px-4 text-base font-medium" onclick="dropdownSidenav()">My
                         Account <i id="icon-dropdown" class="fa-solid fa-caret-down ml-1"></i></button>
                     <ul id="dropdown-menu" class="hidden text-white pl-4 mt-1">
-                        <li class="{{ Request::is('/profile**') ? 'sidenav-active' : 'sidenav-hover' }}"><a
+                        <li class="{{ Request::is('profile**') ? 'sidenav-active' : 'sidenav-hover' }}"><a
                                 href="{{ route('profile.update') }}" class="block py-1 px-4 text-base font-medium">Edit
                                 Profile</a>
                         </li>
-                        <li class="{{ Request::is('/password**') ? 'sidenav-active' : 'sidenav-hover' }}"><a
+                        <li class="{{ Request::is('password**') ? 'sidenav-active' : 'sidenav-hover' }}"><a
                                 href="{{ route('password.update') }}" class="block py-1 px-4 text-base font-medium">Change
                                 Password</a>
                         </li>

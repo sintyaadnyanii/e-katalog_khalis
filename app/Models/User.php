@@ -40,11 +40,11 @@ class User extends Authenticatable
     ];
 
     // relationship
-    public function feedback(){
+    public function feedbacks(){
         return $this->hasMany(Feedback::class,'user_id');
     }
 
-    public function wishlist(){
+    public function wishlists(){
         return $this->hasMany(Wishlist::class,'user_id');
     }
     // relationship

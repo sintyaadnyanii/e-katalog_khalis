@@ -73,7 +73,7 @@
             </div>
         </div>
         {{-- end filter & search --}}
-        <div class="w-full md:w-4/5 bg-white rounded-md shadow border border-gray-200 px-4 py-4 flex flex-col gap-3">
+        <div class="w-full md:w-4/5 bg-white rounded-md shadow border border-gray-200 px-4 py-4 flex flex-col gap-5">
             {{-- wishlist table --}}
             <div class="overflow-x-auto rounded-md">
                 <table class="w-full text-sm">
@@ -99,7 +99,8 @@
                                 <td class="px-6 py-4 text-right">{{ pricing($item->product->price) }}</td>
                                 <td class="px-6 py-4">
                                     <div class="flex gap-1 justify-center items-center">
-                                        <a href="http://" class="button-primary flex items-center justify-center"><i
+                                        <a href="{{ route('main.product_detail', ['product' => $item->product]) }}"
+                                            class="button-primary flex items-center justify-center"><i
                                                 class="fa-solid fa-info-circle mr-1"></i>Detail</a>
                                         <form action="{{ route('main.wishlist_delete', ['wishlist' => $item]) }}"
                                             method="post">
@@ -113,54 +114,15 @@
                             </tr>
                         @empty
                             <tr>
-                                <td class="text-center text-muted px-6 py-4" colspan="6">No Data</td>
+                                <td class="text-center text-muted px-6 py-4" colspan="6">There's No Product Added To
+                                    Wishlist</td>
                             </tr>
-                            {{-- <div class="bg-white rounded-md shadow border border-gray-200 px-2 py-2 w-full">
-                                No Data
-                            </div> --}}
                         @endforelse
 
                     </tbody>
                 </table>
             </div>
 
-
-            {{-- <table class="w-full bg-white text-left">
-                <thead class="text-center text-sm md:text-base uppercase bg-gray-50">
-                    <tr>
-                        <th scope="col" class="px-4 py-2">Image</th>
-                        <th scope="col" class="px-4 py-2">Name</th>
-                        <th scope="col" class="px-4 py-2">Price</th>
-                        <th scope="col" class="px-4 py-2">Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr class="bg-white border-b-2 whitespace-nowrap">
-                        <td class="px-4">Image</td>
-                        <td class="px-4">Product Name</td>
-                        <td class="px-4">Product Price</td>
-                        <td class="flex items-center justify-center gap-2 px-4">
-                            <a href="http://" class="rounded py-1 px-2 bg-slate-500">Detail</a>
-                            <a href="http://" class="rounded py-1 px-2 bg-slate-500">Remove</a>
-                        </td>
-                    </tr>
-                </tbody>
-            </table> --}}
-            {{-- <div class="bg-red-300">Image
-                </div>
-                <div class="bg-blue-200">Name</div>
-                <div class="bg-green-300">Price</div>
-                <div class="bg-green-300">Action</div> --}}
-
-            {{-- @forelse ($wishlists as $item)
-                <div class="bg-white rounded-md shadow border border-gray-200 px-2 py-2 w-full">
-                    No Data
-                </div>
-            @empty
-                <div class="bg-white rounded-md shadow border border-gray-200 px-2 py-2 w-full">
-                    No Data
-                </div>
-            @endforelse --}}
             {{-- end wishlist table --}}
             <div class="text-light flex justify-end">
                 {{ $wishlists->links('fragments.pagination-frontpage') }}
