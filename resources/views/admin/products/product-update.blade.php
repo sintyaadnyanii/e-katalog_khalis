@@ -21,12 +21,11 @@
                                 <small class="text-xs text-red-500 ml-1">{{ '*' . $message }}</small>
                             @enderror
                             <input type="hidden" id="category_id" name="category_id" value="{{ $product->category_id }}">
-                            <input type="text" class="form-control w-full" value="{{ $product->category->name }}"
-                                readonly>
+                            <input type="text" class="new-form-control" value="{{ $product->category->name }}" readonly>
                         </div>
                         <div>
                             <label for="product_code" class="form-label mt-3">Product Code</label>
-                            <input name="product_code" type="text" class="form-control w-full"
+                            <input name="product_code" type="text" class="new-form-control"
                                 placeholder="Input Product Code" value="{{ $product->product_code }}" readonly>
                         </div>
                         <div>
@@ -34,42 +33,44 @@
                             @error('name')
                                 <small class="text-xs text-red-500 ml-1">{{ '*' . $message }}</small>
                             @enderror
-                            <input id="name" name="name" type="text" class="form-control w-full"
-                                placeholder="Input Product Name" value="{{ old('name') ?? $product->name }}">
+                            <input id="name" name="name" type="text" class="new-form-control"
+                                placeholder="Input Product Name *" value="{{ old('name') ?? $product->name }}" required>
                         </div>
                         <div>
                             <label for="dimensions" class="form-label mt-3">Dimensions</label>
                             @error('dimensions')
                                 <small class="text-xs text-red-500 ml-1">{{ '*' . $message }}</small>
                             @enderror
-                            <input id="dimensions" name="dimensions" type="text" class="form-control w-full"
-                                placeholder="Input Product's Dimensions"
-                                value="{{ old('dimensions') ?? $product->dimensions }}">
+                            <input id="dimensions" name="dimensions" type="text" class="new-form-control"
+                                placeholder="Input Product's Dimensions *"
+                                value="{{ old('dimensions') ?? $product->dimensions }}" required>
                         </div>
                         <div>
                             <label for="materials" class="form-label mt-3">Materials</label>
                             @error('materials')
                                 <small class="text-xs text-red-500 ml-1">{{ '*' . $message }}</small>
                             @enderror
-                            <input id="materials" name="materials" type="text" class="form-control w-full"
-                                placeholder="Input Product's Materials"
-                                value="{{ old('materials') ?? $product->materials }}">
+                            <input id="materials" name="materials" type="text" class="new-form-control"
+                                placeholder="Input Product's Materials *"
+                                value="{{ old('materials') ?? $product->materials }}" required>
                         </div>
                         <div>
                             <label for="color" class="form-label mt-3">Color</label>
                             @error('color')
                                 <small class="text-xs text-red-500 ml-1">{{ '*' . $message }}</small>
                             @enderror
-                            <input id="color" name="color" type="text" class="form-control w-full"
-                                placeholder="Input Product's Color" value="{{ old('color') ?? $product->color }}">
+                            <input id="color" name="color" type="text" class="new-form-control"
+                                placeholder="Input Product's Color *" value="{{ old('color') ?? $product->color }}"
+                                required>
                         </div>
                         <div>
                             <label for="price" class="form-label mt-3">Price</label>
                             @error('price')
                                 <small class="text-xs text-red-500 ml-1">{{ '*' . $message }}</small>
                             @enderror
-                            <input id="price" name="price" type="text" class="form-control w-full"
-                                placeholder="Input Product's Price" value="{{ old('price') ?? $product->price }}">
+                            <input id="price" name="price" type="text" class="new-form-control"
+                                placeholder="Input Product's Price *" value="{{ old('price') ?? $product->price }}"
+                                required>
                         </div>
 
                         <div class="mt-2">
@@ -77,7 +78,7 @@
                             @error('description')
                                 <small class="text-xs text-red-500 ml-1">{{ '*' . $message }}</small>
                             @enderror
-                            <textarea id="description" name="description" type="text" class="form-control"
+                            <textarea id="description" name="description" type="text" class="new-form-control"
                                 placeholder="Input Product Description">{!! old('description') ?? $product->description !!}</textarea>
                         </div>
                         <div>
@@ -85,14 +86,14 @@
                             @error('link_shopee')
                                 <small class="text-xs text-red-500 ml-1">{{ '*' . $message }}</small>
                             @enderror
-                            <input id="link_shopee" name="link_shopee" type="url" class="form-control w-full"
+                            <input id="link_shopee" name="link_shopee" type="url" class="new-form-control"
                                 placeholder="Input Product's URL"
                                 value="{{ old('link_shopee') ?? $product->link_shopee }}">
                         </div>
                         <div class="input-container">
                             <div class="mb-3">
                                 <label class="btn-upload btn btn-primary">
-                                    <p id="btnLabel">Choose Image to Upload</p>
+                                    <p id="btnLabel">Choose Image to Upload *</p>
                                     <input type="file" name="images[]" multiple data-max_length="20"
                                         class="input-image">
                                 </label>

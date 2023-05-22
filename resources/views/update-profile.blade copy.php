@@ -19,37 +19,46 @@
         <img alt="Khalis" class="w-14" src="{{ asset('dist/images/logo_khalis_white.png') }}">
         <h2 class="font-bold text-lg mt-2 text-center text-white mb-5">Khalis Bali Bamboo</h2>
         <div class="bg-white shadow-md rounded-md py-5 px-10 md:w-2/5">
-            <h2 class="font-bold text-base mt-2 mb-1">Change Password</h2>
+            <h2 class="font-bold text-base mt-2 mb-1">Edit Profile</h2>
             <hr>
-            <form action="{{ route('password.patch') }}" method="POST" class="mt-5">
+            <form action="{{ route('profile.patch', ['user' => $user]) }}" method="POST" class="mt-5">
                 @csrf
                 @method('patch')
                 <div>
-                    <label for="old_password" class="form-label">Old Password</label>
-                    @error('old_password')
+                    <label for="name" class="form-label">Name</label>
+                    @error('name')
                         <small class="text-xs text-red-500 ml-1">{{ '*' . $message }}</small>
                     @enderror
-                    <input id="old_password" name="old_password" type="password"
-                        class="new-form-control new-form-control-sm text-sm w-full" placeholder="Input Old Password"
-                        value="{{ old('old_password') }}">
+                    <input id="name" name="name" type="text"
+                        class="new-form-control new-form-control-sm text-sm w-full" placeholder="Input your full name"
+                        value="{{ old('name') ?? $user->name }}">
                 </div>
                 <div class="mt-3">
-                    <label for="new_password" class="form-label">New Password</label>
-                    @error('new_password')
+                    <label for="email" class="form-label">Email</label>
+                    @error('email')
                         <small class="text-xs text-red-500 ml-1">{{ '*' . $message }}</small>
                     @enderror
-                    <input id="new_password" name="new_password" type="password"
-                        class="new-form-control new-form-control-sm text-sm w-full" placeholder="Input New Password"
-                        value="{{ old('new_password') }}">
+                    <input id="email" name="email" type="text"
+                        class="new-form-control new-form-control-sm text-sm w-full" placeholder="Input your email address"
+                        value="{{ old('email') ?? $user->email }}">
                 </div>
                 <div class="mt-3">
-                    <label for="confirm_password" class="form-label">Confirm New Password</label>
-                    @error('confirm_password')
+                    <label for="phone" class="form-label">Phone Number</label>
+                    @error('phone')
                         <small class="text-xs text-red-500 ml-1">{{ '*' . $message }}</small>
                     @enderror
-                    <input id="confirm_password" name="confirm_password" type="password"
-                        class="new-form-control new-form-control-sm text-sm w-full" placeholder="Confirm New Password"
-                        value="{{ old('confirm_password') }}">
+                    <input id="phone" name="phone" type="text"
+                        class="new-form-control new-form-control-sm text-sm w-full" placeholder="Input your phone number"
+                        value="{{ old('phone') ?? $user->phone }}">
+                </div>
+                <div class="mt-3">
+                    <label for="address" class="form-label">Address</label>
+                    @error('address')
+                        <small class="text-xs text-red-500 ml-1">{{ '*' . $message }}</small>
+                    @enderror
+                    <input id="address" name="address" type="text"
+                        class="new-form-control new-form-control-sm text-sm w-full" placeholder="Input your address"
+                        value="{{ old('address') ?? $user->address }}">
                 </div>
                 <div class="text-right mt-5">
                     <a href="{{ route('dashboard') }}" class="btn btn-outline-secondary w-24 mr-1">Cancel</a>

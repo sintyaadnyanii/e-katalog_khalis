@@ -8,7 +8,7 @@
             <div class="hidden md:block mx-auto text-slate-500"></div>
             <div class="w-full sm:w-auto mt-3 sm:mt-0 sm:ml-auto md:ml-0">
                 <div class="w-56 relative text-slate-500">
-                    <input type="text" class="form-control w-56 box pr-10" placeholder="Search...">
+                    <input type="text" class="new-form-control w-56 box pr-10" placeholder="Search...">
                     <i class="w-4 h-4 absolute my-auto inset-y-0 mr-3 right-0" data-lucide="search"></i>
                 </div>
             </div>
@@ -18,8 +18,8 @@
                 Notification</a>
             <div class="rounded-md shadow text-slate-500 bg-white">
                 <form action="{{ route('manage_customer.all') }}" method="get" class="flex items-center">
-                    <input type="text" name="search" class="py-2 w-24 md:w-44 border-0 shadow-none rounded-l-md"
-                        placeholder="Search...">
+                    <input type="text" name="search"
+                        class="py-2 w-24 md:w-44 border-0 shadow-none rounded-l-md focus:ring-0" placeholder="Search...">
                     <button type="submit" class="py-2 px-1 border-s"><i data-lucide="search"
                             class="w-4 stroke-slate-700"></i></button>
                 </form>

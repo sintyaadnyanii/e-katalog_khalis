@@ -4,7 +4,7 @@
         <!-- navbar -->
         <nav class="flex justify-between bg-white">
             <div class="px-5 xl:px-12 py-5 flex w-full items-center">
-                <a class="text-3xl font-bold font-heading" href="#">
+                <a class="text-3xl font-bold font-heading" href="{{ route('main') }}">
                     <img class="w-12" src="{{ asset('dist/images/logo_khalis.png') }}" alt="logo">
                 </a>
                 <!-- Nav Links -->

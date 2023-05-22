@@ -43,7 +43,7 @@ class CategoryController extends Controller
         $validator=Validator::make($request->all(),[
             'name'=>'required|string|max:50',
             'slug'=>'required',
-            'description'=>'required|string',
+            'description'=>'nullable|string',
         ]);
         if($validator->fails()){
             return redirect()->back()->withErrors($validator)->withInput()->with('error','There must be something wrong with the input!');
@@ -64,7 +64,7 @@ class CategoryController extends Controller
         $validator=Validator::make($request->all(),[
             'name'=>'required|string|max:50',
             'slug'=>'required',
-            'description'=>'required|string',
+            'description'=>'nullable|string',
         ]);
         if($validator->fails()){
             return redirect()->back()->withErrors($validator)->withInput()->with('error','There must be something wrong with the input!');

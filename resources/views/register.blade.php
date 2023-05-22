@@ -1,115 +1,101 @@
 @extends('layouts.base-layout')
 @section('base-head')
     <!-- BEGIN: CSS Assets-->
-    <link rel="stylesheet" href="{{ asset('dist/css/_app.css') }}">
     <link rel="stylesheet" href="{{ asset('dist/css/app.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- END: CSS Assets-->
 @endsection
 @section('base-body')
-    <div class="login">
-        <div class="container sm:px-10">
-            <div class="block xl:grid grid-cols-2 gap-4">
-                <!-- BEGIN: Register Info -->
-                <div class="hidden xl:flex flex-col min-h-screen">
-                    <a href="" class="-intro-x flex items-center pt-5">
-                        <img alt="Khalis Bali Bamboo" class="w-16" src="{{ asset('dist/images/logo_khalis_white.png') }}">
-                        <span class="text-white text-lg ml-3"> Khalis Bali Bamboo </span>
-                    </a>
-                    <div class="my-auto">
-                        <img alt="Midone - HTML Admin Template" class="-intro-x w-1/2 -mt-16"
-                            src="dist/images/illustration.svg">
-                        <div class="-intro-x text-white font-medium text-4xl leading-tight mt-10">
-                            A few more clicks to
-                            <br>
-                            Register to your account.
-                        </div>
-                        <div class="-intro-x mt-5 text-lg text-white text-opacity-70">Manage your
-                            accounts in one place</div>
-                    </div>
-                </div>
-                <!-- END: Register Info -->
-                <!-- BEGIN: Register Form -->
-                <div class="h-screen xl:h-auto flex py-5 xl:py-0 my-10 xl:my-0">
+    <div class="flex items-center justify-center min-h-screen">
+        <div class="relative">
+            <div class="h-screen w-screen bg-cover bg-no-repeat relative"
+                style="background-image: url('{{ asset('dist/images/product/bamboo-1.jpg') }}')">
+                <div class="absolute inset-0 bg-black opacity-50"></div>
+            </div>
+            <div class="absolute inset-0 flex flex-col items-center justify-center overflow-y-auto">
+                <div
+                    class="relative w-[80%] md:w-[60%] bg-white p-8 rounded-lg shadow-lg flex flex-col items-center justify-center">
                     <div
-                        class="my-auto mx-auto xl:ml-20 bg-white xl:bg-transparent px-5 sm:px-8 py-8 xl:p-0 rounded-md shadow-md xl:shadow-none w-full sm:w-3/4 lg:w-2/4 xl:w-auto">
-                        <form action="{{ route('attempt_register') }}" method="post">
-                            @csrf
-                            <h2 class="intro-x font-bold text-2xl xl:text-3xl text-center xl:text-left">
-                                Register
-                            </h2>
-                            <div class="intro-x mt-2 text-slate-400 xl:hidden text-center">A few more clicks to Register to
-                                your account. Manage your accounts in one place</div>
-                            <div class="intro-x mt-6">
-                                <div class="mt-4">
-                                    <input type="text" name="name" class="intro-x form-control py-3 px-4"
-                                        placeholder="Full Name">
-                                    @error('name')
-                                        <small class="text-xs text-red-500 ml-1 mt-1">{{ '*' . $message }}</small>
-                                    @enderror
-                                </div>
-                                <div class="mt-4">
-                                    <input type="email" name="email" class="intro-x form-control py-3 px-4"
-                                        placeholder="Email">
-                                    @error('email')
-                                        <small class="text-xs text-red-500 ml-1 mt-1">{{ '*' . $message }}</small>
-                                    @enderror
-                                </div>
-                                <div class="mt-4">
-                                    <input type="text" name="phone" class="intro-x form-control py-3 px-4"
-                                        placeholder="Phone Number (+62xxxxxxxx)">
-                                    @error('phone')
-                                        <small class="text-xs text-red-500 ml-1 mt-1">{{ '*' . $message }}</small>
-                                    @enderror
-                                </div>
-                                <div class="mt-4">
-                                    <input type="text" name="address" class="intro-x form-control py-3 px-4"
-                                        placeholder="Address">
-                                    @error('address')
-                                        <small class="text-xs text-red-500 ml-1 mt-1">{{ '*' . $message }}</small>
-                                    @enderror
-                                </div>
-                                <div class="mt-4">
-                                    <input type="password" name="password" class="intro-x form-control py-3 px-4"
-                                        placeholder="Password">
-                                    @error('password')
-                                        <small class="text-xs text-red-500 ml-1 mt-1">{{ '*' . $message }}</small>
-                                    @enderror
-                                </div>
-                                <div class="mt-4">
-                                    <input type="password" name="password_confirm" class="intro-x form-control py-3 px-4"
-                                        placeholder="Password Confirmation">
-                                    @error('password_confirm')
-                                        <small class="text-xs text-red-500 ml-1 mt-1">{{ '*' . $message }}</small>
-                                    @enderror
-                                </div>
-                            </div>
-                            <div class="intro-x flex text-slate-600 text-xs sm:text-sm mt-4">
-                                <div class="flex items-center mr-auto">
-                                    <input id="redirect_login" name="redirect_login" type="checkbox"
-                                        class="form-check-input border mr-2">
-                                    <label class="cursor-pointer select-none" for="redirect_login">Login Dirrectly</label>
-                                </div>
-                            </div>
-                            <div class="intro-x mt-5 text-center xl:text-left">
-                                <button type="submit"
-                                    class="btn btn-primary text-primary py-3 px-4 w-full xl:w-32 xl:mr-3 align-top">Register</button>
-                                <a href="{{ route('login') }}"
-                                    class="btn btn-outline-secondary py-3 px-4 w-full xl:w-32 mt-3 xl:mt-0 align-top">Login</a>
-                            </div>
-                            <div class="intro-x mt-6 text-slate-600 text-center xl:text-left">
-                                By signin up, you agree to our <a class="text-primary" href="">Terms and
-                                    Conditions</a> & <a class="text-primary" href="">Privacy Policy</a> </div>
-                        </form>
-
+                        class="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#455452] w-20 h-20 flex items-center justify-center p-1">
+                        <a class="text-3xl font-bold font-heading" href="{{ route('main') }}">
+                            <img class="w-full" src="{{ asset('dist/images/logo_khalis_white.png') }}" alt="logo">
+                        </a>
                     </div>
+                    <form action="{{ route('attempt_register') }}" method="post" class="mt-5 w-full">
+                        @csrf
+                        <h2 class="font-bold text-xl md:text-2xl">
+                            Register
+                        </h2>
+                        <div class="mt-3 flex flex-col md:grid md:grid-cols-2 gap-4">
+                            <div>
+                                <input type="text" name="name" class="new-form-control py-3 px-4"
+                                    placeholder="Full Name *" value="{{ old('name') }}" required>
+                                @error('name')
+                                    <small class="text-xs text-red-500 ml-1 mt-1">{{ '*' . $message }}</small>
+                                @enderror
+                            </div>
+                            <div>
+                                <input type="email" name="email" class="new-form-control py-3 px-4"
+                                    placeholder="Email *" value="{{ old('email') }}" required>
+                                @error('email')
+                                    <small class="text-xs text-red-500 ml-1 mt-1">{{ '*' . $message }}</small>
+                                @enderror
+                            </div>
+                            <div>
+                                <input type="text" name="phone" class="new-form-control py-3 px-4"
+                                    placeholder="Phone Number *" value="{{ old('phone') }}" required>
+                                @error('phone')
+                                    <small class="text-xs text-red-500 ml-1 mt-1">{{ '*' . $message }}</small>
+                                @enderror
+                            </div>
+                            <div>
+                                <input type="text" name="address" class="new-form-control py-3 px-4"
+                                    placeholder="Address" value="{{ old('address') }}">
+                                @error('address')
+                                    <small class="text-xs text-red-500 ml-1 mt-1">{{ '*' . $message }}</small>
+                                @enderror
+                            </div>
+                            <div>
+                                <input type="password" name="password" class="new-form-control py-3 px-4"
+                                    placeholder="Password *" required>
+                                @error('password')
+                                    <small class="text-xs text-red-500 ml-1 mt-1">{{ '*' . $message }}</small>
+                                @enderror
+                            </div>
+                            <div>
+                                <input type="password" name="password_confirm" class="new-form-control py-3 px-4"
+                                    placeholder="Password Confirmation *" required>
+                                @error('password_confirm')
+                                    <small class="text-xs text-red-500 ml-1 mt-1">{{ '*' . $message }}</small>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="flex text-slate-600 text-xs sm:text-sm mt-4">
+                            <div class="flex items-center mr-auto">
+                                <input id="redirect_login" name="redirect_login" type="checkbox"
+                                    class="checkbox-input border mr-2">
+                                <label class="cursor-pointer select-none" for="redirect_login">Login Dirrectly</label>
+                            </div>
+                        </div>
+                        <div class="mt-5 text-center">
+                            <button type="submit"
+                                class="button button-lg button-primary w-full uppercase">Register</button>
+                        </div>
+                        <div class="mt-6 text-[#455452]  text-center text-sm">
+                            Already Have An Account?
+                            <span><a class="underline underline-offset-1" href="{{ route('register') }}">Click
+                                    Here</a></span>
+                            <span>To Sign-In!</span>
+                        </div>
+                    </form>
                 </div>
-                <!-- END: Register Form -->
+                <div class="text-white text-center mt-8">Copyright<i class="mx-1 fa-regular fa-copyright"></i>2023 | All
+                    right
+                    reserved
+                    by
+                    Khalis Bali
+                    Bamboo, Ltd.</div>
             </div>
         </div>
     </div>
-@endsection
-@section('base-script')
-    <!-- BEGIN: JS Assets-->
-    <script src="dist/js/app.js"></script>
-    <!-- END: JS Assets-->
 @endsection

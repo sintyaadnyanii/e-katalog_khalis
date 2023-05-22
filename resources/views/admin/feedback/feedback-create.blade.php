@@ -18,7 +18,8 @@
                             @error('user_id')
                                 <small class="text-xs text-red-500 ml-1">{{ '*' . $message }}</small>
                             @enderror
-                            <select name="user_id" id="user_id" data-placeholder="Choose User" class="tom-select w-full">
+                            <select name="user_id" id="user_id" data-placeholder="Choose User" class="tom-select w-full"
+                                required>
                                 <option value="0">Anonymous</option>
                                 @foreach ($users as $item)
                                     <option value="{{ $item->id }}"
@@ -40,7 +41,7 @@
                                 <i data-lucide="star" class="star"></i>
                             </div>
                             <input id="rating" name="rating" type="hidden" value="{{ old('rating') }}"
-                                placeholder="0/5">
+                                placeholder="0/5" required>
                         </div>
 
                         <div class="mt-2">
@@ -49,7 +50,7 @@
                             @error('message')
                                 <small class="text-xs text-red-500 ml-1">{{ '*' . $message }}</small>
                             @enderror
-                            <textarea id="message" name="message" type="text" class="form-control" placeholder="Input Your Message">{!! old('message') !!}</textarea>
+                            <textarea id="message" name="message" type="text" class="new-form-control" placeholder="Input Your Message">{!! old('message') !!}</textarea>
                         </div>
                         <div class="my-2">
                             <label for="status" class="form-label mt-3">
@@ -58,13 +59,13 @@
                                 <small class="text-xs text-red-500 ml-1">{{ '*' . $message }}</small>
                             @enderror
                             <div class="flex flex-col sm:flex-row mt-2">
-                                <div class="form-check mr-2"> <input id="status_show" class="form-check-input"
+                                <div class="form-check mr-2"> <input required id="status_show" class="form-check-input"
                                         type="radio" name="status" value="show"
                                         {{ old('status') == 'show' ? 'checked' : '' }}>
                                     <label class="form-check-label" for="status_show">Show</label>
                                 </div>
-                                <div class="form-check mr-2 mt-2 sm:mt-0"> <input id="status_hide" class="form-check-input"
-                                        type="radio" name="status" value="hide"
+                                <div class="form-check mr-2 mt-2 sm:mt-0"> <input required id="status_hide"
+                                        class="form-check-input" type="radio" name="status" value="hide"
                                         {{ old('status') == 'hide' ? 'checked' : '' }}>
                                     <label class="form-check-label" for="status_hide">Hide</label>
                                 </div>

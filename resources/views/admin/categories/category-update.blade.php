@@ -19,16 +19,16 @@
                             @error('name')
                                 <small class="text-xs text-red-500 ml-1">{{ '*' . $message }}</small>
                             @enderror
-                            <input id="category_name" name="name" type="text" class="form-control w-full"
-                                placeholder="Input text" value="{{ old('name') ?? $category->name }}"
-                                onchange="getSlug(this.value)">
+                            <input id="category_name" name="name" type="text" class="new-form-control w-full"
+                                placeholder="Input Category Name *" value="{{ old('name') ?? $category->name }}"
+                                onchange="getSlug(this.value)" required>
                         </div>
                         <div>
                             <label for="slug" class="form-label mt-3">Slug</label>
                             @error('slug')
                                 <small class="text-xs text-red-500 ml-1">{{ '*' . $message }}</small>
                             @enderror
-                            <input id="category_slug" name="slug" type="text" class="form-control w-full"
+                            <input id="category_slug" name="slug" type="text" class="new-form-control w-full"
                                 placeholder="Slug will be generated automatically"
                                 value="{{ old('slug') ?? $category->slug }}"readonly>
                         </div>
@@ -38,8 +38,8 @@
                             @error('description')
                                 <small class="text-xs text-red-500 ml-1">{{ '*' . $message }}</small>
                             @enderror
-                            <textarea id="description" name="description" type="text" class="form-control w-full"
-                                placeholder="Input category description">{!! old('description') ?? $category->description !!}</textarea>
+                            <textarea id="description" name="description" type="text" class="new-form-control w-full"
+                                placeholder="Input Category Description">{!! old('description') ?? $category->description !!}</textarea>
                         </div>
                         <div class="text-right mt-5">
                             <a href="{{ url()->previous() }}" class="btn btn-outline-secondary w-24 mr-1">Cancel</a>
