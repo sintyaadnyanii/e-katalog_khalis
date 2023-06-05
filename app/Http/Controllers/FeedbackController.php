@@ -24,14 +24,14 @@ class FeedbackController extends Controller
         return view('admin.feedback.feedback-create',$data);
     }
 
-    public function updateFeedback(Feedback $feedback){
-        $data=[
-            'title'=>'Feedback Update | E-Katalog Khalis Bali Bamboo',
-            'users'=>User::latest()->get(),
-            'feedback'=>$feedback
-        ];
-        return view('admin.feedback.feedback-update',$data);
-    }
+    // public function updateFeedback(Feedback $feedback){
+    //     $data=[
+    //         'title'=>'Feedback Update | E-Katalog Khalis Bali Bamboo',
+    //         'users'=>User::latest()->get(),
+    //         'feedback'=>$feedback
+    //     ];
+    //     return view('admin.feedback.feedback-update',$data);
+    // }
 
     public function detailFeedback(Feedback $feedback){
         $data=[
@@ -45,7 +45,7 @@ class FeedbackController extends Controller
         $validator=Validator::make($request->all(),[
             'user_id'=>'required|integer',
             'rating'=>'required|integer',
-            'message'=>'required|string',
+            'message'=>'nullable|string',
             'status'=>'required',
 
         ]);
@@ -65,21 +65,8 @@ class FeedbackController extends Controller
         return redirect()->back()->with('error','Error Occured, Please Try Again!');
     }
     public function patchFeedback(Request $request,Feedback $feedback){
-        $validator=Validator::make($request->all(),[
-            'user_id'=>'required|integer',
-            'rating'=>'required|string',
-            'message'=>'required|string',
-            'status'=>'required',
-        ]);
-        if($validator->fails()){
-            return redirect()->back()->withErrors($validator)->withInput()->with('error','There must be something wrong with the input!');
-        }
-        $validated=$validator->validated();
         $updated_feedback=$feedback->update([
-            'user_id'=>$validated['user_id']==0?1:$validated['user_id'],
-            'rating'=>$validated['rating'],
-            'message'=>$validated['message'],
-            'status'=>$validated['status']=='show'?1:0,
+            'status'=>$request['status']?0:1,
         ]);
         if($updated_feedback){
             return redirect()->route('manage_feedback.all')->with('success','Feedback Updated Successfully');

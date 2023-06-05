@@ -34,8 +34,8 @@ Route::controller(MainController::class)->group(function(){
     Route::get('/products','products')->name('main.product');
     Route::get('/product/{product:product_code}/detail','detailProduct')->name('main.product_detail');
     Route::post('/add-to-wishlist','addWishlist')->name('main.add-wishlist');
-    Route::get('/wishlist','wishlist')->name('main.wishlist');
-    Route::delete('/wishlist/{wishlist:product_code}/delete','deleteWishlist')->name('main.wishlist_delete');
+    Route::get('/wishlist','myWishlist')->name('main.wishlist');
+    Route::delete('/wishlist/{wishlist:id}/removeWishlish','deleteWishlist')->name('main.wishlist_delete');
 });
 
 
@@ -84,7 +84,6 @@ Route::middleware(['auth','admin'])->controller(FeedbackController::class)->grou
     Route::get('/dashboard/feedback', 'allFeedback')->name('manage_feedback.all');
     Route::get('/dashboard/feedback/create', 'createFeedback')->name('manage_feedback.create');
     Route::post('/dashboard/feedback/create', 'storeFeedback')->name('manage_feedback.store');
-    Route::get('/dashboard/feedback/{feedback:id}/update', 'updateFeedback')->name('manage_feedback.update');
     Route::patch('/dashboard/feedback/{feedback:id}/update','patchFeedback')->name('manage_feedback.patch');
     Route::get('/dashboard/feedback/{feedback:id}/detail', 'detailFeedback')->name('manage_feedback.detail');
     Route::delete('/dashboard/feedback/{feedback:id}/delete','deleteFeedback')->name('manage_feedback.delete');

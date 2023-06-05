@@ -47,6 +47,10 @@ class User extends Authenticatable
     public function wishlists(){
         return $this->hasMany(Wishlist::class,'user_id');
     }
+
+    public function image(){
+        return $this->morphOne(Image::class,'imageable');
+    }
     // relationship
 
      // Scopes
@@ -58,5 +62,33 @@ class User extends Authenticatable
         });
     } 
     // Scopes
+
+    // boot (model events)
+    public static function boot(){
+        parent::boot();
+        self::updating(function($user){
+            $image_id=request()->deleted_image;
+            $will_deleted_img=Image::find($image_id);
+            if (!is_null($will_deleted_img)) {
+                    $will_deleted_img->delete();
+            }else{
+
+            }
+            $image=request()->file('image');
+            if(request()->hasFile('image')){
+                $user->image()->delete();
+                $uploaded=Image::uploadImage($image);
+                 Image::create([
+                 'thumb' => 'thumbnails/' . $uploaded['thumb']->basename,
+                    'src' => 'images/' . $uploaded['src']->basename,
+                    'alt' => Image::getAlt($image),
+                    'imageable_id' => $user->id,
+                    'imageable_type' => "App\Models\User"
+            ]);
+            }
+            
+
+        });
+    }
 
 }

@@ -28,13 +28,24 @@
                     </div>
                     <div class="flex flex-row gap-1 mt-2">
                         <div class="basis-1/2 md:basis-1/4 font-medium">Status</div>
-                        <div class="basis-1/2 md:basis-3/4">{{ $feedback->status == 'show' ? ': Shown' : ': Hidden' }}
+                        <div class="basis-1/2 md:basis-3/4">{{ $feedback->status ? ': Reviewed' : ': Unreviewed' }}
                         </div>
                     </div>
-                    <div class="text-right mt-5">
-                        <a class="btn btn-outline-primary w-24 mr-1"
+                    <div class="flex gap-2 items-center justify-end mt-5">
+                        <form class="btn btn-outline-primary"
+                            action="{{ route('manage_feedback.patch', ['feedback' => $feedback]) }}" method="post">
+                            @csrf
+                            @method('PATCH')
+                            <input type="hidden" value="{{ $feedback->status }}" name="status">
+                            <button class="flex items-center">
+                                <i data-lucide="{{ $feedback->status ? 'x-circle' : 'check-square' }}"
+                                    class="w-4 h-4 mr-1"></i>
+                                {{ $feedback->status ? 'Unreviewed' : 'Mark As Reviewed' }}
+                            </button>
+                        </form>
+                        {{-- <a class="btn btn-outline-primary w-24 mr-1"
                             href="{{ route('manage_feedback.update', ['feedback' => $feedback]) }}">
-                            <i data-lucide="check-square" class="w-4 h-4 mr-1"></i> Edit </a>
+                            <i data-lucide="check-square" class="w-4 h-4 mr-1"></i> Edit </a> --}}
                         <a class="btn btn-outline-danger w-24" href="javascript:;" data-tw-toggle="modal"
                             data-tw-target="#delete-confirmation-modal" onclick="deleteModalHandler(0)">
                             <i data-lucide="trash-2" class="w-4 h-4 mr-1"></i> Delete </a>

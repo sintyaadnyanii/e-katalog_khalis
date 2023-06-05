@@ -18,7 +18,7 @@ class CreateFeedbackTable extends Migration
             $table->integer('user_id')->unsigned();
             $table->tinyInteger('rating')->unsigned();
             $table->boolean('status')->default(false);
-            $table->text('message');
+            $table->text('message')->nullable();
             $table->timestamps();
         });
     }

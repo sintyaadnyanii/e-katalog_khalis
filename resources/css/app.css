@@ -5,7 +5,7 @@
 
 /* form */
 .new-form-control {
-    @apply w-full rounded-md border border-slate-200 text-sm leading-5 shadow-sm transition-all duration-200 ease-in-out;
+    @apply w-full rounded-md border border-slate-200 text-xs md:text-sm leading-5 shadow-sm transition-all duration-200 ease-in-out;
 }
 .new-form-control:focus {
     @apply ring-2 ring-[#455452] ring-opacity-20 outline-none border border-[#455452] border-opacity-40;
@@ -27,7 +27,13 @@
 
 /* button */
 .button {
-    @apply inline-flex items-center justify-center rounded-md border border-solid border-gray-300 py-2 px-3 font-medium shadow-sm transition-all duration-200 ease-in-out focus:ring-offset-0 focus:ring-2 focus:ring-[#455452] focus:ring-opacity-20 focus:outline-none;
+    @apply inline-flex items-center justify-center rounded-md shadow-sm transition-all duration-200 ease-in-out focus:ring-offset-0 focus:ring-2 focus:ring-[#455452] focus:ring-opacity-20 focus:outline-none font-medium;
+}
+.button-sm {
+    @apply py-2 px-3 text-xs leading-3;
+}
+.button-lg {
+    @apply py-2 px-4 text-base leading-4;
 }
 .button:hover {
     @apply border-opacity-90 bg-opacity-90;
@@ -35,32 +41,26 @@
 .button:disabled {
     @apply cursor-not-allowed border-opacity-80 bg-opacity-80;
 }
-.button-sm {
-    @apply py-2 px-2 text-xs leading-3;
-}
-.button-lg {
-    @apply py-2 px-4 text-lg leading-5;
-}
 .button-primary {
-    @apply rounded border border-[#455452] text-white bg-[#455452];
+    @apply border border-[#455452] text-white bg-[#455452];
 }
 .button-secondary {
-    @apply rounded border border-[#566a68] text-white bg-[#566A68];
+    @apply border border-[#566a68] text-white bg-[#566A68];
 }
 .button-danger {
-    @apply rounded border border-[#a1272d] text-white bg-[#a1272d];
+    @apply border border-[#a1272d] text-white bg-[#a1272d];
 }
 .button-disabled {
-    @apply rounded border border-gray-400 text-white bg-gray-400;
+    @apply border border-gray-400 text-white bg-gray-400;
 }
 .button-outline-primary {
-    @apply rounded border border-[#455452] text-[#455452];
+    @apply border border-[#455452] text-[#455452];
 }
 .button-outline-secondary {
-    @apply rounded border border-[#566a68] text-[#566A68];
+    @apply border border-[#566a68] text-[#566A68];
 }
 .button-outline-danger {
-    @apply rounded border border-[#a1272d] text-[#a1272d];
+    @apply border border-[#a1272d] text-[#a1272d];
 }
 /* button */
 

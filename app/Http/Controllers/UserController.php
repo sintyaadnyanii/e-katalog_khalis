@@ -136,13 +136,17 @@ class UserController extends Controller
         return redirect()->back()->withErrors($validator)->withInput()->with('error','An Error Occured During Updating!');
     }
     $validated=$validator->validate();
+    $user->touch();
     $updated_user=$user->update([
         'name'=>$validated['name'],
         'phone'=>$validated['phone'],
         'address'=>$validated['address']
     ]);
     if($updated_user){
-        return redirect()->route('dashboard')->with('success','Your Profile Has Been Updated Successfully');
+        if(Auth::user()->level=='admin'){
+          return redirect()->route('dashboard')->with('success','Your Profile Has Been Updated Successfully');  
+        }
+        return redirect()->route('main')->with('success','Your Profile Has Been Updated Successfully'); 
     }
     return redirect()->back()->withInput()->with('error','Update Profile Failed! Please Try Again!');
 

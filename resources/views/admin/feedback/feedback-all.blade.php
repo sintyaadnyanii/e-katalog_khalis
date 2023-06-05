@@ -30,7 +30,8 @@
                     <tr>
                         <th class="text-center whitespace-nowrap">NO</th>
                         <th class="text-center whitespace-nowrap">NAME</th>
-                        <th class="text-center whitespace-nowrap">SATISFACTION RATE</th>
+                        <th class="text-center whitespace-nowrap">FEEDBACK</th>
+                        <th class="text-center whitespace-nowrap">DATE</th>
                         <th class="text-center whitespace-nowrap">STATUS</th>
                         <th class="text-center whitespace-nowrap">ACTIONS</th>
                     </tr>
@@ -53,18 +54,28 @@
                                     {{ Str::words(html_entity_decode(strip_tags($item->message)), 10, '...') }}</div>
                             </td>
                             <td class="text-center">
-                                {{ $item->status == 'show' ? 'Shown' : 'Hidden' }}
+                                {{ date_format($item->created_at, 'd M Y') }}
+                            </td>
+                            <td class="text-center">
+                                {{ $item->status ? 'Reviewed' : 'Unreviewed' }}
                             </td>
                             <td class="table-report__action w-56">
                                 <div class="flex justify-center items-center gap-3">
-                                    <a class="flex items-center"
+                                    <a class="flex items-center justify-center"
                                         href="{{ route('manage_feedback.detail', ['feedback' => $item]) }}"> <i
                                             data-lucide="view" class="w-4 h-4 mr-1"></i> Detail </a>
-                                    <a class="flex items-center"
-                                        href="{{ route('manage_feedback.update', ['feedback' => $item]) }}"> <i
-                                            data-lucide="check-square" class="w-4 h-4 mr-1"></i> Edit </a>
-                                    <a class="flex items-center text-danger" href="javascript:;" data-tw-toggle="modal"
-                                        data-tw-target="#delete-confirmation-modal"
+                                    <form action="{{ route('manage_feedback.patch', ['feedback' => $item]) }}"
+                                        method="post">
+                                        @csrf
+                                        @method('PATCH')
+                                        <input type="hidden" value="{{ $item->status }}" name="status">
+                                        <button class="flex items-center justify-center">
+                                            <i data-lucide="{{ $item->status ? 'x-square' : 'check-square' }}"
+                                                class="w-4 h-4 mr-1"></i> {{ $item->status ? 'Unreviewed' : 'Reviewed' }}
+                                        </button>
+                                    </form>
+                                    <a class="flex items-center text-danger justify-center" href="javascript:;"
+                                        data-tw-toggle="modal" data-tw-target="#delete-confirmation-modal"
                                         onclick="deleteModalHandler({{ $index }})"> <i data-lucide="trash-2"
                                             class="w-4 h-4 mr-1"></i> Delete </a>
                                     <input type="hidden" id="delete_route_{{ $index }}"

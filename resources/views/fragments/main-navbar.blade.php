@@ -37,9 +37,14 @@
                             </span>
                         </a>
                         {{-- Profile --}}
-                        <button class="flex items-center" type="button" onclick="userMenuDropdown()">
+                        <div class="w-6 h-6 rounded-full overflow-hidden shadow-lg" onclick="userMenuDropdown()">
+                            <img class="w-full h-full object-cover" alt="User
+                            Profile"
+                                src="{{ asset(isset(auth()->user()->image->src) ? 'storage/' . auth()->user()->image->thumb : 'dist/images/profile-14.jpg') }}">
+                        </div>
+                        {{-- <button class="flex items-center" type="button" onclick="userMenuDropdown()">
                             <i class="fa-regular fa-user-circle text-xl font-medium"></i>
-                        </button>
+                        </button> --}}
                     @else
                         <a href="{{ route('login') }}" class="flex items-center font-semibold font-heading"><i
                                 class="fa-solid fa-sign-in text-xl font-medium mr-2"></i></a>
@@ -82,8 +87,12 @@
     <div class="fixed z-50 right-0 top-0 h-screen w-64 bg-[#455452] text-white">
         <ul class="mt-6">
             @auth
-                <li class="px-4 py-2 mb-2 text-center">
-                    <i class="fa-regular fa-user-circle text-xl font-medium"></i>
+                <li class="px-4 py-2 mb-2 text-center flex flex-col items-center justify-center">
+                    <div class="w-8 h-8 rounded-full overflow-hidden shadow-lg">
+                        <img class="w-full h-full object-cover" alt="User
+                            Profile"
+                            src="{{ asset(isset(auth()->user()->image->src) ? 'storage/' . auth()->user()->image->thumb : 'dist/images/profile-14.jpg') }}">
+                    </div>
                     <div class="text-base font-medium">{{ auth()->user()->name ?? 'Admin' }}</div>
                     <div class="text-xs text-white/70 mt-0.5">{{ auth()->user()->level ?? 'Administrator' }}</div>
                 </li>

@@ -12,10 +12,14 @@ use Illuminate\Support\Facades\Auth;
 class MainController extends Controller
 {
     public function main(){
+        if(Product::with('wishlist')->count()){
+            $top_products=Product::latest()->get();
+        }else{
+            $top_products=Product::withCount('wishlists')->orderBy('wishlists_count','desc')->get();
+        }
         $data=[
             'title'=>'Home| E-Katalog Khalis Bali Bamboo',
-            'products'=>Product::latest()->get(),
-            'top_products'=>Product::withCount('wishlists')->orderBy('wishlists_count','desc')->get(),
+            'top_products'=>$top_products,
         ];
         return view('frontpage.main',$data);
     }
@@ -58,7 +62,7 @@ class MainController extends Controller
         }
     }
 
-    public function wishlist(){
+    public function myWishlist(){
         $data=[
             'title'=>'All Products| E-Katalog Khalis Bali Bamboo',
             'wishlists'=>Wishlist::where('user_id',Auth::user()->id)->filter(request(['search','category']))->paginate(10)->withQueryString(),
@@ -68,7 +72,6 @@ class MainController extends Controller
     }
 
     public function deleteWishlist(Wishlist $wishlist){
-        // dd($wishlist);
         if ($wishlist->delete()) {
             return redirect()->route('main.wishlist')->with('success','Product: '.$wishlist->product->name.' Removed From Wishlist');
         }
