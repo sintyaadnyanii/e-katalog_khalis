@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\FeedbackController;
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\ProductController;
@@ -39,9 +40,7 @@ Route::controller(MainController::class)->group(function(){
 });
 
 
-Route::get('/dashboard',function(){
-    return view('admin.dashboard-overview');
-})->name('dashboard')->middleware(['auth', 'admin']);
+Route::get('/dashboard',[DashboardController::class,'dashboard'])->name('dashboard')->middleware(['auth', 'admin']);
 
 Route::controller(UserController::class)->group(function(){
     Route::get('/register','register')->name('register');
@@ -49,11 +48,14 @@ Route::controller(UserController::class)->group(function(){
     Route::get('/login','login')->name('login')->middleware('guest');
     Route::post('/login','attemptLogin')->name('attempt_login');
     Route::get('/logout','logout')->name('logout')->middleware('auth');
-    Route::get('/dashboard/customers', 'allCustomers')->name('manage_customer.all');
     Route::get('/profile/update','updateProfile')->name('profile.update')->middleware('auth');
     Route::get('/password/change','updatePassword')->name('password.update')->middleware('auth');
-    Route::patch('/profile/{user:email}/update','patchProfile')->name('profile.patch')->middleware('auth');
+    Route::patch('/profile/{user:id}/update','patchProfile')->name('profile.patch')->middleware('auth');
     Route::patch('/password/change','patchPassword')->name('password.patch')->middleware('auth');
+    // dashboard admin
+    Route::get('/dashboard/customers', 'allCustomers')->name('manage_customer.all')->middleware(['auth','admin']);
+    Route::get('/dashboard/customer/{user:id}/detail', 'detailCustomer')->name('manage_customer.detail')->middleware(['auth','admin']);
+    Route::get('/dashboard/send-email', 'sendEmail')->name('manage_customer.email')->middleware(['auth','admin']);
 });
 
 Route::middleware(['auth','admin'])->controller(CategoryController::class)->group(function () {

@@ -14,7 +14,8 @@
             </div>
         </div> --}}
         <div class="intro-y col-span-12 flex flex-row justify-between items-center mt-2">
-            <a href="#" class="btn btn-primary shadow-md mr-2"><i data-lucide="bell" class="w-4 h-4 mr-1"></i>Send
+            <a href="{{ route('manage_customer.email') }}" class="btn btn-primary shadow-md mr-2"><i data-lucide="bell"
+                    class="w-4 h-4 mr-1"></i>Send
                 Notification</a>
             <div class="rounded-md shadow text-slate-500 bg-white">
                 <form action="{{ route('manage_customer.all') }}" method="get" class="flex items-center">
@@ -34,7 +35,8 @@
                         <th class="text-center whitespace-nowrap">NAME</th>
                         <th class="text-center whitespace-nowrap">PHONE NUMBER</th>
                         <th class="text-center whitespace-nowrap">EMAIL</th>
-                        <th class="text-center whitespace-nowrap">ADDRESS</th>
+                        <th class="text-center whitespace-nowrap">CURRENT WISHLIST</th>
+                        <th class="text-center whitespace-nowrap">ACTION</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -44,7 +46,14 @@
                             <td class="text-center">{{ $item->name }}</td>
                             <td class="text-center">{{ $item->phone }}</td>
                             <td class="text-center">{{ $item->email }}</td>
-                            <td class="text-center">{{ $item->address ?? 'unknown' }}</td>
+                            <td class="text-center">{{ $item->wishlists->count() }}</td>
+                            <td class="table-report__action w-20">
+                                <div class="flex justify-center items-center gap-3">
+                                    <a class="flex items-center"
+                                        href="{{ route('manage_customer.detail', ['user' => $item]) }}"> <i
+                                            data-lucide="view" class="w-4 h-4 mr-1"></i> Detail </a>
+                                </div>
+                            </td>
                         </tr>
                     @empty
                         <tr>

@@ -40,7 +40,7 @@ class Category extends Model
         $slug=Str::slug($name);
         $category=Category::where('slug',$slug)->get()->count();
         if(intval($id)!=0){
-            if(Category::where('slug',$slug)->where('id','!=', $id)->get()->count()){
+            if(Category::where('slug',$slug)->whereNot('id', $id)->get()->count()){
                 $slug=Category::slugable($category,$slug);
             }
         }else{

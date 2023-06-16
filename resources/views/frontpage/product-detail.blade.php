@@ -140,11 +140,12 @@
                             <div class="basis-2/3 md:basis-3/5">{{ ': ' . $product->color }}</div>
                         </div>
                         @if (isset($product->link_shopee))
-                            <a href="{{ $product->link_shopee }}" class="button-primary"><img class="w-5 mr-1"
-                                    src="{{ asset('dist/images/icon-shopee.svg') }}" alt="icon"></i>Available
+                            <a href="{{ $product->link_shopee }}" class="button button-sm button-primary"><img
+                                    class="w-5 mr-1" src="{{ asset('dist/images/icon-shopee.svg') }}"
+                                    alt="icon"></i>Available
                                 on Shopee</a>
                         @else
-                            <button class="button-disabled" disabled>Not Available
+                            <button class="button button-sm button-primary" disabled>Not Available
                                 on Shopee</button>
                         @endif
                         {{-- <a href="{{ $product->link_shopee ?? '#' }}"

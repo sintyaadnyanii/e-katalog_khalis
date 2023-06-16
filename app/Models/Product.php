@@ -39,6 +39,13 @@ class Product extends Model
                $query->where('name','like','%'.$search.'%')->orWhere('slug','like','%'.$search.'%');
             });
         });
+        $query->when($filters['month']??false,function($query,$month){
+             $year = substr($month, 0, 4);
+             $month = substr($month, 5, 2);
+            return $query->WhereHas('wishlists',function($query)use($month,$year){
+                $query->whereMonth('created_at',$month)->whereYear('created_at', $year);
+            });
+        });
     } 
     // scopes
 

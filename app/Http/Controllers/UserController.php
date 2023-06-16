@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Jobs\ProcessEmail;
 use App\Models\User;
+use App\Models\Wishlist;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cookie;
@@ -88,14 +90,6 @@ class UserController extends Controller
         return redirect()->route('login')->with('success','You Has Been Logged Out!');
    }
 
-   public function allCustomers(){
-    $data=[
-        'title'=>'All Customers | E-Katalog Khalis Bali Bamboo',
-        'customers'=>User::where('id','!=',1)->where('level','!=','admin')->latest()->filter(request(['search']))->paginate(15)->withQueryString()
-    ];
-    return view('admin.customers.customer-all',$data);
-   }
-
    public function updateProfile(){
     $data=[
         'title'=>'Edit Profile | E-Katalog Khalis Bali Bamboo',
@@ -113,7 +107,7 @@ class UserController extends Controller
 
    public function patchProfile(Request $request, User $user){
     if($request->email!=$user->email){
-        if(User::where('email',$user->email)->where('id','!=',$user->id)->count()){
+        if(User::where('email',$user->email)->whereNot('id',$user->id)->count()){
             return redirect()->back()->withInput()->with('error', 'This email has been registered, please input another email');
         }else{
             $email_validator = Validator::make($request->all(), [
@@ -173,5 +167,30 @@ class UserController extends Controller
     }
     return redirect()->back()->with('error',"Password Doesn't Match, Please Try Again!");
 
+   }
+
+   public function allCustomers(){
+    $data=[
+        'title'=>'All Customers | E-Katalog Khalis Bali Bamboo',
+        'customers'=>User::whereNot('id',1)->whereNot('level','admin')->latest()->filter(request(['search']))->paginate(15)->withQueryString()
+    ];
+    return view('admin.customers.customer-all',$data);
+   }
+
+    public function detailCustomer(User $user){
+    $data=[
+        'title'=>'Detail Customer | E-Katalog Khalis Bali Bamboo',
+        'user'=>$user,
+        'wishlists'=>Wishlist::where('user_id',$user->id)->latest()->paginate(15)
+    ];
+    return view('admin.customers.customer-detail',$data);
+   }
+
+   public function sendEmail(){
+    $users=User::where('level','user')->get();
+        foreach($users as $user){
+            ProcessEmail::dispatch($user);
+        }
+    return redirect()->back()->with('success','Emails Have Been Sent');
    }
 }
