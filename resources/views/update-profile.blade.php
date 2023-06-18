@@ -54,29 +54,29 @@
                         </div>
                         <div class="flex flex-col md:w-3/4 gap-2">
                             <div>
-                                <input type="text" name="name" class="new-form-control" placeholder="Full Name *"
-                                    value="{{ old('name') ?? $user->name }}">
-                                @error('name')
-                                    <small class="text-xs text-red-500 ml-1 mt-1">{{ '*' . $message }}</small>
-                                @enderror
-                            </div>
-                            <div>
-                                <input type="email" name="email" class="new-form-control" placeholder="Email *"
-                                    value="{{ old('email') ?? $user->email }}">
+                                <input type="email" id="email" name="email" class="new-form-control"
+                                    value="{{ old('email') ?? $user->email }}" readonly>
                                 @error('email')
                                     <small class="text-xs text-red-500 ml-1 mt-1">{{ '*' . $message }}</small>
                                 @enderror
                             </div>
                             <div>
-                                <input type="text" name="phone" class="new-form-control" placeholder="Phone Number *"
-                                    value="{{ old('phone') ?? $user->phone }}">
+                                <input type="text" id="name" name="name" class="new-form-control"
+                                    placeholder="Full Name *" value="{{ old('name') ?? $user->name }}">
+                                @error('name')
+                                    <small class="text-xs text-red-500 ml-1 mt-1">{{ '*' . $message }}</small>
+                                @enderror
+                            </div>
+                            <div>
+                                <input type="text" id="phone" name="phone" class="new-form-control"
+                                    placeholder="Phone Number *" value="{{ old('phone') ?? $user->phone }}">
                                 @error('phone')
                                     <small class="text-xs text-red-500 ml-1 mt-1">{{ '*' . $message }}</small>
                                 @enderror
                             </div>
                             <div>
-                                <input type="text" name="address" class="new-form-control" placeholder="Address"
-                                    value="{{ old('address') ?? $user->address }}">
+                                <input type="text" id="address" name="address" class="new-form-control"
+                                    placeholder="Address" value="{{ old('address') ?? $user->address }}">
                                 @error('address')
                                     <small class="text-xs text-red-500 ml-1 mt-1">{{ '*' . $message }}</small>
                                 @enderror

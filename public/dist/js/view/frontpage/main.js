@@ -41,10 +41,17 @@ function myAccDropdown() {
 function showAlert() {
         Swal.fire({
             icon: 'warning',
-            title: 'You must login first to access this',
-            confirmButtonColor: '#3085d6',
-            confirmButtonText: 'Login Now',
-            showCancelButton:true
+            iconColor: '#fbbf24',
+            title:'Warning!',
+            html:'<p class="text-sm md:text-base">You must login first to access this</p>',
+            confirmButtonColor: '#fbbf24',
+            confirmButtonText:'<h1 class="text-sm">Login Now</h1>',
+            customClass: {
+                popup: 'w-[70%] md:w-[50%] lg:w-[30%]',
+                title: 'text-amber-400 text-lg md:text-xl',
+                confirmButton:'w-32 px-3 py-2 text-sm'
+            },
+            showCloseButton:true,
         }).then((result) => {
             if (result.isConfirmed) {
                 window.location.href = '/login';
@@ -73,9 +80,17 @@ function addWishlist(product_code,index){
             if (response.action == 'add') {
                 Swal.fire({
                     icon: 'success',
-                    title: response.message,
+                    iconColor: '#00ccad',
+                    title:'Congratulation!',
+                    html:'<p class="text-sm md:text-base">' + response.message + '</p>',
                     showConfirmButton: true,
-                    confirmButtonText:'See My Wishlist',
+                    confirmButtonText:'<h1 class="text-sm">See My Wishlist</h1>',
+                    confirmButtonColor:'#00ccad',
+                    customClass: {
+                        popup: 'w-[70%] md:w-[50%] lg:w-[30%]',
+                        title: 'text-[#00ccad] text-lg md:text-xl',
+                        confirmButton:'w-32 px-3 py-2 text-sm'
+                    },
                     timer: 3000,
                     didRender:()=>{
                         $("#likes_"+index).text(response.likes);
@@ -88,17 +103,19 @@ function addWishlist(product_code,index){
                     }
                     
                 })
-                
-                // .then(() => {
-                //     location.href = '/my-wishlist';
-                // });
             } else if (response.action == 'remove') {
                 Swal.fire({
                     icon: 'success',
-                    title: 'Product Removed Successfully from Wishlist',
+                    iconColor: '#00ccad',
+                    title:'Congratulation!',
+                    html:'<p class="text-sm md:text-base">' + response.message + '</p>',
                     showConfirmButton: false,
+                    customClass: {
+                        popup: 'w-[70%] md:w-[50%] lg:w-[30%]',
+                        title: 'text-[#00ccad] text-lg md:text-xl',
+                    },
                     timer: 3000,
-                     didRender:()=>{
+                    didRender:()=>{
                         $("#likes_"+index).text(response.likes);
                         $("#added_product").text(response.added_product);
                         $("#like_icon_"+index).removeClass("fa-solid fa-heart text-[#D76A73]").addClass('fa-regular fa-heart');

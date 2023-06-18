@@ -43,11 +43,15 @@ Route::controller(MainController::class)->group(function(){
 Route::get('/dashboard',[DashboardController::class,'dashboard'])->name('dashboard')->middleware(['auth', 'admin']);
 
 Route::controller(UserController::class)->group(function(){
+    // proses register
     Route::get('/register','register')->name('register');
     Route::post('/register','attemptRegister')->name('attempt_register');
+    Route::get('/register/verify/{verification_token}','verify')->named('verify');
+    // proses login dan logout
     Route::get('/login','login')->name('login')->middleware('guest');
     Route::post('/login','attemptLogin')->name('attempt_login');
     Route::get('/logout','logout')->name('logout')->middleware('auth');
+    // kelola akun user
     Route::get('/profile/update','updateProfile')->name('profile.update')->middleware('auth');
     Route::get('/password/change','updatePassword')->name('password.update')->middleware('auth');
     Route::patch('/profile/{user:id}/update','patchProfile')->name('profile.patch')->middleware('auth');

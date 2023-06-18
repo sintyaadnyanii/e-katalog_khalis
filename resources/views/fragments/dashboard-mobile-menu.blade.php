@@ -13,7 +13,7 @@
                  class="w-8 h-8 text-white transform -rotate-90"></i> </a>
          <ul class="scrollable__content py-2">
              <li>
-                 <a href="#" class="menu {{ Request::is('dashboard**') ? 'menu-active' : '' }} ">
+                 <a href="#" class="menu {{ Request::is('dashboard') ? 'menu-active' : '' }} ">
                      <div class="menu__icon"> <i data-lucide="home"></i> </div>
                      <div class="menu__title"> Dashboard </div>
                  </a>

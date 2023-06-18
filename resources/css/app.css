@@ -80,12 +80,6 @@
 }
 /* side-menu mobile */
 
-/* alert */
-.alert-container {
-    @apply fixed top-4 right-4 flex items-center justify-center z-[999999] bg-white text-white font-bold rounded-lg border shadow-lg px-4 py-4 w-3/4 lg:w-[400px];
-}
-/* alert */
-
 /* Images Upload */
 .input-container {
     @apply mt-4;

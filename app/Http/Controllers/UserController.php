@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Jobs\ProcessEmail;
+use App\Jobs\VerifyEmail;
 use App\Models\User;
 use App\Models\Wishlist;
 use Illuminate\Http\Request;
@@ -11,6 +12,7 @@ use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
 
 class UserController extends Controller
 {
@@ -41,27 +43,37 @@ class UserController extends Controller
         return redirect()->back()->withErrors($validator)->withInput()->with('error','An Error Occured During Registration!');
     }
     $validated=$validator->validate();
+    $token=Str::random(50);
     $created_user=User::create([
         'name'=>$validated['name'],
         'email'=>$validated['email'],
         'phone'=>$validated['phone'],
         'address'=>$validated['address'],
         'password'=>Hash::make($validated['password']),
-        'level'=>'user'
+        'level'=>'user',
+        'verification_token'=>$token
     ]);
     if($created_user){
-        if($request->redirect_login){
-            if(Auth::attempt(['email'=>$validated['email'],'password'=>$validated['password']])){
-               if(User::where('email',$validated['email'])->first()->level=='user'){
-                    return redirect()->route('main')->with('success','Login Success! <br> Welcome '.auth()->user()->name);
-               }
-               return redirect()->route('dashboard')->with('success','Login Success! <br> Welcome ' . auth()->user()->name);
-            }
-            return redirect()->route('login')->with('error','Direct Login Failed! Please Try Using Manual Login');
-        }
-        return redirect()->route('login')->with('success','New Account Created! Please Login Using Registered Account');
+        $details=[
+            'email'=>$validated['email'],
+            'name'=>$validated['name'],
+            // 'url'=>request()->getHttpHost().'/register/verify/'.$token
+            'url'=>'http://127.0.0.1:8000/register/verify/'.$token
+        ];
+        
+        VerifyEmail::dispatch($details);
+        return redirect()->route('register')->with('success','We already sent email verification message. Please verify your email address to continue');
     }
     return redirect()->back()->withInput()->with('error','Account Registration Failed! Please Try Again!');
+   }
+
+   public function verify($verification_token){
+    $user=User::where('verification_token',$verification_token)->first();
+    if($user){
+        $user->update(['active'=>1]);
+        return redirect()->route('login')->with('success','Email Verified. Please Login Using Your Activated Account');
+    }
+    return redirect()->route('register')->with('error','Verification token is invalid, please try again!');
    }
 
    public function attemptLogin(Request $request)
@@ -74,13 +86,13 @@ class UserController extends Controller
         return redirect()->back()->withErrors($validator)->withInput()->with('error','There is Something Wrong With The Input, Please Try Again!');
     }
     $validated=$validator->validate();
-    if(Auth::attempt(['email' => $validated['email'], 'password' => $validated['password']])){
+    if(Auth::attempt(['email' => $validated['email'], 'password' => $validated['password'],'active'=>1])){
         if(User::where('email',$validated['email'])->first()->level=='user'){
-            return redirect()->route('main')->with('success','Login Success! <br> Welcome '.auth()->user()->name);
+            return redirect()->route('main')->with('success','Login Success! Welcome '.auth()->user()->name);
         }
-        return redirect()->route('dashboard')->with('success','Login Success! <br> Welcome ' . auth()->user()->name);
+        return redirect()->route('dashboard')->with('success','Login Success! Welcome ' . auth()->user()->name);
     }
-    return redirect()->back()->with('error','Login Failed! Please Try Again!');
+    return redirect()->back()->with('error','Login Failed! You must verify your email address first, then please try again!');
    }
 
    public function logout(Request $request){
@@ -106,21 +118,6 @@ class UserController extends Controller
    }
 
    public function patchProfile(Request $request, User $user){
-    if($request->email!=$user->email){
-        if(User::where('email',$user->email)->whereNot('id',$user->id)->count()){
-            return redirect()->back()->withInput()->with('error', 'This email has been registered, please input another email');
-        }else{
-            $email_validator = Validator::make($request->all(), [
-                'email' => 'required|email:dns|unique:users,email',
-            ]);
-
-            if ($email_validator->fails()) {
-                return redirect()->back()->withErrors($email_validator)->withInput()->with('error', 'Error Occured, Please Try Again!');
-            }
-            $validated_email = $email_validator->validate();
-            $user->update(['email' => $validated_email['email']]);
-        }
-    }
     $validator=Validator::make($request->all(),[
         'name'=>'required|string|min:8|max:50',
         'phone'=>'required|numeric',
@@ -172,7 +169,7 @@ class UserController extends Controller
    public function allCustomers(){
     $data=[
         'title'=>'All Customers | E-Katalog Khalis Bali Bamboo',
-        'customers'=>User::whereNot('id',1)->whereNot('level','admin')->latest()->filter(request(['search']))->paginate(15)->withQueryString()
+        'customers'=>User::whereNot('id',1)->whereNot('level','admin')->where('active',1)->latest()->filter(request(['search']))->paginate(15)->withQueryString()
     ];
     return view('admin.customers.customer-all',$data);
    }
@@ -187,10 +184,10 @@ class UserController extends Controller
    }
 
    public function sendEmail(){
-    $users=User::where('level','user')->get();
+    $users=User::where('level','user')->where('active',1)->get();
         foreach($users as $user){
             ProcessEmail::dispatch($user);
         }
-    return redirect()->back()->with('success','Emails Have Been Sent');
+    return redirect()->back()->with('success','Emails Have Been Sent to All Customers');
    }
 }

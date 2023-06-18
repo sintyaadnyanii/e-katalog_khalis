@@ -67,11 +67,20 @@
             <div class="card-content">
                 <h1>Hello, {{ $name }}</h1>
                 <hr>
-                <p>Thank you so much for joining our e-catalog. We're offering some new products this month. Come visit
-                    our website to find out more.</p>
+                <p>You've registered your account on our website. Please verify your email address by clicking this
+                    button</p>
             </div>
             <div>
-                <a class="button" href="http://127.0.0.1:8000/">Visit now!</a>
+                <a class="button" href="{{ $url }}">Confirm Email</a>
+            </div>
+            <div class="card-content">
+                <hr>
+                <p>If the the button doesn't work please copy this link:
+                    <span>
+                        <a href="{{ $url }}">{{ $url }}</a>
+                    </span>
+                </p>
+
             </div>
         </div>
     </div>

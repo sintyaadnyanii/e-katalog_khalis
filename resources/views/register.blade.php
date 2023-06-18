@@ -1,11 +1,21 @@
 @extends('layouts.base-layout')
 @section('base-head')
     <!-- BEGIN: CSS Assets-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="{{ asset('dist/css/app.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- END: CSS Assets-->
 @endsection
 @section('base-body')
+    @if (session()->has('warning'))
+        @include('fragments.alert-warning')
+    @endif
+    @if (session()->has('error'))
+        @include('fragments.alert-error')
+    @endif
+    @if (session()->has('success'))
+        @include('fragments.alert-success')
+    @endif
     <div class="h-screen w-screen relative">
         <div class="absolute inset-0 bg-cover bg-no-repeat"
             style="background-image: url('{{ asset('dist/images/product/bamboo-1.jpg') }}')">
@@ -70,13 +80,6 @@
                             @enderror
                         </div>
                     </div>
-                    <div class="flex text-slate-600 text-xs sm:text-sm mt-4">
-                        <div class="flex items-center mr-auto">
-                            <input id="redirect_login" name="redirect_login" type="checkbox"
-                                class="checkbox-input border mr-2">
-                            <label class="cursor-pointer select-none" for="redirect_login">Login Dirrectly</label>
-                        </div>
-                    </div>
                     <div class="mt-5 text-center">
                         <button type="submit" class="button button-lg button-primary w-full uppercase">Register</button>
                     </div>
@@ -98,4 +101,16 @@
                 Bamboo, Ltd.</div>
         </div>
     </div>
+@endsection
+@section('base-script')
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"
+        integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
+
+    <!-- BEGIN: Alert Popup -->
+    <script>
+        function btnClose() {
+            document.getElementById("alert").style.display = "none";
+        }
+    </script>
+    <!-- END Alert Popup -->
 @endsection

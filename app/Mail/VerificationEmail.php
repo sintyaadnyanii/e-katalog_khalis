@@ -9,17 +9,16 @@ use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class CustomerEmail extends Mailable
+class VerificationEmail extends Mailable
 {
     use Queueable, SerializesModels;
-    public $user;
-
+    public $details;
     /**
      * Create a new message instance.
      */
-    public function __construct($user)
+    public function __construct($details)
     {
-        $this->user=$user;
+        $this->details=$details;
     }
 
     /**
@@ -28,7 +27,7 @@ class CustomerEmail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'E-Catalog Update Information',
+            subject: 'Account Verification',
         );
     }
 
@@ -38,10 +37,10 @@ class CustomerEmail extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'emails.customer-email',
-            with:[
-                'name'=>$this->user->name,
-                'url'=>request()->getHttpHost().'/'
+           view: 'emails.verification-email',
+           with:[
+                'name'=>$this->details['name'],
+                'url'=>$this->details['url']
             ]
         );
     }
