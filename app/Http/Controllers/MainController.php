@@ -3,11 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Feedback;
 use App\Models\Product;
 use App\Models\Wishlist;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 class MainController extends Controller
 {
@@ -33,10 +35,19 @@ class MainController extends Controller
     }
 
     public function detailProduct(Product $product){
-          $data=[
+        $currentUrl=request()->url();
+        $shareUrls=[
+            'facebook' => 'https://www.facebook.com/sharer/sharer.php?u=' . urlencode($currentUrl),
+            'twitter' => 'https://twitter.com/intent/tweet?url=' . urlencode($currentUrl),
+            'linkedin' => 'https://www.linkedin.com/shareArticle?url=' . urlencode($currentUrl),
+            'whatsapp' => 'https://api.whatsapp.com/send?text=' . urlencode($currentUrl),
+            'line'=> 'https://social-plugins.line.me/lineit/share?url=' . urlencode($currentUrl)
+        ];
+        $data=[
             'title'=>'All Products| E-Katalog Khalis Bali Bamboo',
             'product'=>$product,
-            'categories'=>Category::orderBy('name','asc')->get()
+            'categories'=>Category::orderBy('name','asc')->get(),
+            'shareLink'=>$shareUrls
         ];
         return view('frontpage.product-detail',$data);
     }
@@ -76,5 +87,27 @@ class MainController extends Controller
             return redirect()->route('main.wishlist')->with('success','Product: '.$wishlist->product->name.' Removed From Wishlist');
         }
         return redirect()->back()->with('error','An Error Occured, Please Try Again!');
+    }
+
+    public function storeFeedback(Request $request){
+        $validator=Validator::make($request->all(),[
+            'rating'=>'required|integer',
+            'message'=>'nullable|string'
+
+        ]);
+        if($validator->fails()){
+            return redirect()->back()->withErrors($validator)->withInput()->with('error','There must be something wrong with the input!');
+        }
+        $validated=$validator->validated();
+        $created_feedback=Feedback::create([
+            'user_id'=>Auth::user()->id,
+            'rating'=>$validated['rating'],
+            'message'=>$validated['message'],
+            'status'=>'unreviewed',
+        ]);
+        if($created_feedback){
+            return redirect()->route('main.contact-us')->with('success','Your Feedback Has Been Sent');
+        }
+        return redirect()->back()->with('error','Error Occured, Please Try Again!');
     }
 }

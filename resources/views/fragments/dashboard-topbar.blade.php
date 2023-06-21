@@ -1,12 +1,20 @@
 <!-- BEGIN: Top Bar -->
 <div class="top-bar">
     <!-- BEGIN: Breadcrumb -->
-    {{-- <nav aria-label="breadcrumb" class="-intro-x mr-auto hidden sm:flex">
+    <nav aria-label="breadcrumb" class="-intro-x mr-auto hidden sm:flex">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="#">Application</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
+            @foreach (getBreadcrumbs() as $breadcrumb)
+                @if ($loop->last)
+                    <li class="breadcrumb-item active" aria-current="page">{{ $breadcrumb['label'] }}</li>
+                @else
+                    <li class="breadcrumb-item"><a href="{{ $breadcrumb['url'] }}">{{ $breadcrumb['label'] }}</a></li>
+                @endif
+                {{-- <li class="breadcrumb-item"><a href="{{ $breadcrumb['url'] }}">{{ $breadcrumb['label'] }}</a></li> --}}
+                {{-- <li class="breadcrumb-item active" aria-current="page">Dashboard</li> --}}
+            @endforeach
+
         </ol>
-    </nav> --}}
+    </nav>
     <!-- END: Breadcrumb -->
     <!-- BEGIN: Account Menu -->
     <div class="intro-x dropdown w-8 h-8 ml-auto">

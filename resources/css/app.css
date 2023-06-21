@@ -5,7 +5,7 @@
 
 /* form */
 .new-form-control {
-    @apply w-full rounded-md border border-slate-200 text-xs md:text-sm leading-5 shadow-sm transition-all duration-200 ease-in-out;
+    @apply w-full rounded-md border border-slate-200 text-xs md:text-sm leading-5 shadow-sm transition-all duration-200 ease-in-out py-2 px-3;
 }
 .new-form-control:focus {
     @apply ring-2 ring-[#455452] ring-opacity-20 outline-none border border-[#455452] border-opacity-40;
@@ -66,11 +66,11 @@
 
 /* rating */
 .star {
-    @apply stroke-none fill-slate-400 cursor-pointer transition-colors;
+    @apply stroke-none text-slate-400 cursor-pointer transition-colors;
 }
 
 .active {
-    @apply stroke-none fill-yellow-500;
+    @apply stroke-none text-yellow-500;
 }
 /* rating */
 
@@ -144,6 +144,9 @@
 }
 .sidenav-hover {
     @apply hover:bg-[#3B4846];
+}
+.navbar-fixed {
+    @apply fixed z-40 bg-opacity-[0.95] shadow-md;
 }
 
 /* .disliked {

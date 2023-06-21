@@ -5,7 +5,7 @@
         style="background-image: url('{{ asset('dist/images/product/bamboo-4.jpg') }}')">
         <div class="absolute inset-0 bg-black opacity-50"></div>
         <div class="flex items-center justify-center h-full">
-            <h2 class="text-white relative z-10 text-3xl font-bold">My Wishlist</h2>
+            <h2 class="text-white relative z-10 text-4xl font-bold">My Wishlist</h2>
         </div>
     </div>
     {{-- end header --}}

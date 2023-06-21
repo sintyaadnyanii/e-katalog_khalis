@@ -5,7 +5,7 @@
         style="background-image: url('{{ asset('dist/images/product/bamboo-4.jpg') }}')">
         <div class="absolute inset-0 bg-black opacity-50"></div>
         <div class="flex items-center justify-center h-full">
-            <h2 class="text-white relative z-10 text-3xl font-bold">Product Details</h2>
+            <h2 class="text-white relative z-10 text-4xl font-bold">Product Details</h2>
         </div>
     </div>
     {{-- end header --}}
@@ -139,15 +139,25 @@
                             <div class="basis-1/3 md:basis-2/5">Color</div>
                             <div class="basis-2/3 md:basis-3/5">{{ ': ' . $product->color }}</div>
                         </div>
-                        @if (isset($product->link_shopee))
-                            <a href="{{ $product->link_shopee }}" class="button button-sm button-primary"><img
-                                    class="w-5 mr-1" src="{{ asset('dist/images/icon-shopee.svg') }}"
-                                    alt="icon"></i>Available
-                                on Shopee</a>
-                        @else
-                            <button class="button button-sm button-primary" disabled>Not Available
-                                on Shopee</button>
-                        @endif
+                        <div class="flex flex-row gap-2">
+                            @if (isset($product->link_shopee))
+                                <a href="{{ $product->link_shopee }}" class="button button-sm button-primary"><img
+                                        class="w-5 mr-1" src="{{ asset('dist/images/icon-shopee.svg') }}"
+                                        alt="icon">Buy
+                                    on Shopee</a>
+                            @else
+                                <button class="button button-sm button-primary" disabled>Not Available
+                                    on Shopee</button>
+                            @endif
+                            @php
+                                $text = "I'm interested in this " . $product->name . ' for sale';
+                                $encodedText = urlencode($text);
+                                $whatsappLink = 'https://wa.me/6281231065880/?text=' . $encodedText;
+                            @endphp
+                            <a href="{{ $whatsappLink }}" class="button button-sm button-primary"><i
+                                    class="fa-brands fa-whatsapp mr-1 text-xl"></i>Order Now</a>
+                        </div>
+
                         {{-- <a href="{{ $product->link_shopee ?? '#' }}"
                                     class="btn btn-primary text-light btn-sm mt-2"><i data-lucide="shopping-bag"
                                         class="w-5 mr-1"></i>{{ $product->link_shopee ? 'Available on Shopee' : 'Not Available on Shopee' }}</a> --}}
@@ -156,8 +166,30 @@
                 </div>
             </div>
             <div class="flex item-center justify-end mt-8">
-                <a href="{{ url()->previous() }}" class="text-[#455452] font-medium"><i
-                        class="fa-solid fa-chevron-left text-sm mr-1"></i>Back</a>
+                <div class="flex flex-row gap-1 items-center">
+                    <h2 class="mr-2">Share on Social Media:</h2>
+                    <div class="w-8 h-8 p-1 flex items-center justify-center rounded-full border-2 border-[#455452]">
+                        <a class="flex items-center justify-center" href="{{ $shareLink['facebook'] }}"
+                            target="_blank"><i class="text-[#455452] fa-brands fa-facebook text-xl text-center"></i></a>
+                    </div>
+                    <div class="w-8 h-8 p-1 flex items-center justify-center rounded-full border-2 border-[#455452]">
+                        <a class="flex items-center justify-center" href="{{ $shareLink['whatsapp'] }}"
+                            target="_blank"><i class="text-[#455452] fa-brands fa-whatsapp text-xl text-center"></i></a>
+                    </div>
+                    <div class="w-8 h-8 p-1 flex items-center justify-center rounded-full border-2 border-[#455452]">
+                        <a class="flex items-center justify-center" href="{{ $shareLink['twitter'] }}"
+                            target="_blank"><i class="text-[#455452] fa-brands fa-twitter text-xl text-center"></i></a>
+                    </div>
+                    <div class="w-8 h-8 p-1 flex items-center justify-center rounded-full border-2 border-[#455452]">
+                        <a class="flex items-center justify-center" href="{{ $shareLink['linkedin'] }}"
+                            target="_blank"><i class="text-[#455452] fa-brands fa-linkedin text-xl text-center"></i></a>
+                    </div>
+                    <div class="w-8 h-8 p-1 flex items-center justify-center rounded-full border-2 border-[#455452]">
+                        <a class="flex items-center justify-center" href="{{ $shareLink['line'] }}" target="_blank"><i
+                                class="text-[#455452] fa-brands fa-line text-xl text-center"></i></a>
+                    </div>
+
+                </div>
             </div>
             {{-- product detail --}}
 

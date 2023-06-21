@@ -89,10 +89,11 @@
         <div class="w-full md:w-1/5 flex flex-col px-4 py-2">
             <h2 class="text-lg font-bold text-white uppercase">Contact Us</h2>
             <ul class="mt-2">
-                <li class="flex text-white"><a href="http://">Warehouse</a></li>
-                <li class="flex text-white"><a href="http://">Shop</a></li>
-                <li class="flex text-white"> <a href="http://">Whatsapp</a></li>
-                <li class="flex text-white"> <a href="http://">Email</a></li>
+                <li class="flex text-white"><a href="https://goo.gl/maps/DcKMbkzUR31ixBV97">Our Shop</a></li>
+                <li class="flex text-white"><a href="https://goo.gl/maps/pcXqU5Xg5pohguEQA">Our Warehouse</a></li>
+                <li class="flex text-white"> <a
+                        href="https://wa.me/6281231065880/?text=Hello%20Khalis%20Bali%20Bamboo,">Whatsapp</a></li>
+                <li class="flex text-white"> <a href="mailto:anjasmarayogi64@gmail.com">Email</a></li>
             </ul>
             <div class="flex gap-2 items-center w-full mt-3">
                 <ul class="mt-2 flex gap-1">

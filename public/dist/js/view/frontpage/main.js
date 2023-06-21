@@ -1,3 +1,14 @@
+// navbar
+window.onscroll=function(){
+    const navbar=document.getElementById('main_navbar');
+    const fixedNav=navbar.offsetTop
+
+    if(window.scrollY>fixedNav){
+        navbar.classList.add('navbar-fixed');
+    }else{
+        navbar.classList.remove('navbar-fixed');
+    }
+}
 // user modal menu
 function userMenuDropdown() {
     $("#user-menu").toggleClass("hidden");
@@ -40,18 +51,18 @@ function myAccDropdown() {
 
 function showAlert() {
         Swal.fire({
-            icon: 'warning',
-            iconColor: '#fbbf24',
-            title:'Warning!',
+            icon: 'error',
+            iconColor: '#ef4444',
+            title:'Oops!',
             html:'<p class="text-sm md:text-base">You must login first to access this</p>',
-            confirmButtonColor: '#fbbf24',
+            confirmButtonColor: '#455452',
             confirmButtonText:'<h1 class="text-sm">Login Now</h1>',
             customClass: {
                 popup: 'w-[70%] md:w-[50%] lg:w-[30%]',
-                title: 'text-amber-400 text-lg md:text-xl',
-                confirmButton:'w-32 px-3 py-2 text-sm'
+                title: 'text-red-500 text-lg md:text-xl',
+                confirmButton:'w-32 px-3 py-2 text-sm',
             },
-            showCloseButton:true,
+            showCloseButton:false,
         }).then((result) => {
             if (result.isConfirmed) {
                 window.location.href = '/login';

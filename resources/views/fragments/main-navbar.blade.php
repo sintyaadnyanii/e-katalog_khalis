@@ -2,7 +2,7 @@
 <div class="flex flex-wrap place-items-center top-0 left-0">
     <section class="relative mx-auto w-full">
         <!-- navbar -->
-        <nav class="flex justify-between bg-white">
+        <nav id="main_navbar" class="flex justify-between bg-white w-full">
             <div class="px-5 xl:px-12 py-5 flex w-full items-center">
                 <a class="text-3xl font-bold font-heading" href="{{ route('main') }}">
                     <img class="w-12" src="{{ asset('dist/images/logo_khalis.png') }}" alt="logo">

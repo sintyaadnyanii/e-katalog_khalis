@@ -137,7 +137,8 @@
         <div class="flex flex-col gap-4 md:gap-6 md:flex-row items-center justify-center">
             {{-- product card --}}
             @forelse ($top_products->take(3) as $index=>$item)
-                <div class="bg-white rounded-md shadow border border-gray-200 px-4 py-4 md:w-64">
+                <div
+                    class="bg-white rounded-md shadow border border-gray-200 px-4 py-4 md:w-64 transform transition-all duration-300 hover:scale-105 hover:shadow-lg">
                     <div class="relative mb-2">
                         <img class="object-cover w-full aspect-square rounded"
                             src="{{ asset($item->images->count() ? 'storage/' . $item->images->first()->src : 'dist/images/post-1.jpg') }}"

@@ -5,7 +5,7 @@
         style="background-image: url('{{ asset('dist/images/product/bamboo-4.jpg') }}')">
         <div class="absolute inset-0 bg-black opacity-50"></div>
         <div class="flex items-center justify-center h-full">
-            <h2 class="text-white relative z-10 text-3xl font-bold">Our Products</h2>
+            <h2 class="text-white relative z-10 text-4xl font-bold">Our Products</h2>
         </div>
     </div>
     {{-- end header --}}
@@ -78,7 +78,8 @@
             <div class="flex flex-col gap-2 md:grid md:grid-cols-3 lg:grid-cols-4 md:gap-3">
                 {{-- product card --}}
                 @forelse ($products as $index=>$item)
-                    <div class="bg-white rounded-md shadow border border-gray-200 px-4 py-4">
+                    <div
+                        class="bg-white rounded-md shadow border border-gray-200 px-4 py-4 transform transition-all duration-300 hover:scale-105 hover:shadow-lg">
                         <div class="relative mb-2">
                             <img class="object-cover w-full aspect-square rounded"
                                 src="{{ asset($item->images->count() ? 'storage/' . $item->images->first()->src : 'dist/images/post-1.jpg') }}"

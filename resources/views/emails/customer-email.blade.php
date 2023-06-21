@@ -7,26 +7,15 @@
     <title>Customer Email</title>
     <style>
         body {
-            margin: 0;
-            padding: 0;
-            background-color: #455452;
             font-family: sans-serif;
         }
 
-        .container {
-            padding: 20px;
-            margin: 0 auto;
-            max-width: 600px;
-        }
-
         .card {
-            background-color: #ffffff;
-            border-radius: 10px;
-            padding: 30px 20px;
+            padding: 20px;
         }
 
         .card-content {
-            margin: 0 0 30px 0;
+            margin: 10px 0 10px 0;
         }
 
         h1 {
@@ -49,6 +38,7 @@
             font-size: 16px;
             padding: 10px 20px;
             text-decoration: none;
+            margin: 10px 0 10px 0;
         }
 
         .button,

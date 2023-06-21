@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Jobs\ReplyFeedback;
 use App\Models\Feedback;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -12,26 +13,10 @@ class FeedbackController extends Controller
     public function allFeedback(){
         $data=[
             'title'=>'All Feedback | E-Katalog Khalis Bali Bamboo',
-            'feedbacks'=>Feedback::latest()->filter(request(['search']))->paginate(15)->withQueryString()
+            'feedbacks'=>Feedback::latest()->filter(request(['search','status']))->paginate(15)->withQueryString()
         ];
         return view('admin.feedback.feedback-all',$data);
     }
-    public function createFeedback(){
-        $data=[
-            'title'=>'Add Feedback | E-Katalog Khalis Bali Bamboo',
-            'users'=>User::latest()->get()
-        ];
-        return view('admin.feedback.feedback-create',$data);
-    }
-
-    // public function updateFeedback(Feedback $feedback){
-    //     $data=[
-    //         'title'=>'Feedback Update | E-Katalog Khalis Bali Bamboo',
-    //         'users'=>User::latest()->get(),
-    //         'feedback'=>$feedback
-    //     ];
-    //     return view('admin.feedback.feedback-update',$data);
-    // }
 
     public function detailFeedback(Feedback $feedback){
         $data=[
@@ -41,35 +26,13 @@ class FeedbackController extends Controller
         return view('admin.feedback.feedback-detail',$data);
     }
 
-    public function storeFeedback(Request $request){
-        $validator=Validator::make($request->all(),[
-            'user_id'=>'required|integer',
-            'rating'=>'required|integer',
-            'message'=>'nullable|string',
-            'status'=>'required',
-
-        ]);
-        if($validator->fails()){
-            return redirect()->back()->withErrors($validator)->withInput()->with('error','There must be something wrong with the input!');
-        }
-        $validated=$validator->validated();
-        $created_feedback=Feedback::create([
-            'user_id'=>$validated['user_id']==0?1:$validated['user_id'],
-            'rating'=>$validated['rating'],
-            'message'=>$validated['message'],
-            'status'=>$validated['status']=='show'?1:0,
-        ]);
-        if($created_feedback){
-            return redirect()->route('manage_feedback.all')->with('success','New Feedback Created Successfully');
-        }
-        return redirect()->back()->with('error','Error Occured, Please Try Again!');
-    }
-    public function patchFeedback(Request $request,Feedback $feedback){
+    public function patchStatus(Request $request,Feedback $feedback){
+        $new_status=$request['status']=='unreviewed'?'reviewed':'unreviewed';
         $updated_feedback=$feedback->update([
-            'status'=>$request['status']?0:1,
+            'status'=>$new_status
         ]);
         if($updated_feedback){
-            return redirect()->route('manage_feedback.all')->with('success','Feedback Updated Successfully');
+            return redirect()->route('manage_feedback.all')->with('success',"Feedback Status Updated to '".$new_status."'" );
         }
         return redirect()->back()->with('error','Error Occured, Please Try Again!');
     }
@@ -78,8 +41,25 @@ class FeedbackController extends Controller
     if($feedback->delete()){
                 return redirect()->route('manage_feedback.all')->with('success',$feedback->name.'Feedback Deleted Successfully');
             }
-            return redirect()->back()->with('error','Error Occured, Please Try Again!');
+        return redirect()->back()->with('error','Error Occured, Please Try Again!');
 
-        }
+    }
+
+    public function sendReply(Feedback $feedback,Request $request){
+        $details=[
+            'name'=>$feedback->user->name,
+            'email'=>$request['email'],
+            'feedback_message'=>$feedback->message,
+            'sent_date'=>$feedback->created_at,
+            'reply_message'=>$request['reply_message']
+        ];
+        
+        $sent_reply=ReplyFeedback::dispatch($details);
+        $feedback->update([
+            'status'=>'replied'
+        ]);
+        return redirect()->route('manage_feedback.detail',$feedback)->with('success',"We already sent your reply for customer's feedback via email");
+       
+    }
 
 }

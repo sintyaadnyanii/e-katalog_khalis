@@ -20,6 +20,12 @@ class Feedback extends Model
 
     // scopes
     public function scopeFilter($query,array $filters){
+        $query->when($filters['status']??false,function($query,$status){
+            return $query->where('status',$status);
+        });
+        $query->when($filters['date']??false,function($query,$date){
+            return $query->whereDate('created_at',$date);
+        });
         $query->when($filters['search']??false,function($query,$search){
             return $query->WhereHas('user',function($query)use($search){
                 $query->where('name','like','%'.$search.'%')->orWhere('email','like','%'.$search.'%');

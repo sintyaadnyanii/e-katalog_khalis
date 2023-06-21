@@ -6,6 +6,15 @@
 @endsection
 @section('base-body')
     @include('fragments.main-navbar')
+    @if (session()->has('warning'))
+        @include('fragments.alert-warning')
+    @endif
+    @if (session()->has('error'))
+        @include('fragments.alert-error')
+    @endif
+    @if (session()->has('success'))
+        @include('fragments.alert-success')
+    @endif
     @yield('main-content')
     @include('fragments.main-footer')
 @endsection
@@ -16,4 +25,11 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.js"></script>
     <script src="{{ asset('dist/js/view/frontpage/main.js') }}"></script>
     @yield('main-script')
+    <!-- BEGIN: Alert Popup -->
+    <script>
+        function btnClose() {
+            document.getElementById("alert").style.display = "none";
+        }
+    </script>
+    <!-- END Alert Popup -->
 @endsection

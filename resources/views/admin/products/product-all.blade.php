@@ -34,12 +34,13 @@
                 </div>
             </div>
         </div> --}}
-        <div class="intro-y col-span-12 flex flex-row justify-between items-center mt-2">
-            <div class="flex items-center">
-                <a href="{{ route('manage_product.create') }}" class="btn btn-primary shadow-md mr-2">Add New Product</a>
+        <div class="intro-y col-span-12 flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2 mt-2">
+            <div class="flex items-center gap-2">
+                <a href="{{ route('manage_product.create') }}" class="btn btn-primary shadow-md">Add New Product</a>
                 <div class="dropdown">
-                    <button class="dropdown-toggle btn px-2 py-2 box" aria-expanded="false" data-tw-toggle="dropdown"><i
-                            class="w-5 h-5 fill-[#455452] stroke-none" data-lucide="filter"></i>
+                    <button class="dropdown-toggle btn btn-outline-primary px-2 py-2 box" aria-expanded="false"
+                        data-tw-toggle="dropdown"><i class="w-4 h-4 sm:w-5 sm:h-5 fill-[#455452] stroke-none mr-1"
+                            data-lucide="filter"></i>Sort By Category
                     </button>
                     <div class="dropdown-menu w-52">
                         <ul class="dropdown-content h-52 overflow-y-auto">
@@ -58,14 +59,14 @@
                 </div>
             </div>
 
-            <div class="rounded-md shadow text-slate-500 bg-white">
+            <div class="rounded-md shadow text-slate-500 bg-white w-full sm:w-44">
                 <form action="{{ route('manage_product.all') }}" method="get" class="flex items-center">
                     @if (request('category'))
                         <input type="hidden" name="category" value="{{ request('category') }}">
                     @endif
                     <input type="text" name="search"
-                        class="py-2 w-20 md:w-44 border-0 shadow-none rounded-l-md focus:ring-0" placeholder="Search...">
-                    <button type="submit" class="py-2 px-1 border-s"><i data-lucide="search"
+                        class="py-1.5 w-full border-0 shadow-none rounded-l-md focus:ring-0" placeholder="Search...">
+                    <button type="submit" class="py-1.5 px-1 border-s"><i data-lucide="search"
                             class="w-4 stroke-slate-700"></i></button>
                 </form>
             </div>
