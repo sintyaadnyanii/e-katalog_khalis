@@ -21,12 +21,12 @@
         {{-- <div class="dropdown-toggle w-8 h-8 rounded-full overflow-hidden shadow-lg image-fit zoom-in" role="button"
             aria-expanded="false" data-tw-toggle="dropdown">
             <img alt="User Profile"
-                src="{{ asset(isset(auth()->user()->image->src) ? 'storage/' . auth()->user()->image->src : 'dist/images/profile-14.jpg') }}">
+                src="{{ asset(isset(auth()->user()->image->src) ? 'storage/' . auth()->user()->image->src : 'dist/images/placeholders/no-image.jpg') }}">
         </div> --}}
         <div role="button" class="dropdown-toggle w-8 h-8 rounded-full overflow-hidden shadow-lg image-fit zoom-in"
             aria-expanded="false" data-tw-toggle="dropdown">
             <img alt="User Profile"
-                src="{{ asset(isset(auth()->user()->image->src) ? 'storage/' . auth()->user()->image->thumb : 'dist/images/profile-14.jpg') }}">
+                src="{{ asset(isset(auth()->user()->image->src) ? 'storage/' . auth()->user()->image->thumb : 'dist/images/placeholders/no-image.jpg') }}">
         </div>
         <div class="dropdown-menu w-56">
             <ul class="dropdown-content bg-primary text-white">

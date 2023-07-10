@@ -2,7 +2,8 @@
     <div class="flex flex-col md:flex-row w-full md:justify-center">
         <div class="w-full md:w-2/5 flex flex-col px-4 py-2">
             <div class="flex gap-2 items-center">
-                <img class="w-12 h-12" src="{{ asset('dist/images/logo_khalis_white.png') }}" alt="Khalis Bali Bamboo">
+                <img class="w-12 h-12" src="{{ asset('dist/images/icon/logo_khalis_white.png') }}"
+                    alt="Khalis Bali Bamboo">
                 <div class="flex flex-col">
                     <h2 class="text-2xl text-white font-medium">Khalis Bali Bamboo</h2>
                     <h6 class="text-xs text-white mt-0.5 italic font-normal">Manufacturer, Wholesaler, & Exporter </h6>
@@ -73,15 +74,15 @@
                         </ul>
                     </li>
                     <li class="flex text-white">
-                        <a href="http://">My Wishlist</a>
+                        <a href="{{ route('main.wishlist') }}">My Wishlist</a>
                     </li>
                 @else
                     <li class="flex text-white">
-                        <button type="button" onclick="showAlert()">My Account<i id="icon-dropdown"
-                                class="fa-solid fa-caret-down ml-1"></i></button>
+                        <a href="{{ route('login') }}">My Account<i id="icon-dropdown"
+                                class="fa-solid fa-caret-down ml-1"></i></a>
                     </li>
                     <li class="flex text-white">
-                        <button type="button" onclick="showAlert()">My Wishlist</button>
+                        <a href="{{ route('login') }}">My Wishlist</button>
                     </li>
                 @endauth
             </ul>
@@ -102,7 +103,7 @@
                     <li class="flex text-white border-2 rounded-full w-8 h-8 p-2 items-center justify-center"><a
                             href="http://"><i class="fa-brands fa-facebook"></i></a></li>
                     <li class="flex text-white border-2 rounded-full w-8 h-8 p-2 items-center justify-center"><a
-                            href="http://"><img class="w-full" src="{{ asset('dist/images/shopee_logo.png') }}"
+                            href="http://"><img class="w-full" src="{{ asset('dist/images/icon/shopee_logo.png') }}"
                                 alt="icon"></a></li>
                 </ul>
             </div>

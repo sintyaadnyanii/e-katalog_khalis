@@ -17,7 +17,7 @@
                 <div
                     class="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#455452] w-16 h-16 md:w-20 md:h-20 flex items-center justify-center p-1">
                     <a class="text-3xl font-bold font-heading" href="{{ route('main') }}">
-                        <img class="w-full" src="{{ asset('dist/images/logo_khalis_white.png') }}" alt="logo">
+                        <img class="w-full" src="{{ asset('dist/images/icon/logo_khalis_white.png') }}" alt="logo">
                     </a>
                 </div>
                 <form action="{{ route('profile.patch', ['user' => $user]) }}" method="post" class="mt-4 w-full"
@@ -32,12 +32,12 @@
                         <div class="md:w-1/4">
                             <div class="w-full">
                                 {{-- <img id="image_preview" class="object-cover aspect-square w-full rounded"
-                                        src="{{ asset('dist/images/profile-14.jpg') }}" alt="">
+                                        src="{{ asset('dist/images/placeholders/no-image.jpg') }}" alt="">
                                     @error('images.*')
                                         <small class="text-xs text-red-500 ml-1">{{ '*' . $message }}</small>
                                     @enderror --}}
                                 <div class="image-bg" id="image_preview"
-                                    style="background-image: url({{ asset(isset($user->image->src) ? 'storage/' . $user->image->src : 'dist/images/profile-14.jpg') }})">
+                                    style="background-image: url({{ asset(isset($user->image->src) ? 'storage/' . $user->image->src : 'dist/images/placeholders/no-image.jpg') }})">
                                 </div>
                                 <div class="mt-3 flex items-center justify-center gap-1">
                                     <label class="btn-upload button button-sm button-secondary">
@@ -120,7 +120,7 @@
                 document.getElementById("deleted_image").value = image_id;
             }
             inputImg.value = "";
-            imgPreview.style.backgroundImage = "url('{{ asset('dist/images/profile-14.jpg') }}')";
+            imgPreview.style.backgroundImage = "url('{{ asset('dist/images/placeholders/no-image.jpg') }}')";
 
         }
     </script>

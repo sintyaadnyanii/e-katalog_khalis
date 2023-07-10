@@ -23,6 +23,6 @@ class DashboardController extends Controller
             'totalVisitors'=>$visitors
             
         ];
-        return view('admin.dashboard-overview',$data);
+        return view('admin.dashboard',$data);
     }
 }

@@ -32,7 +32,7 @@ class FeedbackController extends Controller
             'status'=>$new_status
         ]);
         if($updated_feedback){
-            return redirect()->route('manage_feedback.all')->with('success',"Feedback Status Updated to '".$new_status."'" );
+            return redirect()->route('manage_feedback.detail')->with('success',"Feedback Status Updated to '".$new_status."'" );
         }
         return redirect()->back()->with('error','Error Occured, Please Try Again!');
     }
@@ -53,8 +53,7 @@ class FeedbackController extends Controller
             'sent_date'=>$feedback->created_at,
             'reply_message'=>$request['reply_message']
         ];
-        
-        $sent_reply=ReplyFeedback::dispatch($details);
+        ReplyFeedback::dispatch($details);
         $feedback->update([
             'status'=>'replied'
         ]);

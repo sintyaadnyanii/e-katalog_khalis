@@ -106,8 +106,9 @@
                                     class="{{ $product->wishlists->where('user_id', auth()->user()->id)->count() ? 'fa-solid fa-heart text-[#D76A73]' : 'fa-regular fa-heart' }}"
                                     id="like_icon_{{ 0 }}"></i></button>
                         @else
-                            <button class="w-8 aspect-square text-black border-2 border-gray-600 rounded" type="button"
-                                onclick="showAlert()"><i class="fa-regular fa-heart"></i></button>
+                            <a href="{{ route('login') }}"
+                                class="w-8 aspect-square text-black border-2 border-gray-600 rounded flex justify-center items-center"><i
+                                    class="fa-regular fa-heart"></i></a>
                         @endauth
                         <span>
                             <h4 class="font-medium text-sm">

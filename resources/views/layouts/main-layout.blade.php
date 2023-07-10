@@ -6,15 +6,17 @@
 @endsection
 @section('base-body')
     @include('fragments.main-navbar')
+    {{-- alert --}}
     @if (session()->has('warning'))
-        @include('fragments.alert-warning')
+        @include('fragments.main-alert-warning')
     @endif
     @if (session()->has('error'))
-        @include('fragments.alert-error')
+        @include('fragments.main-alert-error')
     @endif
     @if (session()->has('success'))
-        @include('fragments.alert-success')
+        @include('fragments.main-alert-success')
     @endif
+    {{-- alert --}}
     @yield('main-content')
     @include('fragments.main-footer')
 @endsection
@@ -27,8 +29,19 @@
     @yield('main-script')
     <!-- BEGIN: Alert Popup -->
     <script>
+        const alertElement = document.getElementById('alert');
+        const defaultCarousel = document.getElementById('default-carousel');
+        const bodyElement = document.getElementsByTagName('body')[0];
+
+        if (alertElement) {
+            bodyElement.classList.add('overflow-hidden');
+        } else {
+            bodyElement.classList.remove('overflow-hidden');
+        }
+
         function btnClose() {
             document.getElementById("alert").style.display = "none";
+            bodyElement.classList.remove('overflow-hidden');
         }
     </script>
     <!-- END Alert Popup -->

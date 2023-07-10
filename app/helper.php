@@ -8,7 +8,7 @@ if (!function_exists('asset')) {
 
 if(!function_exists('pricing')){
     function pricing($price){
-        return 'Rp ' . number_format($price, 0, ',', '.');
+        return 'IDR ' . number_format($price, 0, ',', '.');
     }
 }
 

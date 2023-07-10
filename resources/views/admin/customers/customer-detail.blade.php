@@ -14,7 +14,7 @@
                         <div class="flex flex-1 px-5 items-center justify-start">
                             <div class="w-20 h-20 sm:w-24 sm:h-24 flex-none lg:w-32 lg:h-32 image-fit relative">
                                 <img alt="User Profile Image" class="rounded-md"
-                                    src="{{ asset(isset($user->image->src) ? 'storage/' . $user->image->src : 'dist/images/profile-14.jpg') }}">
+                                    src="{{ asset(isset($user->image->src) ? 'storage/' . $user->image->src : 'dist/images/placeholders/no-image.jpg') }}">
                             </div>
                             <div class="ml-5">
                                 <div class="w-24 sm:w-40 truncate sm:whitespace-normal font-medium text-lg">

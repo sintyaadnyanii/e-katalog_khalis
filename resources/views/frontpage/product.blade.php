@@ -1,8 +1,8 @@
 @extends('layouts.main-layout')
 @section('main-content')
     {{-- start header --}}
-    <div class="w-full h-56 md:h-96 bg-cover bg-no-repeat relative"
-        style="background-image: url('{{ asset('dist/images/product/bamboo-4.jpg') }}')">
+    <div class="w-full h-56 md:h-96 bg-cover bg-center bg-no-repeat relative"
+        style="background-image: url('{{ asset('dist/images/product/bamboo-straws.jpg') }}')">
         <div class="absolute inset-0 bg-black opacity-50"></div>
         <div class="flex items-center justify-center h-full">
             <h2 class="text-white relative z-10 text-4xl font-bold">Our Products</h2>
@@ -90,9 +90,9 @@
                             </div> --}}
                         </div>
                         <div class="mb-3">
-                            <h2 class="font-semibold text-lg uppercase">{{ $item->name }}</h2>
+                            <h2 class="font-semibold text-base uppercase">{{ $item->name }}</h2>
                             <h3 class="text-sm font-medium text-[#B0B0B0] -mt-1">{{ $item->category->name }}</h3>
-                            <h2 class="font-semibold text-lg text-[#B57E30]">
+                            <h2 class="font-bold text-base text-[#B57E30]">
                                 {{ pricing($item->price) }}</h2>
                             <div class="flex items-center gap-1 mt-2">
                                 @auth
@@ -101,8 +101,9 @@
                                             class="{{ $item->wishlists->where('user_id', auth()->user()->id)->count() ? 'fa-solid fa-heart text-[#D76A73]' : 'fa-regular fa-heart' }}"
                                             id="like_icon_{{ $index }}"></i></button>
                                 @else
-                                    <button class="w-8 aspect-square text-black border-2 border-gray-600 rounded" type="button"
-                                        onclick="showAlert()"><i class="fa-regular fa-heart"></i></button>
+                                    <a href="{{ route('login') }}"
+                                        class="w-8 aspect-square text-black border-2 border-gray-600 rounded flex justify-center items-center"><i
+                                            class="fa-regular fa-heart"></i></a>
                                 @endauth
                                 <a href="{{ route('main.product_detail', ['product' => $item]) }}"
                                     class="w-8 aspect-square text-black border-2 border-gray-600 rounded flex items-center justify-center"><i

@@ -1,8 +1,8 @@
 @extends('layouts.main-layout')
 @section('main-content')
     {{-- start header --}}
-    <div class="w-full h-56 md:h-96 bg-cover bg-no-repeat relative"
-        style="background-image: url('{{ asset('dist/images/product/bamboo-1.jpg') }}')">
+    <div class="w-full h-56 md:h-96 bg-cover bg-center bg-no-repeat relative"
+        style="background-image: url('{{ asset('dist/images/product/bamboo-furniture.jpg') }}')">
         <div class="absolute inset-0 bg-black opacity-50"></div>
         <div class="flex items-center justify-center h-full">
             <h1 class="text-white relative z-10 text-4xl font-bold">About Us</h1>
@@ -15,7 +15,7 @@
         <div class="flex flex-col lg:flex-row gap-4 bg-white w-full shadow p-8 rounded-md">
             <div class="w-full lg:w-1/3">
                 <img class="w-full md:w-1/2 lg:w-full aspect-[4/3] object-cover"
-                    src="{{ asset('dist/images/product/bamboo-1.jpg') }}" alt="">
+                    src="{{ asset('dist/images/product/bamboo_gazebo.jpg') }}" alt="">
             </div>
             <div class="w-full lg:w-2/3">
                 <div class="text-sm">

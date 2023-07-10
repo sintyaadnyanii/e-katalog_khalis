@@ -1,11 +1,11 @@
 @extends('layouts.main-layout')
 @section('main-content')
     {{-- start header --}}
-    <div class="w-full h-56 md:h-96 bg-cover bg-no-repeat relative"
-        style="background-image: url('{{ asset('dist/images/product/bamboo-1.jpg') }}')">
+    <div class="w-full h-56 md:h-96 bg-cover bg-center bg-no-repeat relative"
+        style="background-image: url('{{ asset('dist/images/product/bamboo-lamp.jpg') }}')">
         <div class="absolute inset-0 bg-black opacity-50"></div>
         <div class="flex items-center justify-center h-full">
-            <h1 class="text-white relative z-10 text-4xl font-bold">About Us</h1>
+            <h1 class="text-white relative z-10 text-4xl font-bold">Contact Us</h1>
         </div>
     </div>
     {{-- end header --}}
@@ -75,48 +75,44 @@
                         </div>
                     </div>
                 </div>
-                {{-- Feedback Form --}}
-                <div class="w-full">
-                    <h2 class="font-semibold text-xl md:text-2xl mb-3">Send Us Your Feedback</h2>
-                    <form action="{{ route('main.feedback_store') }}" method="post">
-                        @csrf
-                        <div>
-                            <label for="rating" class="form-label text-sm">How Was Your Experience?</label>
-                            @error('rating')
-                                <small class="text-xs text-red-500 ml-1">{{ '*' . $message }}</small>
-                            @enderror
-                            <div class="flex gap-1 mt-2 mb=3">
-                                <i class="star fa-solid fa-star text-lg"></i>
-                                <i class="star fa-solid fa-star text-lg"></i>
-                                <i class="star fa-solid fa-star text-lg"></i>
-                                <i class="star fa-solid fa-star text-lg"></i>
-                                <i class="star fa-solid fa-star text-lg"></i>
+                @auth
+                    {{-- Feedback Form --}}
+                    <div class="w-full">
+                        <h2 class="font-semibold text-xl md:text-2xl mb-3">Send Us Your Feedback</h2>
+                        <form action="{{ route('main.feedback_store') }}" method="post">
+                            @csrf
+                            <div>
+                                <label for="rating" class="form-label text-sm">How Was Your Experience?</label>
+                                @error('rating')
+                                    <small class="text-xs text-red-500 ml-1">{{ '*' . $message }}</small>
+                                @enderror
+                                <div class="flex gap-1 mt-2 mb=3">
+                                    <i class="star fa-solid fa-star text-lg"></i>
+                                    <i class="star fa-solid fa-star text-lg"></i>
+                                    <i class="star fa-solid fa-star text-lg"></i>
+                                    <i class="star fa-solid fa-star text-lg"></i>
+                                    <i class="star fa-solid fa-star text-lg"></i>
+                                </div>
+                                <input id="rating" name="rating" type="text" class="hidden" value="{{ old('rating') }}"
+                                    placeholder="0/5" required>
                             </div>
-                            <input id="rating" name="rating" type="text" class="hidden" value="{{ old('rating') }}"
-                                placeholder="0/5" required>
-                        </div>
 
-                        <div class="mt-2">
-                            <label for="message" class="form-label text-sm">
-                                Is there Anything Else You'd Like to Share?</label>
-                            @error('message')
-                                <small class="text-xs text-red-500 ml-1">{{ '*' . $message }}</small>
-                            @enderror
-                            <textarea id="message" name="message" type="text" class="new-form-control mt-2 mb-3"
-                                placeholder="Type Your Message">{!! old('message') !!}</textarea>
-                        </div>
-                        <div class="mt-3">
-                            @auth
+                            <div class="mt-2">
+                                <label for="message" class="form-label text-sm">
+                                    Is there Anything Else You'd Like to Share?</label>
+                                @error('message')
+                                    <small class="text-xs text-red-500 ml-1">{{ '*' . $message }}</small>
+                                @enderror
+                                <textarea id="message" name="message" type="text" class="new-form-control mt-2 mb-3"
+                                    placeholder="Type Your Message">{!! old('message') !!}</textarea>
+                            </div>
+                            <div class="mt-3">
                                 <button type="submit" class="button button-lg button-primary w-32">Submit</button>
-                            @else
-                                <button class="button button-lg button-primary w-32" type="button"
-                                    onclick="showAlert()">Submit</button>
-                            @endauth
-                        </div>
-                    </form>
-                </div>
-                {{-- Feedback Form --}}
-
+                            </div>
+                        </form>
+                    </div>
+                    {{-- Feedback Form --}}
+                @endauth
             </div>
             <div class="order-first md:order-none w-full h-60 md:h-auto md:w-1/2">
                 <iframe

@@ -7,13 +7,13 @@
 @endsection
 @section('base-body')
     @if (session()->has('warning'))
-        @include('fragments.warning')
+        @include('fragments.dashboard-alert-warning')
     @endif
     @if (session()->has('error'))
-        @include('fragments.error')
+        @include('fragments.dashboard-alert-error')
     @endif
     @if (session()->has('success'))
-        @include('fragments.success')
+        @include('fragments.dashboard-alert-success')
     @endif
     <div class="py-5 px-5 bg-primary">
         <!-- BEGIN: Mobile Menu -->
@@ -58,8 +58,18 @@
 
     <!-- BEGIN: Alert Popup -->
     <script>
+        const alertElement = document.getElementById('alert');
+        const bodyElement = document.getElementsByTagName('body')[0];
+
+        if (alertElement) {
+            bodyElement.classList.add('overflow-hidden');
+        } else {
+            bodyElement.classList.remove('overflow-hidden');
+        }
+
         function btnClose() {
             document.getElementById("alert").style.display = "none";
+            document.getElementsByTagName('body')[0].classList.remove('overflow-hidden');
         }
     </script>
     <!-- END Alert Popup -->

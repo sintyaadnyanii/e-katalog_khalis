@@ -1,8 +1,8 @@
 @extends('layouts.main-layout')
 @section('main-content')
     {{-- start header --}}
-    <div class="w-full h-56 md:h-96 bg-cover bg-no-repeat relative"
-        style="background-image: url('{{ asset('dist/images/product/bamboo-4.jpg') }}')">
+    <div class="w-full h-56 md:h-96 bg-cover bg-center bg-no-repeat relative"
+        style="background-image: url('{{ asset('dist/images/product/bamboo_tumbler.jpg') }}')">
         <div class="absolute inset-0 bg-black opacity-50"></div>
         <div class="flex items-center justify-center h-full">
             <h2 class="text-white relative z-10 text-4xl font-bold">My Wishlist</h2>
@@ -100,13 +100,14 @@
                                 <td class="px-6 py-4">
                                     <div class="flex gap-1 justify-center items-center">
                                         <a href="{{ route('main.product_detail', ['product' => $item->product]) }}"
-                                            class="button-primary flex items-center justify-center"><i
+                                            class="button button-sm button-primary flex items-center justify-center"><i
                                                 class="fa-solid fa-info-circle mr-1"></i>Detail</a>
                                         <form action="{{ route('main.wishlist_delete', ['wishlist' => $item]) }}"
                                             method="post">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" class="button-danger flex items-center justify-center"><i
+                                            <button type="submit"
+                                                class="button button-sm button-danger flex items-center justify-center"><i
                                                     class="fa-solid fa-trash mr-1"></i>Remove</button>
                                         </form>
                                     </div>

@@ -1,12 +1,12 @@
  <!-- BEGIN: Mobile Menu -->
  <div class="mobile-menu md:hidden">
      <div class="mobile-menu-bar flex justify-between">
-         <a href="" class="flex items-center">
-             <img alt="Khalis Bali Bamboo" class="w-10" src="{{ asset('dist/images/logo_khalis_white.png') }}">
+         <a href="{{ route('main') }}" class="flex items-center">
+             <img alt="Khalis Bali Bamboo" class="w-10" src="{{ asset('dist/images/icon/logo_khalis_white.png') }}">
          </a>
-         <a href="#" class="mobile-menu-toggler flex items-center"> <i data-lucide="menu"
+         <button class="mobile-menu-toggler flex items-center"> <i data-lucide="menu"
                  class="w-8 h-8 text-white transform"></i>
-         </a>
+         </button>
      </div>
      <div class="scrollable">
          <a href="#" class="mobile-menu-toggler"> <i data-lucide="x-circle"

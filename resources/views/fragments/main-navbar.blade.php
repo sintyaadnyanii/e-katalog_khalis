@@ -5,7 +5,7 @@
         <nav id="main_navbar" class="flex justify-between bg-white w-full">
             <div class="px-5 xl:px-12 py-5 flex w-full items-center">
                 <a class="text-3xl font-bold font-heading" href="{{ route('main') }}">
-                    <img class="w-12" src="{{ asset('dist/images/logo_khalis.png') }}" alt="logo">
+                    <img class="w-12" src="{{ asset('dist/images/icon/logo_khalis.png') }}" alt="logo">
                 </a>
                 <!-- Nav Links -->
                 <ul class="hidden md:flex px-4 mx-auto font-semibold font-heading space-x-12">
@@ -40,7 +40,7 @@
                         <div class="w-6 h-6 rounded-full overflow-hidden shadow-lg" onclick="userMenuDropdown()">
                             <img class="w-full h-full object-cover" alt="User
                             Profile"
-                                src="{{ asset(isset(auth()->user()->image->src) ? 'storage/' . auth()->user()->image->thumb : 'dist/images/profile-14.jpg') }}">
+                                src="{{ asset(isset(auth()->user()->image->src) ? 'storage/' . auth()->user()->image->thumb : 'dist/images/placeholders/no-image.jpg') }}">
                         </div>
                         {{-- <button class="flex items-center" type="button" onclick="userMenuDropdown()">
                             <i class="fa-regular fa-user-circle text-xl font-medium"></i>
@@ -91,7 +91,7 @@
                     <div class="w-8 h-8 rounded-full overflow-hidden shadow-lg">
                         <img class="w-full h-full object-cover" alt="User
                             Profile"
-                            src="{{ asset(isset(auth()->user()->image->src) ? 'storage/' . auth()->user()->image->thumb : 'dist/images/profile-14.jpg') }}">
+                            src="{{ asset(isset(auth()->user()->image->src) ? 'storage/' . auth()->user()->image->thumb : 'dist/images/placeholders/no-image.jpg') }}">
                     </div>
                     <div class="text-base font-medium">{{ auth()->user()->name ?? 'Admin' }}</div>
                     <div class="text-xs text-white/70 mt-0.5">{{ auth()->user()->level ?? 'Administrator' }}</div>

@@ -15,13 +15,14 @@ class MainController extends Controller
 {
     public function main(){
         if(Product::with('wishlist')->count()){
-            $top_products=Product::latest()->get();
-        }else{
             $top_products=Product::withCount('wishlists')->orderBy('wishlists_count','desc')->get();
+        }else{
+            $top_products=Product::random()->get();
         }
         $data=[
             'title'=>'Home| E-Katalog Khalis Bali Bamboo',
             'top_products'=>$top_products,
+            'latest_products'=>Product::latest()->get()
         ];
         return view('frontpage.main',$data);
     }
@@ -34,7 +35,7 @@ class MainController extends Controller
         return view('frontpage.product',$data);
     }
 
-    public function detailProduct(Product $product){
+    public function productDetail(Product $product){
         $currentUrl=request()->url();
         $shareUrls=[
             'facebook' => 'https://www.facebook.com/sharer/sharer.php?u=' . urlencode($currentUrl),

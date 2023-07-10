@@ -7,13 +7,13 @@
 @endsection
 @section('base-body')
     @if (session()->has('warning'))
-        @include('fragments.alert-warning')
+        @include('fragments.main-alert-warning')
     @endif
     @if (session()->has('error'))
-        @include('fragments.alert-error')
+        @include('fragments.main-alert-error')
     @endif
     @if (session()->has('success'))
-        @include('fragments.alert-success')
+        @include('fragments.main-alert-success')
     @endif
     <div class="h-screen w-screen relative">
         <div class="absolute inset-0 bg-cover bg-no-repeat"
@@ -25,7 +25,7 @@
                 <div
                     class="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#455452] w-16 h-16 md:w-20 md:h-20 flex items-center justify-center p-1">
                     <a class="text-3xl font-bold font-heading" href="{{ route('main') }}">
-                        <img class="w-full" src="{{ asset('dist/images/logo_khalis_white.png') }}" alt="logo">
+                        <img class="w-full" src="{{ asset('dist/images/icon/logo_khalis_white.png') }}" alt="logo">
                     </a>
                 </div>
                 <form action="{{ route('attempt_login') }}" method="post" class="mt-5">
@@ -36,14 +36,14 @@
                     <div class="mt-6">
                         <div class="mt-4">
                             <input type="email" name="email" class="new-form-control py-2 px-3 md:py-3 md:px-4"
-                                placeholder="Email *" required>
+                                placeholder="Email *" value="{{ old('email') }}" required>
                             @error('email')
                                 <small class="text-xs text-red-500 ml-1 mt-1">{{ '*' . $message }}</small>
                             @enderror
                         </div>
                         <div class="mt-4">
                             <input type="password" name="password" class="new-form-control py-2 px-3 md:py-3 md:px-4"
-                                placeholder="Password *" required>
+                                placeholder="Password *" value="{{ old('password') }}" required>
                             @error('password')
                                 <small class="text-xs text-red-500 ml-1 mt-1">{{ '*' . $message }}</small>
                             @enderror
@@ -76,8 +76,18 @@
 
     <!-- BEGIN: Alert Popup -->
     <script>
+        const alertElement = document.getElementById('alert');
+        const bodyElement = document.getElementsByTagName('body')[0];
+
+        if (alertElement) {
+            bodyElement.classList.add('overflow-hidden');
+        } else {
+            bodyElement.classList.remove('overflow-hidden');
+        }
+
         function btnClose() {
             document.getElementById("alert").style.display = "none";
+            document.getElementsByTagName('body')[0].classList.remove('overflow-hidden');
         }
     </script>
     <!-- END Alert Popup -->

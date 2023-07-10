@@ -3,12 +3,11 @@
     <h2 class="intro-y text-lg font-medium mt-10">Feedback</h2>
     <div class="grid grid-cols-12 gap-6 mt-5">
         <div class="intro-y col-span-12 flex flex-col sm:flex-row sm:justify-between sm:items-center mt-2 gap-2">
-            <div class="flex flex-row gap-2 sm:gap-1">
+            <div class="flex flex-row gap-2">
                 <div class="dropdown w-1/2 md:w-fit">
                     <button class="dropdown-toggle btn btn-primary w-full" aria-expanded="false" data-tw-toggle="dropdown"> <i
-                            data-lucide="filter" class="w-4 h-4 mr-2"></i>Sort By Status<i data-lucide="chevron-down"
-                            class="w-4 h-4 ml-auto sm:ml-2"></i> </button>
-                    <div class="dropdown-menu w-40">
+                            data-lucide="filter" class="w-4 h-4 mr-2"></i>Sort By Status</button>
+                    <div class="dropdown-menu w-36">
                         <ul class="dropdown-content">
                             <li>
                                 <a href="/dashboard/feedbacks" class="dropdown-item">All </a>
@@ -39,7 +38,7 @@
                     </form>
                 </div>
             </div>
-            <div class="rounded-md shadow text-slate-500 bg-white w-full md:w-44">
+            <div class="rounded-md shadow text-slate-500 bg-white w-full sm:w-44">
                 <form action="{{ route('manage_feedback.all') }}" method="get" class="flex items-center">
                     @if (request('status'))
                         <input type="hidden" name="status" value="{{ request('status') }}">

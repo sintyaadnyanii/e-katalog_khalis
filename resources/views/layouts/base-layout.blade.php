@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>{{ $title ?? 'E-Katalog' }}</title>
-    <link rel="shortcut icon" href="{{ asset('dist/images/logo_khalis.png') }}">
+    <link rel="shortcut icon" href="{{ asset('dist/images/icon/logo_khalis.png') }}">
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-V3FRTX74XY"></script>
     <script>

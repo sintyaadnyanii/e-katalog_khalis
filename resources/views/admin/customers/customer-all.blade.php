@@ -3,7 +3,7 @@
     <h2 class="intro-y text-lg font-medium mt-10">Customers</h2>
     <div class="grid grid-cols-12 gap-6 mt-5">
         <div class="intro-y col-span-12 flex flex-row justify-between items-center mt-2">
-            <a href="{{ route('manage_customer.email') }}" class="btn btn-primary shadow-md mr-2"><i data-lucide="bell"
+            <a href="{{ route('manage_customer.notification') }}" class="btn btn-primary shadow-md mr-2"><i data-lucide="bell"
                     class="w-4 h-4 mr-1"></i>Send
                 Notification</a>
             <div class="rounded-md shadow text-slate-500 bg-white">

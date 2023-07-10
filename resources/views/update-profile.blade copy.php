@@ -16,7 +16,7 @@
         @include('fragments.success')
     @endif
     <div class="flex flex-col items-center justify-center h-screen">
-        <img alt="Khalis" class="w-14" src="{{ asset('dist/images/logo_khalis_white.png') }}">
+        <img alt="Khalis" class="w-14" src="{{ asset('dist/images/icon/logo_khalis_white.png') }}">
         <h2 class="font-bold text-lg mt-2 text-center text-white mb-5">Khalis Bali Bamboo</h2>
         <div class="bg-white shadow-md rounded-md py-5 px-10 md:w-2/5">
             <h2 class="font-bold text-base mt-2 mb-1">Edit Profile</h2>

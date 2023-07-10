@@ -17,7 +17,7 @@
                 <div
                     class="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#455452] w-16 h-16 md:w-20 md:h-20 flex items-center justify-center p-1">
                     <a class="text-3xl font-bold font-heading" href="{{ route('main') }}">
-                        <img class="w-full" src="{{ asset('dist/images/logo_khalis_white.png') }}" alt="logo">
+                        <img class="w-full" src="{{ asset('dist/images/icon/logo_khalis_white.png') }}" alt="logo">
                     </a>
                 </div>
                 <form action="{{ route('password.patch') }}" method="post" class="mt-5 w-full">

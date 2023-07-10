@@ -40,7 +40,7 @@ class UserController extends Controller
         'password_confirm'=>'required|same:password'
     ]);
     if($validator->fails()){
-        return redirect()->back()->withErrors($validator)->withInput()->with('error','An Error Occured During Registration!');
+        return redirect()->back()->withErrors($validator)->withInput()->with('error',"There's something wrong with the input! Please try again!");
     }
     $validated=$validator->validate();
     $token=Str::random(50);
@@ -71,7 +71,7 @@ class UserController extends Controller
     $user=User::where('verification_token',$verification_token)->first();
     if($user){
         $user->update(['active'=>1]);
-        return redirect()->route('login')->with('success','Email Verified. Please Login Using Your Activated Account');
+        return redirect()->route('login')->with('success','Email Verified. Please Login Using Your Activated Account!');
     }
     return redirect()->route('register')->with('error','Verification token is invalid, please try again!');
    }
@@ -83,7 +83,7 @@ class UserController extends Controller
         'password'=>'required|string|min:8',
     ]);
     if($validator->fails()){
-        return redirect()->back()->withErrors($validator)->withInput()->with('error','There is Something Wrong With The Input, Please Try Again!');
+        return redirect()->back()->withErrors($validator)->withInput()->with('error',"There's Something Wrong With The Input! Please Try Again!");
     }
     $validated=$validator->validate();
     if(Auth::attempt(['email' => $validated['email'], 'password' => $validated['password'],'active'=>1])){
@@ -92,7 +92,7 @@ class UserController extends Controller
         }
         return redirect()->route('dashboard')->with('success','Login Success! Welcome ' . auth()->user()->name);
     }
-    return redirect()->back()->with('error','Login Failed! You must verify your email address first, then please try again!');
+    return redirect()->back()->withInput()->with('error','Login Failed! Please Check Your Input or Verify Your Account First, Then Try Again!');
    }
 
    public function logout(Request $request){
@@ -183,7 +183,7 @@ class UserController extends Controller
     return view('admin.customers.customer-detail',$data);
    }
 
-   public function sendEmail(){
+   public function sendNotification(){
     $users=User::where('level','user')->where('active',1)->get();
         foreach($users as $user){
             ProcessEmail::dispatch($user);

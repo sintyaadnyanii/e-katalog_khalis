@@ -33,7 +33,7 @@ Route::get('/contact-us',function(){return view('frontpage.contact-us');})->name
 Route::controller(MainController::class)->group(function(){
     Route::get('/','main')->name('main');
     Route::get('/products','products')->name('main.product');
-    Route::get('/product/{product:product_code}/detail','detailProduct')->name('main.product_detail');
+    Route::get('/product/{product:product_code}/detail','productDetail')->name('main.product_detail');
     Route::post('/add-to-wishlist','addWishlist')->name('main.add-wishlist')->middleware('auth');
     Route::get('/wishlist','myWishlist')->name('main.wishlist')->middleware('auth');
     Route::delete('/wishlist/{wishlist:id}/removeWishlish','deleteWishlist')->name('main.wishlist_delete')->middleware('auth');
@@ -60,7 +60,7 @@ Route::controller(UserController::class)->group(function(){
     // dashboard admin
     Route::get('/dashboard/customers', 'allCustomers')->name('manage_customer.all')->middleware(['auth','admin']);
     Route::get('/dashboard/customer/{user:id}/detail', 'detailCustomer')->name('manage_customer.detail')->middleware(['auth','admin']);
-    Route::get('/dashboard/send-email', 'sendEmail')->name('manage_customer.email')->middleware(['auth','admin']);
+    Route::get('/dashboard/send-notification', 'sendNotification')->name('manage_customer.notification')->middleware(['auth','admin']);
 });
 
 Route::middleware(['auth','admin'])->controller(CategoryController::class)->group(function () {

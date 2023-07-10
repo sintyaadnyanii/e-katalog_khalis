@@ -49,27 +49,6 @@ function myAccDropdown() {
     $("#icon-dropdown").toggleClass("fa-caret-up");
 }
 
-function showAlert() {
-        Swal.fire({
-            icon: 'error',
-            iconColor: '#ef4444',
-            title:'Oops!',
-            html:'<p class="text-sm md:text-base">You must login first to access this</p>',
-            confirmButtonColor: '#455452',
-            confirmButtonText:'<h1 class="text-sm">Login Now</h1>',
-            customClass: {
-                popup: 'w-[70%] md:w-[50%] lg:w-[30%]',
-                title: 'text-red-500 text-lg md:text-xl',
-                confirmButton:'w-32 px-3 py-2 text-sm',
-            },
-            showCloseButton:false,
-        }).then((result) => {
-            if (result.isConfirmed) {
-                window.location.href = '/login';
-            }
-        });
-}
-
 function addWishlist(product_code,index){
     // const user_id='{{auth()->user()->id}}'
     // console.log(product_code+' user id:'+user_id);
@@ -90,10 +69,7 @@ function addWishlist(product_code,index){
         success: function (response) {
             if (response.action == 'add') {
                 Swal.fire({
-                    icon: 'success',
-                    iconColor: '#00ccad',
-                    title:'Congratulation!',
-                    html:'<p class="text-sm md:text-base">' + response.message + '</p>',
+                    html:'<div class="flex flex-col items-center justify-center mt-2 px-2"><i class="fa-regular fa-circle-check text-[#00ccad] text-6xl"></i><h3 class="text-lg md:text-xl font-bold my-2 text-[#00ccad] text-center">Congratulation!</h3><p class="text-sm md:text-base text-slate-600 font-normal text-center">'+response.message+'</p></div>',
                     showConfirmButton: true,
                     confirmButtonText:'<h1 class="text-sm">See My Wishlist</h1>',
                     confirmButtonColor:'#00ccad',
@@ -116,10 +92,7 @@ function addWishlist(product_code,index){
                 })
             } else if (response.action == 'remove') {
                 Swal.fire({
-                    icon: 'success',
-                    iconColor: '#00ccad',
-                    title:'Congratulation!',
-                    html:'<p class="text-sm md:text-base">' + response.message + '</p>',
+                    html:'<div class="flex flex-col items-center justify-center mt-2 px-2"><i class="fa-regular fa-circle-check text-[#00ccad] text-6xl"></i><h3 class="text-lg md:text-xl font-bold my-2 text-[#00ccad] text-center">Congratulation!</h3><p class="text-sm md:text-base text-slate-600 font-normal text-center">'+response.message+'</p></div>',
                     showConfirmButton: false,
                     customClass: {
                         popup: 'w-[70%] md:w-[50%] lg:w-[30%]',
