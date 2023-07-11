@@ -74,7 +74,7 @@
                                         <td class="text-center">{{ $item->product->product_code }}</td>
                                         <td class="w-32">
                                             <img class="rounded-md w-full aspect-[4/3] object-cover"
-                                                src="{{ asset($item->product->images->count() ? 'storage/' . $item->product->images->first()->thumb : 'dist/images/post-1.jpg') }}"
+                                                src="{{ asset($item->product->images->count() ? 'storage/' . $item->product->images->first()->thumb : 'dist/images/placeholders/no-image.jpg') }}"
                                                 alt="{{ $item->product->images->count() ? $item->product->images->first()->alt : 'product_image' }}">
                                         </td>
                                         <td class="text-center">
@@ -126,7 +126,7 @@
                         <td class="text-center">{{ $item->product->product_code }}</td>
                         <td class="w-32">
                             <img class="rounded-md w-full aspect-[4/3] object-cover"
-                                src="{{ asset($item->product->images->count() ? 'storage/' . $item->product->images->first()->thumb : 'dist/images/post-1.jpg') }}"
+                                src="{{ asset($item->product->images->count() ? 'storage/' . $item->product->images->first()->thumb : 'dist/images/placeholders/no-image.jpg') }}"
                                 alt="{{ $item->product->images->count() ? $item->product->images->first()->alt : 'product_image' }}">
                         </td>
                         <td class="text-center">

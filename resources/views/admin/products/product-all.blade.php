@@ -91,7 +91,7 @@
                             <td class="text-center">{{ $item->product_code }}</td>
                             <td class="w-40">
                                 <img class="rounded-md w-full aspect-[4/3] object-cover"
-                                    src="{{ asset($item->images->count() ? 'storage/' . $item->images->first()->thumb : 'dist/images/post-1.jpg') }}"
+                                    src="{{ asset($item->images->count() ? 'storage/' . $item->images->first()->thumb : 'dist/images/placeholders/no-image.jpg') }}"
                                     alt="{{ $item->images->count() ? $item->images->first()->alt : 'product_image' }}">
                             </td>
                             <td class="text-center">

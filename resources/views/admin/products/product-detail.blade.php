@@ -14,7 +14,7 @@
                         <div class="px-2 py-1 md:p-0.5 md:basis-1/3 justify-center items-center">
                             <div>
                                 <img class="product-image"
-                                    src="{{ asset($product->images->count() ? 'storage/' . $product->images->first()->src : 'dist/images/post-1.jpg') }}"
+                                    src="{{ asset($product->images->count() ? 'storage/' . $product->images->first()->src : 'dist/images/placeholders/no-image.jpg') }}"
                                     alt="{{ asset($product->images->count() ? 'storage/' . $product->images->first()->alt : 'no-image') }}">
                             </div>
                             <div class="slider-wrapper mt-5 gap-2">

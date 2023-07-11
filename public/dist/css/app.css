@@ -2290,10 +2290,6 @@ input:checked + .toggle-bg {
   padding-top: 2rem;
 }
 
-.pb-10 {
-  padding-bottom: 2.5rem;
-}
-
 .text-left {
   text-align: left;
 }
@@ -2878,7 +2874,7 @@ input:checked + .toggle-bg {
 .active {
   stroke: none;
   --tw-text-opacity: 1;
-  color: rgb(194 120 3 / var(--tw-text-opacity));
+  color: rgb(250 202 21 / var(--tw-text-opacity));
 }
 
 /* rating */

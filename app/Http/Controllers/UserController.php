@@ -33,7 +33,7 @@ class UserController extends Controller
    public function attemptRegister(Request $request){
     $validator=Validator::make($request->all(),[
         'name'=>'required|string|min:8|max:50',
-        'email'=>'required|email:dns',
+        'email'=>'required|email:dns|unique:users,email',
         'phone'=>'required|numeric',
         'address'=>'nullable',
         'password'=>'required|string|min:8',

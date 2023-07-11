@@ -70,7 +70,7 @@
 }
 
 .active {
-    @apply stroke-none text-yellow-500;
+    @apply stroke-none text-yellow-300;
 }
 /* rating */
 

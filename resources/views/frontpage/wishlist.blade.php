@@ -91,7 +91,7 @@
                             <tr class="bg-white hover:bg-gray-50">
                                 <td class="px-6 py-4 w-40">
                                     <img class="rounded w-full aspect-[4/3] object-cover"
-                                        src="{{ asset($item->product->images->count() ? 'storage/' . $item->product->images->first()->thumb : 'dist/images/post-1.jpg') }}"
+                                        src="{{ asset($item->product->images->count() ? 'storage/' . $item->product->images->first()->thumb : 'dist/images/placeholders/no-image.jpg') }}"
                                         alt="{{ $item->product->images->count() ? $item->product->images->first()->alt : 'product_image' }}">
                                 </td>
                                 <td class="px-6 py-4 text-center">{{ $item->product->name }} </td>
@@ -115,7 +115,7 @@
                             </tr>
                         @empty
                             <tr>
-                                <td class="text-center text-muted px-6 py-4" colspan="6">There's No Product Added To
+                                <td class="text-center text-muted px-6 py-4" colspan="6">There's No Product Added to
                                     Wishlist</td>
                             </tr>
                         @endforelse

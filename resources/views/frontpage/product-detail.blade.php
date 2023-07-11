@@ -1,8 +1,8 @@
 @extends('layouts.main-layout')
 @section('main-content')
     {{-- start header --}}
-    <div class="w-full h-56 md:h-96 bg-cover bg-no-repeat relative"
-        style="background-image: url('{{ asset('dist/images/product/bamboo-4.jpg') }}')">
+    <div class="w-full h-56 md:h-96 bg-cover bg-center bg-no-repeat relative"
+        style="background-image: url('{{ asset('dist/images/product/bamboo-straws.jpg') }}')">
         <div class="absolute inset-0 bg-black opacity-50"></div>
         <div class="flex items-center justify-center h-full">
             <h2 class="text-white relative z-10 text-4xl font-bold">Product Details</h2>
@@ -80,7 +80,7 @@
                 <div class="md:basis-1/3 justify-center items-center px-3 py-2 md:p-0.5">
                     <div>
                         <img class="product-image"
-                            src="{{ asset($product->images->count() ? 'storage/' . $product->images->first()->src : 'dist/images/post-1.jpg') }}"
+                            src="{{ asset($product->images->count() ? 'storage/' . $product->images->first()->src : 'dist/images/placeholders/no-image.jpg') }}"
                             alt="{{ asset($product->images->count() ? 'storage/' . $product->images->first()->alt : 'no-image') }}">
                     </div>
                     <div class="slider-wrapper mt-5 gap-2 mx-3 xl:mx-6">

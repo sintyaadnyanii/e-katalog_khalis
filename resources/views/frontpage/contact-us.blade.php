@@ -2,7 +2,7 @@
 @section('main-content')
     {{-- start header --}}
     <div class="w-full h-56 md:h-96 bg-cover bg-center bg-no-repeat relative"
-        style="background-image: url('{{ asset('dist/images/product/bamboo-lamp.jpg') }}')">
+        style="background-image: url('{{ asset('dist/images/product/bamboo-4.jpg') }}')">
         <div class="absolute inset-0 bg-black opacity-50"></div>
         <div class="flex items-center justify-center h-full">
             <h1 class="text-white relative z-10 text-4xl font-bold">Contact Us</h1>

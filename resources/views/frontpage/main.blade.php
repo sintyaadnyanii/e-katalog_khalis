@@ -142,7 +142,7 @@
                     class="bg-white rounded-md shadow border border-gray-200 px-4 py-4 md:w-64 transform transition-all duration-300 hover:scale-105 hover:shadow-lg">
                     <div class="relative mb-2">
                         <img class="object-cover w-full aspect-square rounded"
-                            src="{{ asset($item->images->count() ? 'storage/' . $item->images->first()->src : 'dist/images/post-1.jpg') }}"
+                            src="{{ asset($item->images->count() ? 'storage/' . $item->images->first()->src : 'dist/images/placeholders/no-image.jpg') }}"
                             alt="{{ $item->images->count() ? $item->images->first()->alt : 'product_image' }}">
                         {{-- banner --}}
                         {{-- <div class="absolute top-2 left-0 bg-[#CD9347] text-white px-2 py-1 rounded-e-md">
@@ -199,7 +199,7 @@
                     class="bg-white rounded-md shadow border border-gray-200 px-4 py-4 md:w-64 transform transition-all duration-300 hover:scale-105 hover:shadow-lg">
                     <div class="relative mb-2">
                         <img class="object-cover w-full aspect-square rounded"
-                            src="{{ asset($item->images->count() ? 'storage/' . $item->images->first()->src : 'dist/images/post-1.jpg') }}"
+                            src="{{ asset($item->images->count() ? 'storage/' . $item->images->first()->src : 'dist/images/placeholders/no-image.jpg') }}"
                             alt="{{ $item->images->count() ? $item->images->first()->alt : 'product_image' }}">
                         {{-- banner --}}
                         {{-- <div class="absolute top-2 left-0 bg-[#CD9347] text-white px-2 py-1 rounded-e-md">
