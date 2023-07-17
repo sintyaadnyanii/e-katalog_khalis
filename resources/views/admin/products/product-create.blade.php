@@ -99,6 +99,9 @@
                                     <p id="btnLabel">Choose Image to Upload *</p>
                                     <input type="file" name="images[]" multiple data-max_length="20" class="input-image">
                                 </label>
+                                @error('images')
+                                    <small class="text-xs text-red-500 ml-1">{{ '*' . $message }}</small>
+                                @enderror
                                 @error('images.*')
                                     <small class="text-xs text-red-500 ml-1">{{ '*' . $message }}</small>
                                 @enderror

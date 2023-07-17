@@ -3468,6 +3468,10 @@ input:checked + .toggle-bg {
     width: auto;
   }
 
+  .sm\:w-48 {
+    width: 12rem;
+  }
+
   .sm\:flex-1 {
     flex: 1 1 0%;
   }

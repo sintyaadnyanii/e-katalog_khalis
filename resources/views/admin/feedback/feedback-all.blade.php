@@ -26,7 +26,7 @@
                         </ul>
                     </div>
                 </div>
-                <div class="w-1/2 md:w-40 rounded-md shadow text-slate-500 bg-white">
+                <div class="w-1/2 sm:w-44 rounded-md shadow text-slate-500 bg-white">
                     <form action="{{ route('manage_feedback.all') }}" method="get" class="flex items-center">
                         @if (request('status'))
                             <input type="hidden" name="status" value="{{ request('status') }}">

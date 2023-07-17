@@ -13,7 +13,7 @@ class FeedbackController extends Controller
     public function allFeedback(){
         $data=[
             'title'=>'All Feedback | E-Katalog Khalis Bali Bamboo',
-            'feedbacks'=>Feedback::latest()->filter(request(['search','status']))->paginate(15)->withQueryString()
+            'feedbacks'=>Feedback::latest()->filter(request(['search','status','date']))->paginate(15)->withQueryString()
         ];
         return view('admin.feedback.feedback-all',$data);
     }
@@ -32,7 +32,7 @@ class FeedbackController extends Controller
             'status'=>$new_status
         ]);
         if($updated_feedback){
-            return redirect()->route('manage_feedback.detail')->with('success',"Feedback Status Updated to '".$new_status."'" );
+            return redirect()->back()->with('success',"Feedback Status Updated to '".$new_status."'" );
         }
         return redirect()->back()->with('error','Error Occured, Please Try Again!');
     }

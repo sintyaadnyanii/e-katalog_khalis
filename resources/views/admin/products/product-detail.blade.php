@@ -65,7 +65,8 @@
                                 @if (isset($product->link_shopee))
                                     <a href="{{ $product->link_shopee }}"
                                         class="btn btn-primary text-light btn-sm mt-2"><img class="w-5 mr-1"
-                                            src="{{ asset('dist/images/icon-shopee.svg') }}" alt="icon"></i>Available
+                                            src="{{ asset('dist/images/icon/icon-shopee.svg') }}"
+                                            alt="icon"></i>Available
                                         on Shopee</a>
                                 @else
                                     <button disabled="disabled" class="btn btn-primary text-light btn-sm mt-2">Not Available

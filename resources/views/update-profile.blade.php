@@ -6,6 +6,15 @@
     <!-- END: CSS Assets-->
 @endsection
 @section('base-body')
+    @if (session()->has('warning'))
+        @include('fragments.main-alert-warning')
+    @endif
+    @if (session()->has('error'))
+        @include('fragments.main-alert-error')
+    @endif
+    @if (session()->has('success'))
+        @include('fragments.main-alert-success')
+    @endif
     <div class="h-screen w-screen relative">
         <div class="absolute inset-0 bg-cover bg-no-repeat"
             style="background-image: url('{{ asset('dist/images/product/bamboo-1.jpg') }}')">
@@ -122,6 +131,20 @@
             inputImg.value = "";
             imgPreview.style.backgroundImage = "url('{{ asset('dist/images/placeholders/no-image.jpg') }}')";
 
+        }
+
+        const alertElement = document.getElementById('alert');
+        const bodyElement = document.getElementsByTagName('body')[0];
+
+        if (alertElement) {
+            bodyElement.classList.add('overflow-hidden');
+        } else {
+            bodyElement.classList.remove('overflow-hidden');
+        }
+
+        function btnClose() {
+            document.getElementById("alert").style.display = "none";
+            document.getElementsByTagName('body')[0].classList.remove('overflow-hidden');
         }
     </script>
 @endsection

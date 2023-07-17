@@ -46,7 +46,7 @@ class CategoryController extends Controller
             'description'=>'nullable|string',
         ]);
         if($validator->fails()){
-            return redirect()->back()->withErrors($validator)->withInput()->with('error','There must be something wrong with the input!');
+            return redirect()->back()->withErrors($validator)->withInput()->with('error',"There's something wrong with the input! Please try again!");
         }
         $validated=$validator->validated();
         $created_category=Category::create([
@@ -67,7 +67,7 @@ class CategoryController extends Controller
             'description'=>'nullable|string',
         ]);
         if($validator->fails()){
-            return redirect()->back()->withErrors($validator)->withInput()->with('error','There must be something wrong with the input!');
+            return redirect()->back()->withErrors($validator)->withInput()->with('error',"There's something wrong with the input! Please try again!");
         }
         $validated=$validator->validated();
         $updated_category=$category->update([

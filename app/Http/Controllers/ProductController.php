@@ -54,7 +54,8 @@ class ProductController extends Controller
             'price'=>'required|numeric',
             'description'=>'nullable|string',
             'link_shopee'=>'nullable|string',
-            'images.*'=>'required|image|mimes:jpeg,jpg,png|max:2048'
+            'images'=>'required|array',
+            'images.*'=>'image|mimes:jpeg,jpg,png|max:2048'
         ]);
     if($validator->fails()){
         return redirect()->back()->withErrors($validator)->withInput()->with('error','There must be something wrong with the input!');
@@ -103,7 +104,8 @@ class ProductController extends Controller
         'price'=>'required|numeric',
         'description'=>'nullable|string',
         'link_shopee'=>'nullable|string',
-        'images.*'=>'required|image|mimes:jpeg,jpg,png|max:2048'
+        'images'=>'required|array',
+        'images.*'=>'image|mimes:jpeg,jpg,png|max:2048'
     ]);
     if($validator->fails()){
         return redirect()->back()->withErrors($validator)->withInput()->with('error','There must be something wrong with the input!');

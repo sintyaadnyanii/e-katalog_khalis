@@ -124,7 +124,7 @@ class UserController extends Controller
         'address'=>'nullable'
     ]);
     if($validator->fails()){
-        return redirect()->back()->withErrors($validator)->withInput()->with('error','An Error Occured During Updating!');
+        return redirect()->back()->withErrors($validator)->withInput()->with('error',"There's something wrong with the input! Please try again!");
     }
     $validated=$validator->validate();
     $user->touch();
@@ -150,7 +150,7 @@ class UserController extends Controller
         'confirm_password'=>'required|same:new_password',
     ]);
     if($validator->fails()){
-        return redirect()->back()->withErrors($validator)->withInput()->with('error','There is Something Wrong With The Input, Please Try Again!');
+        return redirect()->back()->withErrors($validator)->withInput()->with('error',"There's something wrong with the input! Please try again!");
     }
     $validated=$validator->validate();
     if(Hash::check($validated['old_password'], auth()->user()->password)){
@@ -158,7 +158,10 @@ class UserController extends Controller
         'password'=>Hash::make($validated['new_password'])
         ]);
         if($updated_password){
-            return redirect()->route('dashboard')->with('success','Your Password Has Been Changed Successfully');
+            if(Auth::user()->level=='admin'){
+                return redirect()->route('dashboard')->with('success','Your Password Has Been Changed Successfully');  
+            }
+            return redirect()->route('main')->with('success','Your Password Has Been Changed Successfully'); 
         }
         return redirect()->back()->withInput()->with('error','Change Password Failed! Please Try Again!');
     }
