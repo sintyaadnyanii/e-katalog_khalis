@@ -13,7 +13,7 @@ class FeedbackController extends Controller
     public function allFeedback(){
         $data=[
             'title'=>'All Feedback | E-Katalog Khalis Bali Bamboo',
-            'feedbacks'=>Feedback::latest()->filter(request(['search','status','date']))->paginate(15)->withQueryString()
+            'feedbacks'=>Feedback::latest()->filter(request(['search','status','date']))->paginate(10)->withQueryString()
         ];
         return view('admin.feedback.feedback-all',$data);
     }

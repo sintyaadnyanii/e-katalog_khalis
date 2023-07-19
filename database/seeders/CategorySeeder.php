@@ -15,16 +15,6 @@ class CategorySeeder extends Seeder
     public function run()
     {
         Category::create([
-            'name'=>'Furniture Set',
-            'slug'=>'furniture-set',
-            'description'=>'Set of furniture made from bamboo',
-        ]);
-        Category::create([
-            'name'=>'Bamboo Gazebo',
-            'slug'=>'bamboo-gazebo',
-            'description'=>'Gazebo made from bamboo',
-        ]);
-        Category::create([
             'name'=>'Bamboo Tray',
             'slug'=>'bamboo-tray',
             'description'=>'Food tray made from bamboo',
@@ -33,11 +23,6 @@ class CategorySeeder extends Seeder
             'name'=>'Bamboo Cutleries',
             'slug'=>'bamboo-cutleries',
             'description'=>'Cutleries made from bamboo',
-        ]);
-        Category::create([
-            'name'=>'Dressing Table',
-            'slug'=>'dressing-table',
-            'description'=>'Set of dressing-table include chair and mirror made from bamboo',
         ]);
     }
 }

@@ -172,7 +172,7 @@ class UserController extends Controller
    public function allCustomers(){
     $data=[
         'title'=>'All Customers | E-Katalog Khalis Bali Bamboo',
-        'customers'=>User::whereNot('id',1)->whereNot('level','admin')->where('active',1)->latest()->filter(request(['search']))->paginate(15)->withQueryString()
+        'customers'=>User::whereNot('id',1)->whereNot('level','admin')->where('active',1)->latest()->filter(request(['search']))->paginate(10)->withQueryString()
     ];
     return view('admin.customers.customer-all',$data);
    }
@@ -181,7 +181,7 @@ class UserController extends Controller
     $data=[
         'title'=>'Detail Customer | E-Katalog Khalis Bali Bamboo',
         'user'=>$user,
-        'wishlists'=>Wishlist::where('user_id',$user->id)->latest()->paginate(15)
+        'wishlists'=>Wishlist::where('user_id',$user->id)->latest()->paginate(10)
     ];
     return view('admin.customers.customer-detail',$data);
    }

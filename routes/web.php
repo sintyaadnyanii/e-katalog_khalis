@@ -83,6 +83,7 @@ Route::middleware(['auth','admin'])->controller(ProductController::class)->group
     Route::patch('/dashboard/product/{product:product_code}/update','patchProduct')->name('manage_product.patch');
     Route::get('/dashboard/product/{product:product_code}/detail', 'detailProduct')->name('manage_product.detail');
     Route::delete('/dashboard/product/{product:product_code}/delete','deleteProduct')->name('manage_product.delete');
+    Route::get('dashboard/product/report','generatePDF')->name('manage_product.report');
     // extended
     Route::get('/dashboard/product/get-product-code','getProductCode');
 });

@@ -137,7 +137,7 @@
         {{-- product list --}}
         <div class="flex flex-col gap-4 md:gap-6 md:flex-row items-center justify-center">
             {{-- product card --}}
-            @forelse ($top_products->take(3) as $index=>$item)
+            @forelse ($top_products as $index=>$item)
                 <div
                     class="bg-white rounded-md shadow border border-gray-200 px-4 py-4 md:w-64 transform transition-all duration-300 hover:scale-105 hover:shadow-lg">
                     <div class="relative mb-2">
@@ -194,7 +194,11 @@
         {{-- product list --}}
         <div class="flex flex-col gap-4 md:gap-6 md:flex-row items-center justify-center">
             {{-- product card --}}
-            @forelse ($latest_products->take(3) as $index=>$item)
+            @forelse ($latest_products as $index=>$item)
+                @php
+                    $latest_offset = count($top_products);
+                    $latest_index = $index + $latest_offset;
+                @endphp
                 <div
                     class="bg-white rounded-md shadow border border-gray-200 px-4 py-4 md:w-64 transform transition-all duration-300 hover:scale-105 hover:shadow-lg">
                     <div class="relative mb-2">
@@ -214,9 +218,9 @@
                         <div class="flex items-center gap-1 mt-2">
                             @auth
                                 <button class="w-8 aspect-square text-black border-2 border-gray-600 rounded" type="button"
-                                    onclick="addWishlist('{{ $item->product_code }}','{{ $index }}')"><i
+                                    onclick="addWishlist('{{ $item->product_code }}','{{ $latest_index }}')"><i
                                         class="{{ $item->wishlists->where('user_id', auth()->user()->id)->count() ? 'fa-solid fa-heart text-[#D76A73]' : 'fa-regular fa-heart' }}"
-                                        id="like_icon_{{ $index }}"></i></button>
+                                        id="like_icon_{{ $latest_index }}"></i></button>
                             @else
                                 <a href="{{ route('login') }}"
                                     class="w-8 aspect-square text-black border-2 border-gray-600 rounded flex justify-center items-center"><i
@@ -228,7 +232,7 @@
                         </div>
                         <h5 class="text-xs mt-1">
                             <span>Liked by</span>
-                            <span id="likes_{{ $index }}" class="mx-0.5">{{ $item->wishlists->count() }}</span>
+                            <span id="likes_{{ $latest_index }}" class="mx-0.5">{{ $item->wishlists->count() }}</span>
                             <span>{{ $item->wishlists->count() > 1 ? 'users' : 'user' }}</span>
                         </h5>
                     </div>

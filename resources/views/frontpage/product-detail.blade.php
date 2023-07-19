@@ -143,7 +143,7 @@
                         <div class="flex flex-row gap-2">
                             @if (isset($product->link_shopee))
                                 <a href="{{ $product->link_shopee }}" class="button button-sm button-primary"><img
-                                        class="w-5 mr-1" src="{{ asset('dist/images/icon-shopee.svg') }}"
+                                        class="w-5 mr-1" src="{{ asset('dist/images/icon/shopee_logo.png') }}"
                                         alt="icon">Buy
                                     on Shopee</a>
                             @else

@@ -36,38 +36,47 @@
         </div> --}}
         <div class="intro-y col-span-12 flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2 mt-2">
             <div class="flex items-center gap-2">
-                <a href="{{ route('manage_product.create') }}" class="btn btn-primary shadow-md">Add New Product</a>
+                <a href="{{ route('manage_product.create') }}" class="btn btn-primary">Add New Product</a>
                 <div class="dropdown">
-                    <button class="dropdown-toggle btn btn-outline-primary px-2 py-2 box" aria-expanded="false"
-                        data-tw-toggle="dropdown"><i class="w-4 h-4 sm:w-5 sm:h-5 fill-[#455452] stroke-none mr-1"
-                            data-lucide="filter"></i>Sort By Category
+                    <button
+                        class="dropdown-toggle rounded-md ring-offset-transparent ring-transparent shadow text-slate-600 bg-white flex items-center justify-center p-2 md:py-2 md:px-3"
+                        aria-expanded="false" data-tw-toggle="dropdown"><i class="w-5 h-5" data-lucide="filter"></i><span
+                            class="hidden md:flex md:ml-1">Filter By
+                            Category</span>
                     </button>
                     <div class="dropdown-menu w-52">
                         <ul class="dropdown-content h-52 overflow-y-auto">
                             <li>
-                                <a href="/dashboard/products" class="dropdown-item">All</a>
+                                <a href="/dashboard/products"
+                                    class="dropdown-item {{ request('category') == null ? 'bg-slate-200/60' : '' }}">All</a>
                             </li>
                             @foreach ($categories as $item)
                                 <li>
                                     <a href="/dashboard/products?category={{ $item->slug }}"
-                                        class="dropdown-item">{{ $item->name }}</a>
+                                        class="dropdown-item {{ request('category') == $item->slug ? 'bg-slate-200/60' : '' }}">{{ $item->name }}</a>
                                 </li>
                             @endforeach
 
                         </ul>
                     </div>
                 </div>
+                <a href="{{ route('manage_product.report') }}"
+                    class="rounded-md ring-offset-transparent ring-transparent shadow text-slate-600 bg-white
+                    sm:flex items-center justify-center p-2 md:py-2 md:px-3"><i
+                        class="w-5 h-5" data-lucide="file-text"></i><span class="hidden md:flex md:ml-1">Export
+                        PDF</span></a>
             </div>
 
-            <div class="rounded-md shadow text-slate-500 bg-white w-full sm:w-44">
+            <div class="rounded-md ring-offset-transparent ring-transparent shadow text-slate-600 bg-white w-full sm:w-44">
                 <form action="{{ route('manage_product.all') }}" method="get" class="flex items-center">
                     @if (request('category'))
                         <input type="hidden" name="category" value="{{ request('category') }}">
                     @endif
-                    <input type="text" name="search"
-                        class="py-1.5 w-full border-0 shadow-none rounded-l-md focus:ring-0" placeholder="Search...">
+                    <input type="text" name="search" id="searchInput"
+                        class="w-full py-1.5 border-0 shadow-none rounded-l-md focus:ring-0 text-sm"
+                        placeholder="Search...">
                     <button type="submit" class="py-1.5 px-1 border-s"><i data-lucide="search"
-                            class="w-4 stroke-slate-700"></i></button>
+                            class="w-4 stroke-slate-700 text-center"></i></button>
                 </form>
             </div>
         </div>
@@ -167,5 +176,13 @@
     <!-- END: Delete Confirmation Modal -->
 @endsection
 @section('script')
+    <script>
+        $(document).ready(function() {
+            var searchValue = "{{ request('search', null) }}";
+            if (searchValue !== 'null') {
+                $("#searchInput").val(searchValue);
+            }
+        })
+    </script>
     <script src="{{ asset('dist/js/view/dashboard/manage-product.js') }}"></script>
 @endsection

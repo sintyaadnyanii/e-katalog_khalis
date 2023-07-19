@@ -20,7 +20,7 @@
                     <input type="hidden" name="category" value="{{ request('category') }}">
                 @endif
                 <input class="border-0 p-0 text-sm bg-transparent w-4/5 focus:ring-0" type="text" name="search"
-                    id="search" placeholder="Search...">
+                    id="searchInput1" placeholder="Search...">
                 <button type="submit" class="text-right w-1/5 text-sm"><i class="fa-solid fa-search"></i></button>
             </form>
             <div class="w-2/5 relative bg-white rounded-md shadow-md px-4 py-2">
@@ -55,7 +55,7 @@
                     <input type="hidden" name="category" value="{{ request('category') }}">
                 @endif
                 <input class="border-0 p-0 text-sm bg-transparent w-4/5 focus:ring-0" type="text" name="search"
-                    id="search" placeholder="Search...">
+                    id="searchInput2" placeholder="Search...">
                 <button type="submit" class="text-right w-1/5 text-sm"><i class="fa-solid fa-search"></i></button>
             </form>
             <div class="bg-white rounded-md  shadow-md flex-col gap-1 py-4 px-5">
@@ -140,4 +140,15 @@
 
     </div>
     {{-- start content --}}
+@endsection
+@section('main-script')
+    <script>
+        $(document).ready(function() {
+            var searchValue = "{{ request('search', null) }}";
+            if (searchValue !== 'null') {
+                $("#searchInput1").val(searchValue);
+                $("#searchInput2").val(searchValue);
+            }
+        })
+    </script>
 @endsection

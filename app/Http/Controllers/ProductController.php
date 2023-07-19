@@ -6,13 +6,14 @@ use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Barryvdh\DomPDF\Facade\Pdf as PDF;
 
 class ProductController extends Controller
 {
     public function allProduct(){
         $data=[
-            'title'=>'All Products| E-Katalog Khalis Bali Bamboo',
-            'products'=>Product::latest()->filter(request(['search','category']))->paginate(15)->withQueryString(),
+            'title'=>'All Products | E-Katalog Khalis Bali Bamboo',
+            'products'=>Product::latest()->filter(request(['search','category']))->paginate(10)->withQueryString(),
             'categories'=>Category::latest()->get()
         ];
         return view('admin.products.product-all',$data);
@@ -95,6 +96,14 @@ class ProductController extends Controller
             $product->update(['product_code' => $validated_code['product_code']]);
         }
     }
+    // images rule validation
+    $deleted_images=explode(',', $request->deleted_images);
+    array_pop($deleted_images);
+    if($product->images->count()==count($deleted_images)){
+        $required_rule='required|array';
+    }else{
+        $required_rule='nullable|array';
+    }
     $validator=Validator::make($request->all(),[
         'category_id'=>'required|integer',
         'name'=>'required|string|max:50',
@@ -104,7 +113,7 @@ class ProductController extends Controller
         'price'=>'required|numeric',
         'description'=>'nullable|string',
         'link_shopee'=>'nullable|string',
-        'images'=>'required|array',
+        'images'=>$required_rule,
         'images.*'=>'image|mimes:jpeg,jpg,png|max:2048'
     ]);
     if($validator->fails()){
@@ -135,6 +144,18 @@ class ProductController extends Controller
         return redirect()->back()->with('error', 'Error Occured, Please Try Again!');
     }
 
+    public function generatePDF(){
+        $currentYear=date('Y');
+        $data=[
+            'title'=>'Khalis Bali Bamboo Annual Product Report',
+            'products'=>Product::withCount(['wishlists' => function ($query) use ($currentYear) {
+                        $query->whereYear('created_at',$currentYear);
+                        }])->orderBy('wishlists_count')->get(),
+        ];
+        // dd($data);
+        $pdf=PDF::loadView('admin.products.product-reporting',$data);
+        return $pdf->setPaper('a4','potrait')->stream('product-report-'.$currentYear.'.pdf');
+    }
     public function getProductCode(Request $request){
         return response()->json(['data'=>Product::generatedCode($request->category_id)]);
     }

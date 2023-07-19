@@ -86,7 +86,7 @@
                             </div>
                         </div>
 
-                        <div>
+                        <div class="mt-5">
                             <label for="description" class="form-label">Description</label>
                             @error('description')
                                 <small class="text-xs text-red-500 ml-1">{{ '*' . $message }}</small>
@@ -98,7 +98,8 @@
                             <div class="mb-3">
                                 <label class="btn-upload btn btn-primary">
                                     <p id="btnLabel">Choose Image to Upload *</p>
-                                    <input type="file" name="images[]" multiple data-max_length="20" class="input-image">
+                                    <input type="file" name="images[]" multiple data-max_length="20"
+                                        class="input-image">
                                 </label>
                                 @error('images')
                                     <small class="text-xs text-red-500 ml-1">{{ '*' . $message }}</small>

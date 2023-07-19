@@ -5,28 +5,34 @@
         <div class="intro-y col-span-12 flex flex-col sm:flex-row sm:justify-between sm:items-center mt-2 gap-2">
             <div class="flex flex-row gap-2">
                 <div class="dropdown w-1/2 md:w-fit">
-                    <button class="dropdown-toggle btn btn-primary w-full" aria-expanded="false" data-tw-toggle="dropdown"> <i
-                            data-lucide="filter" class="w-4 h-4 mr-2"></i>Sort By Status</button>
+                    <button id="btnDropdown" class="dropdown-toggle btn btn-primary w-full" aria-expanded="false"
+                        data-tw-toggle="dropdown"> <i data-lucide="filter" class="w-5 h-5 mr-1"></i>Filter By Status</button>
                     <div class="dropdown-menu w-36">
                         <ul class="dropdown-content">
                             <li>
-                                <a href="/dashboard/feedbacks" class="dropdown-item">All </a>
-                            </li>
-                            <li>
-                                <a href="/dashboard/feedbacks?status=reviewed" class="dropdown-item">Reviewed
+                                <a href="/dashboard/feedbacks"
+                                    class="dropdown-item {{ request('status') == null ? 'bg-slate-200/60' : '' }}">All
                                 </a>
                             </li>
                             <li>
-                                <a href="/dashboard/feedbacks?status=unreviewed" class="dropdown-item">Unreviewed </a>
+                                <a href="/dashboard/feedbacks?status=reviewed"
+                                    class="dropdown-item {{ request('status') == 'reviewed' ? 'bg-slate-200/60' : '' }} ">Reviewed
+                                </a>
                             </li>
                             <li>
-                                <a href="/dashboard/feedbacks?status=replied" class="dropdown-item">Replied
+                                <a href="/dashboard/feedbacks?status=unreviewed"
+                                    class="dropdown-item {{ request('status') == 'unreviewed' ? 'bg-slate-200/60' : '' }}">Unreviewed
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/dashboard/feedbacks?status=replied"
+                                    class="dropdown-item {{ request('status') == 'replied' ? 'bg-slate-200/60' : '' }}">Replied
                                 </a>
                             </li>
                         </ul>
                     </div>
                 </div>
-                <div class="w-1/2 sm:w-44 rounded-md shadow text-slate-500 bg-white">
+                <div class="w-1/2 sm:w-44 rounded-md shadow text-slate-600 bg-white">
                     <form action="{{ route('manage_feedback.all') }}" method="get" class="flex items-center">
                         @if (request('status'))
                             <input type="hidden" name="status" value="{{ request('status') }}">
@@ -38,7 +44,7 @@
                     </form>
                 </div>
             </div>
-            <div class="rounded-md shadow text-slate-500 bg-white w-full sm:w-44">
+            <div class="rounded-md shadow text-slate-600 bg-white w-full sm:w-44">
                 <form action="{{ route('manage_feedback.all') }}" method="get" class="flex items-center">
                     @if (request('status'))
                         <input type="hidden" name="status" value="{{ request('status') }}">
@@ -46,8 +52,9 @@
                     @if (request('date'))
                         <input type="hidden" name="date" value="{{ request('date') }}">
                     @endif
-                    <input type="text" name="search"
-                        class="py-1.5 w-full border-0 shadow-none rounded-l-md focus:ring-0" placeholder="Search...">
+                    <input type="text" name="search" id="searchInput"
+                        class="py-1.5 w-full border-0 shadow-none rounded-l-md focus:ring-0 text-sm"
+                        placeholder="Search...">
                     <button type="submit" class="py-1.5 px-1 border-s"><i data-lucide="search"
                             class="w-4 stroke-slate-700"></i></button>
                 </form>
@@ -154,8 +161,12 @@
     <script>
         $(document).ready(function() {
             var dateValue = "{{ request('date', null) }}";
+            var searchValue = "{{ request('search', null) }}";
             if (dateValue !== 'null') {
                 $("#dateInput").val(dateValue);
+            }
+            if (searchValue !== 'null') {
+                $("#searchInput").val(searchValue);
             }
         })
     </script>

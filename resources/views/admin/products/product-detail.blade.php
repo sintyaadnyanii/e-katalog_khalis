@@ -65,7 +65,7 @@
                                 @if (isset($product->link_shopee))
                                     <a href="{{ $product->link_shopee }}"
                                         class="btn btn-primary text-light btn-sm mt-2"><img class="w-5 mr-1"
-                                            src="{{ asset('dist/images/icon/icon-shopee.svg') }}"
+                                            src="{{ asset('dist/images/icon/shopee_logo.png') }}"
                                             alt="icon"></i>Available
                                         on Shopee</a>
                                 @else

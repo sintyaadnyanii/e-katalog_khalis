@@ -21,7 +21,7 @@
                                             <i data-lucide="globe" class="report-box__icon text-primary"></i>
                                         </div>
                                         <div class="text-3xl font-medium leading-8 mt-6">{{ $totalVisitors }}</div>
-                                        <div class="text-base text-slate-500 mt-1">Visitors</div>
+                                        <div class="text-base text-slate-500 mt-1">Weekly Web Visitors</div>
                                     </div>
                                 </div>
                             </div>
@@ -54,10 +54,10 @@
                     <div class="col-span-12 mt-8">
                         <div class="intro-y block sm:flex items-center h-10">
                             <h2 class="text-lg font-medium truncate mr-5">
-                                Top 10 Most Liked Products
+                                {{ 'Top 5 Most Liked Product ' . date('Y') }}
                             </h2>
                             <div class="flex items-center sm:ml-auto mt-3 sm:mt-0 gap-2">
-                                <h2>Sort by Month: </h2>
+                                <h2>Filter by Month: </h2>
                                 <div class="rounded-md shadow text-slate-500 bg-white">
                                     <form action="{{ route('dashboard') }}" method="get" class="flex items-center">
                                         <input type="month" name="month"
@@ -101,7 +101,7 @@
                                                 </div>
                                             </td>
                                             <td class="text-center">{{ pricing($item->price) }}</td>
-                                            <td class="text-center">{{ $item->wishlists->count() }}</td>
+                                            <td class="text-center">{{ $item->wishlists_count }}</td>
                                             <td class="table-report__action w-56">
                                                 <div class="flex justify-center items-center gap-3">
                                                     <a class="flex items-center"

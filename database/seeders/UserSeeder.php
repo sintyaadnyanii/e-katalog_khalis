@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
+use Faker\Factory as Faker;
 
 class UserSeeder extends Seeder
 {
@@ -25,5 +26,18 @@ class UserSeeder extends Seeder
             'active'=>1,
             'verification_token'=>Str::random(50)
         ]);
+
+        $faker=Faker::create('id_ID');
+        for($i=1;$i<=30;$i++){
+            User::create([
+                'name'=>$faker->name,
+                'email'=>"userkhalis".$faker->unique()->numberBetween(00,30)."@testmail.com",
+                'password'=>Hash::make('user@12345'),
+                'phone'=>'08'.$faker->numberBetween(800000000,900000000),
+                'level'=>'user',
+                'active'=>1,
+                'verification_token'=>Str::random(50)
+            ]);
+        }
     }
 }
