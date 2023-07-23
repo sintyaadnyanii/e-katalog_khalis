@@ -34,7 +34,7 @@
 
                         {{-- Product Info --}}
                         <div class="md:basis-2/3">
-                            <h3 class="font-semibold text-lg">{{ $product->name }}</h3>
+                            <h3 class="font-semibold text-lg">{{ $product->name . ' ' . $product->product_code }}</h3>
                             <h4 class="font-medium text-sm">
                                 <span>Liked by</span>
                                 <span id="likes_{{ 0 }}"

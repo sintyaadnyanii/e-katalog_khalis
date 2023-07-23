@@ -151,7 +151,7 @@ class ProductController extends Controller
             'title'=>'Khalis Bali Bamboo Annual Product Report '.$currentYear,
             'products'=>Product::withCount(['wishlists' => function ($query) use ($currentYear) {
                         $query->whereYear('created_at',$currentYear);
-                        }])->orderBy('wishlists_count')->get(),
+                        }])->orderBy('wishlists_count','desc')->get(),
         ];
         $pdf=PDF::loadView('admin.products.product-reporting',$data);
         return $pdf->setPaper('a4','potrait')->stream('product-report-'.$currentYear.'.pdf');

@@ -18,7 +18,7 @@ class WishlistSeeder extends Seeder
     {
         // Define the start and end dates for your desired period
         $startDate = Carbon::parse('2023-06-15');
-        $endDate = Carbon::parse('2023-08-15');
+        $endDate = Carbon::parse('2023-06-30');
 
         // Generate a random timestamp within the specified period
         $randomTimestamp = Carbon::createFromTimestamp(

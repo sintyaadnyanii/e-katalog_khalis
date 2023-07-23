@@ -97,7 +97,7 @@
                     </div>
                 </div>
                 <div class="md:basis-2/3">
-                    <h3 class="font-bold text-xl">{{ $product->name }}</h3>
+                    <h3 class="font-bold text-xl">{{ $product->name . ' ' . $product->product_code }}</h3>
                     <div class="flex items-center gap-1">
                         {{-- <i class="fa-solid fa-heart text-[#D76A73]"></i> --}}
                         @auth
