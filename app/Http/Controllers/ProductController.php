@@ -12,7 +12,7 @@ class ProductController extends Controller
 {
     public function allProduct(){
         $data=[
-            'title'=>'All Products | E-Katalog Khalis Bali Bamboo',
+            'title'=>'All Products - Dashboard | Khalis Bali Bamboo',
             'products'=>Product::latest()->filter(request(['search','category']))->paginate(10)->withQueryString(),
             'categories'=>Category::latest()->get()
         ];
@@ -21,7 +21,7 @@ class ProductController extends Controller
 
     public function createProduct(){
         $data=[
-            'title'=>'Add New Product | E-Katalog Khalis Bali Bamboo',
+            'title'=>'Add New Product - Dashboard | Khalis Bali Bamboo',
             'categories'=>Category::orderBy('name','asc')->get()
         ];
         return view('admin.products.product-create',$data);
@@ -29,7 +29,7 @@ class ProductController extends Controller
 
     public function updateProduct(Product $product){
         $data=[
-            'title'=>'Update Product | E-Katalog Khalis Bali Bamboo',
+            'title'=>'Update Product - Dashboard | Khalis Bali Bamboo',
             'categories'=>Category::orderBy('name','asc')->get(),
             'product'=>$product
         ];
@@ -38,7 +38,7 @@ class ProductController extends Controller
 
     public function detailProduct(Product $product){
         $data=[
-            'title'=>'Product Detail | E-Katalog Khalis Bali Bamboo',
+            'title'=>'Product Detail - Dashboard | Khalis Bali Bamboo',
             'product'=>$product
         ];
         return view('admin.products.product-detail',$data);
@@ -138,6 +138,7 @@ class ProductController extends Controller
     }
 
     public function deleteProduct(Product $product){
+        $product->wishlists->delete();
         if ($product->delete()) {
             return redirect()->route('manage_product.all')->with('success', 'Product "'.$product->name.'" Deleted Successfully');
         }
@@ -147,12 +148,11 @@ class ProductController extends Controller
     public function generatePDF(){
         $currentYear=date('Y');
         $data=[
-            'title'=>'Khalis Bali Bamboo Annual Product Report',
+            'title'=>'Khalis Bali Bamboo Annual Product Report '.$currentYear,
             'products'=>Product::withCount(['wishlists' => function ($query) use ($currentYear) {
                         $query->whereYear('created_at',$currentYear);
                         }])->orderBy('wishlists_count')->get(),
         ];
-        // dd($data);
         $pdf=PDF::loadView('admin.products.product-reporting',$data);
         return $pdf->setPaper('a4','potrait')->stream('product-report-'.$currentYear.'.pdf');
     }

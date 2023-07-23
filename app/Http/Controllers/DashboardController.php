@@ -33,7 +33,7 @@ class DashboardController extends Controller
         }
           
         $data=[
-            'title'=>'Dashboard | E-Katalog Khalis Bali Bamboo',
+            'title'=>'Overview - Dashboard | Khalis Bali Bamboo',
             'countCustomers'=>User::where('level','user')->where('active',1)->count(),
             'countProducts'=>Product::all()->count(),
             // 'top_products'=>Product::withCount('wishlists')->orderBy('wishlists_count','desc')->filter(request(['month']))->take(10)->get(),

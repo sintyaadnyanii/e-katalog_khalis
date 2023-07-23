@@ -27,8 +27,8 @@ use Illuminate\Support\Facades\Route;
 //     return view('frontpage.main');
 // })->name('main');
 
-Route::get('/about-us',function(){return view('frontpage.about-us');})->name('main.about-us');
-Route::get('/contact-us',function(){return view('frontpage.contact-us');})->name('main.contact-us');
+Route::get('/about-us',function(){return view('frontpage.about-us',['title'=>'Our Journey with Bamboo Furniture - About Khalis Bali Bamboo']);})->name('main.about-us');
+Route::get('/contact-us',function(){return view('frontpage.contact-us',['title'=>'Get in Touch With Us - Contact Khalis Bali Bamboo']);})->name('main.contact-us');
 
 Route::controller(MainController::class)->group(function(){
     Route::get('/','main')->name('main');

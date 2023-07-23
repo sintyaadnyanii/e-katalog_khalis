@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Jobs\ReplyFeedback;
 use App\Models\Feedback;
-use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -12,7 +11,7 @@ class FeedbackController extends Controller
 {
     public function allFeedback(){
         $data=[
-            'title'=>'All Feedback | E-Katalog Khalis Bali Bamboo',
+            'title'=>'All Feedback - Dashboard | Khalis Bali Bamboo',
             'feedbacks'=>Feedback::latest()->filter(request(['search','status','date']))->paginate(10)->withQueryString()
         ];
         return view('admin.feedback.feedback-all',$data);
@@ -20,7 +19,7 @@ class FeedbackController extends Controller
 
     public function detailFeedback(Feedback $feedback){
         $data=[
-            'title'=>'Feedback Detail | E-Katalog Khalis Bali Bamboo',
+            'title'=>'Feedback Detail - Dashboard | Khalis Bali Bamboo',
             'feedback'=>$feedback
         ];
         return view('admin.feedback.feedback-detail',$data);

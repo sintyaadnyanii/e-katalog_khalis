@@ -13,7 +13,7 @@
                         class="absolute top-1/2 left-1/3 transform -translate-x-1/2 -translate-y-1/2 text-left ml-10 md:ml-16">
                         <h2 class="text-base md:text-2xl font-bold text-white">Welcome to</h2>
                         <h1 class="text-xl md:text-4xl font-extrabold text-white">Khalis Bali Bamboo</h1>
-                        <h2 class="text-base md:text-2xl font-bold text-white">Gallery {{ date('Y') }}</h2>
+                        <h2 class="text-base md:text-2xl font-bold text-white">E-Catalog {{ date('Y') }}</h2>
                         <p class="text-xs font-light md:text-base text-white mb-3 md:mb-5">We offer a various collection of
                             bamboo-based products such as furniture, cutleries, tumblers, lamps, and more.</p>
                         <a href="#"
@@ -28,17 +28,12 @@
                     <div class="absolute inset-0 bg-black opacity-50"></div>
                     <div
                         class="absolute top-1/2 left-1/3 transform -translate-x-1/2 -translate-y-1/2 text-left ml-10 md:ml-16">
-                        <h2 class="text-base md:text-2xl font-bold text-white">Welcome to</h2>
+                        <h2 class="text-base md:text-2xl font-bold text-white">Find Your Perfect Furniture at</h2>
                         <h1 class="text-xl md:text-4xl font-extrabold text-white">Khalis Bali Bamboo</h1>
-                        <h2 class="text-base md:text-2xl font-bold text-white">Gallery {{ date('Y') }}</h2>
-                        <p class="text-xs font-light md:text-base text-white mb-3 md:mb-5">We offer a various collection of
-                            bamboo-based
-                            products
-                            such
-                            as
-                            furniture,
-                            cutleries,
-                            tumblers, lamps, and more.</p>
+                        <h2 class="text-base md:text-2xl font-bold text-white">E-Catalog {{ date('Y') }}</h2>
+                        <p class="text-xs font-light md:text-base text-white mb-3 md:mb-5">We manufacture a diverse
+                            collection of bamboo based
+                            products according to your needs.</p>
                         <a href="#"
                             class="text-xs md:text-base btn bg-[#566a68] text-white px-4 py-2 rounded-md">Explore Now</a>
                     </div>
@@ -51,17 +46,11 @@
                     <div class="absolute inset-0 bg-black opacity-50"></div>
                     <div
                         class="absolute top-1/2 left-1/3 transform -translate-x-1/2 -translate-y-1/2 text-left ml-10 md:ml-16">
-                        <h2 class="text-base md:text-2xl font-bold text-white">Welcome to</h2>
+                        <h2 class="text-base md:text-2xl font-bold text-white">Explore Eco-Friendly Products at</h2>
                         <h1 class="text-xl md:text-4xl font-extrabold text-white">Khalis Bali Bamboo</h1>
-                        <h2 class="text-base md:text-2xl font-bold text-white">Gallery {{ date('Y') }}</h2>
-                        <p class="text-xs font-light md:text-base text-white mb-3 md:mb-5">We offer a various collection of
-                            bamboo-based
-                            products
-                            such
-                            as
-                            furniture,
-                            cutleries,
-                            tumblers, lamps, and more.</p>
+                        <h2 class="text-base md:text-2xl font-bold text-white">E-Catalog {{ date('Y') }}</h2>
+                        <p class="text-xs font-light md:text-base text-white mb-3 md:mb-5">We are committed to producing
+                            eco-friendly and sustainable bamboo products.</p>
                         <a href="#"
                             class="text-xs md:text-base btn bg-[#566a68] text-white px-4 py-2 rounded-md">Explore Now</a>
                     </div>
@@ -74,17 +63,11 @@
                     <div class="absolute inset-0 bg-black opacity-50"></div>
                     <div
                         class="absolute top-1/2 left-1/3 transform -translate-x-1/2 -translate-y-1/2 text-left ml-10 md:ml-16">
-                        <h2 class="text-base md:text-2xl font-bold text-white">Welcome to</h2>
+                        <h2 class="text-base md:text-2xl font-bold text-white">Discover Unique Furniture Collection at</h2>
                         <h1 class="text-xl md:text-4xl font-extrabold text-white">Khalis Bali Bamboo</h1>
-                        <h2 class="text-base md:text-2xl font-bold text-white">Gallery {{ date('Y') }}</h2>
-                        <p class="text-xs font-light md:text-base text-white mb-3 md:mb-5">We offer a various collection of
-                            bamboo-based
-                            products
-                            such
-                            as
-                            furniture,
-                            cutleries,
-                            tumblers, lamps, and more.</p>
+                        <h2 class="text-base md:text-2xl font-bold text-white">E-Catalog {{ date('Y') }}</h2>
+                        <p class="text-xs font-light md:text-base text-white mb-3 md:mb-5">We manufacture a variety of
+                            bamboo products that are designed to meet current trends.</p>
                         <a href="#"
                             class="text-xs md:text-base btn bg-[#566a68] text-white px-4 py-2 rounded-md">Explore Now</a>
                     </div>

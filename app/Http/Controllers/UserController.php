@@ -18,14 +18,14 @@ class UserController extends Controller
 {
    public function register(){
     $data=[
-        'title'=>'Sign Up | E-Katalog Khalis Bali Bamboo'
+        'title'=>'Sign Up | Khalis Bali Bamboo'
     ];
     return view('register',$data);
    }
 
    public function login(){
     $data=[
-        'title'=>'Sign In | E-Katalog Khalis Bali Bamboo'
+        'title'=>'Sign In | Khalis Bali Bamboo'
     ];
     return view('login',$data);
    }
@@ -104,7 +104,7 @@ class UserController extends Controller
 
    public function updateProfile(){
     $data=[
-        'title'=>'Edit Profile | E-Katalog Khalis Bali Bamboo',
+        'title'=>'Edit Profile | Khalis Bali Bamboo',
         'user'=>Auth::user()
     ];
     return view('update-profile',$data);
@@ -112,7 +112,7 @@ class UserController extends Controller
 
    public function updatePassword(){
     $data=[
-        'title'=>'Change Password | E-Katalog Khalis Bali Bamboo'
+        'title'=>'Change Password | Khalis Bali Bamboo'
     ];
     return view('update-password',$data);
    }
@@ -171,7 +171,7 @@ class UserController extends Controller
 
    public function allCustomers(){
     $data=[
-        'title'=>'All Customers | E-Katalog Khalis Bali Bamboo',
+        'title'=>'All Customers - Dashboard | Khalis Bali Bamboo',
         'customers'=>User::whereNot('id',1)->whereNot('level','admin')->where('active',1)->latest()->filter(request(['search']))->paginate(10)->withQueryString()
     ];
     return view('admin.customers.customer-all',$data);
@@ -179,7 +179,7 @@ class UserController extends Controller
 
     public function detailCustomer(User $user){
     $data=[
-        'title'=>'Detail Customer | E-Katalog Khalis Bali Bamboo',
+        'title'=>'Customer Detail - Dashboard | Khalis Bali Bamboo',
         'user'=>$user,
         'wishlists'=>Wishlist::where('user_id',$user->id)->latest()->paginate(10)
     ];

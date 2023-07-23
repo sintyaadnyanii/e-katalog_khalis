@@ -20,7 +20,7 @@ class MainController extends Controller
             $top_products=Product::random()->take(3)->get();
         }
         $data=[
-            'title'=>'Home| E-Katalog Khalis Bali Bamboo',
+            'title'=>'Bamboo Furniture Wholesale Manufacturer & Exporter - Home | Khalis Bali Bamboo',
             'top_products'=>$top_products,
             'latest_products'=>Product::latest()->take(3)->get()
         ];
@@ -28,7 +28,7 @@ class MainController extends Controller
     }
     public function products(){
           $data=[
-            'title'=>'All Products| E-Katalog Khalis Bali Bamboo',
+            'title'=>'Find Your Perfect Bamboo Furniture - Our Products | Khalis Bali Bamboo',
             'products'=>Product::latest()->filter(request(['search','category']))->paginate(12)->withQueryString(),
             'categories'=>Category::orderBy('name','asc')->get()
         ];
@@ -45,7 +45,7 @@ class MainController extends Controller
             'line'=> 'https://social-plugins.line.me/lineit/share?url=' . urlencode($currentUrl)
         ];
         $data=[
-            'title'=>'All Products| E-Katalog Khalis Bali Bamboo',
+            'title'=>$product->name.' - '.$product->category->name.' | Khalis Bali Bamboo',
             'product'=>$product,
             'categories'=>Category::orderBy('name','asc')->get(),
             'shareLink'=>$shareUrls
@@ -76,7 +76,7 @@ class MainController extends Controller
 
     public function myWishlist(){
         $data=[
-            'title'=>'All Products| E-Katalog Khalis Bali Bamboo',
+            'title'=>'Save Your Favorites - My Wishlist | Khalis Bali Bamboo',
             'wishlists'=>Wishlist::where('user_id',Auth::user()->id)->filter(request(['search','category']))->paginate(10)->withQueryString(),
             'categories'=>Category::orderBy('name','asc')->get()
         ];

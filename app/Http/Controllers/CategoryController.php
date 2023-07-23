@@ -10,7 +10,7 @@ class CategoryController extends Controller
 {
     public function allCategory(){
         $data=[
-            'title'=>'Categories | E-Katalog Khalis Bali Bamboo',
+            'title'=>'All Categories - Dashboard | Khalis Bali Bamboo',
             'categories'=> Category::latest()->filter(request(['search']))->paginate(10)->withQueryString(),
         ];
         return view('admin.categories.category-all',$data);
@@ -18,14 +18,14 @@ class CategoryController extends Controller
 
     public function createCategory(){
         $data=[
-            'title'=>'Add New Category | E-Katalog Khalis Bali Bamboo'
+            'title'=>'Add New Category - Dashboard | Khalis Bali Bamboo'
         ];
         return view('admin.categories.category-create',$data);
     }
 
     public function updateCategory(Category $category){
         $data=[
-            'title'=>'Update Category | E-Katalog Khalis Bali Bamboo',
+            'title'=>'Update Category - Dashboard | Khalis Bali Bamboo',
             'category'=>$category,
         ];
         return view('admin.categories.category-update',$data);
@@ -33,7 +33,7 @@ class CategoryController extends Controller
 
     public function detailCategory(Category $category){
         $data=[
-            'title'=>'Category Detail | E-Katalog Khalis Bali Bamboo',
+            'title'=>'Category Detail - Dashboard | Khalis Bali Bamboo',
             'category'=>$category,
         ];
         return view('admin.categories.category-detail',$data);
