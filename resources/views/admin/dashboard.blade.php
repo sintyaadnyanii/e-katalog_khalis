@@ -52,20 +52,23 @@
                     <!-- END: General Report -->
                     <!-- BEGIN: Top Liked Products -->
                     <div class="col-span-12 mt-8">
-                        <div class="intro-y block sm:flex items-center h-10">
-                            <h2 class="text-lg font-medium truncate mr-5">
-                                {{ 'Top 5 Most Liked Product ' . date('Y') }}
-                            </h2>
-                            <div class="flex items-center sm:ml-auto mt-3 sm:mt-0 gap-2">
-                                <h2>Filter by Month: </h2>
-                                <div class="rounded-md shadow text-slate-500 bg-white">
-                                    <form action="{{ route('dashboard') }}" method="get" class="flex items-center">
-                                        <input type="month" name="month"
-                                            class="py-1.5 w-20 md:w-44 border-0 shadow-none text-sm rounded-l-md focus:ring-0"
-                                            id="monthInput">
-                                        <button type="submit" class="py-1.5 px-1 border-s"><i data-lucide="search"
-                                                class="w-4 stroke-slate-700"></i></button>
-                                    </form>
+                        <div class="intro-y flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2 sm:gap-0">
+                            <h2 class="text-lg font-medium truncate mr-5">Top 5 Most Liked Product</h2>
+                            <div class="flex items-center gap-2">
+                                <div class="w-1/4 sm:w-auto">
+                                    <h2>Filter by Month: </h2>
+                                </div>
+                                <div class="w-3/4 sm:w-44">
+                                    <div
+                                        class="rounded-md ring-offset-transparent ring-transparent shadow text-slate-600 bg-white">
+                                        <form action="{{ route('dashboard') }}" method="get" class="flex items-center">
+                                            <input type="month" name="month"
+                                                class="w-full py-1.5 border-0 shadow-none text-sm rounded-l-md focus:ring-0"
+                                                id="monthInput">
+                                            <button type="submit" class="py-1.5 px-1 border-s"><i data-lucide="search"
+                                                    class="w-4 stroke-slate-700"></i></button>
+                                        </form>
+                                    </div>
                                 </div>
                             </div>
                         </div>

@@ -61,7 +61,7 @@
                     our website to find out more.</p>
             </div>
             <div>
-                <a class="button" href="http://127.0.0.1:8000/">Visit now!</a>
+                <a class="button" href="{{ $url }}">Visit now!</a>
             </div>
         </div>
     </div>

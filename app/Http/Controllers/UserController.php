@@ -32,9 +32,9 @@ class UserController extends Controller
 
    public function attemptRegister(Request $request){
     $validator=Validator::make($request->all(),[
-        'name'=>'required|string|min:8|max:50',
+        'name'=>'required|string|between:3,100',
         'email'=>'required|email:dns|unique:users,email',
-        'phone'=>'required|numeric',
+        'phone'=>'required|numeric|digits_between:7,15',
         'address'=>'nullable',
         'password'=>'required|string|min:8',
         'password_confirm'=>'required|same:password'
@@ -57,7 +57,7 @@ class UserController extends Controller
         $details=[
             'email'=>$validated['email'],
             'name'=>$validated['name'],
-            // 'url'=>request()->getHttpHost().'/register/verify/'.$token
+            // 'url'=>'https://'.request()->getHttpHost().'/register/verify/'.$token
             'url'=>'http://127.0.0.1:8000/register/verify/'.$token
         ];
         
@@ -119,9 +119,10 @@ class UserController extends Controller
 
    public function patchProfile(Request $request, User $user){
     $validator=Validator::make($request->all(),[
-        'name'=>'required|string|min:8|max:50',
-        'phone'=>'required|numeric',
-        'address'=>'nullable'
+        'name'=>'required|string|between:3,100',
+        'phone'=>'required|numeric|digits_between:7,15',
+        'address'=>'nullable',
+        'image'=>'image|mimes:jpeg,jpg,png|max:2048',
     ]);
     if($validator->fails()){
         return redirect()->back()->withErrors($validator)->withInput()->with('error',"There's something wrong with the input! Please try again!");

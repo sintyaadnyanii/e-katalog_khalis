@@ -16,7 +16,7 @@
                         <h2 class="text-base md:text-2xl font-bold text-white">E-Catalog {{ date('Y') }}</h2>
                         <p class="text-xs font-light md:text-base text-white mb-3 md:mb-5">We offer a various collection of
                             bamboo-based products such as furniture, cutleries, tumblers, lamps, and more.</p>
-                        <a href="#"
+                        <a href="{{ route('main.product') }}"
                             class="text-xs md:text-base btn bg-[#566a68] text-white px-4 py-2 rounded-md">Explore Now</a>
                     </div>
                 </div>
@@ -34,7 +34,7 @@
                         <p class="text-xs font-light md:text-base text-white mb-3 md:mb-5">We manufacture a diverse
                             collection of bamboo based
                             products according to your needs.</p>
-                        <a href="#"
+                        <a href="{{ route('main.product') }}"
                             class="text-xs md:text-base btn bg-[#566a68] text-white px-4 py-2 rounded-md">Explore Now</a>
                     </div>
                 </div>
@@ -51,7 +51,7 @@
                         <h2 class="text-base md:text-2xl font-bold text-white">E-Catalog {{ date('Y') }}</h2>
                         <p class="text-xs font-light md:text-base text-white mb-3 md:mb-5">We are committed to producing
                             eco-friendly and sustainable bamboo products.</p>
-                        <a href="#"
+                        <a href="{{ route('main.product') }}"
                             class="text-xs md:text-base btn bg-[#566a68] text-white px-4 py-2 rounded-md">Explore Now</a>
                     </div>
                 </div>
@@ -68,7 +68,7 @@
                         <h2 class="text-base md:text-2xl font-bold text-white">E-Catalog {{ date('Y') }}</h2>
                         <p class="text-xs font-light md:text-base text-white mb-3 md:mb-5">We manufacture a variety of
                             bamboo products that are designed to meet current trends.</p>
-                        <a href="#"
+                        <a href="{{ route('main.product') }}"
                             class="text-xs md:text-base btn bg-[#566a68] text-white px-4 py-2 rounded-md">Explore Now</a>
                     </div>
                 </div>

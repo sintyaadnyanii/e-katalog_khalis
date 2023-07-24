@@ -48,6 +48,10 @@
                                 <div class="image-bg" id="image_preview"
                                     style="background-image: url({{ asset(isset($user->image->src) ? 'storage/' . $user->image->src : 'dist/images/placeholders/no-image.jpg') }})">
                                 </div>
+                                @error('image')
+                                    <small
+                                        class="text-xs text-red-500 mt-2 flex justify-center text-center">{{ '*' . $message }}</small>
+                                @enderror
                                 <div class="mt-3 flex items-center justify-center gap-1">
                                     <label class="btn-upload button button-sm button-secondary">
                                         <p id="btnLabel">Choose Image</p>

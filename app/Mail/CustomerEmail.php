@@ -41,7 +41,8 @@ class CustomerEmail extends Mailable
             view: 'emails.customer-email',
             with:[
                 'name'=>$this->user->name,
-                'url'=>request()->getHttpHost().'/'
+                'url'=>'http://127.0.0.1:8000/',
+                // 'url'=>'https://'.request()->getHttpHost().'/'
             ]
         );
     }

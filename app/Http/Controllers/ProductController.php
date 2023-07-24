@@ -49,9 +49,9 @@ class ProductController extends Controller
             'product_code'=>'required|string|size:8|unique:products,product_code',
             'category_id'=>'required|integer',
             'name'=>'required|string|max:50',
-            'dimensions'=>'required|string',
+            'dimensions'=>'required|string|max:50',
             'materials'=>'required|string',
-            'color'=>'required|string',
+            'color'=>'required|string|max:50',
             'price'=>'required|numeric',
             'description'=>'nullable|string',
             'link_shopee'=>'nullable|string',
@@ -107,9 +107,9 @@ class ProductController extends Controller
     $validator=Validator::make($request->all(),[
         'category_id'=>'required|integer',
         'name'=>'required|string|max:50',
-        'dimensions'=>'required|string',
+        'dimensions'=>'required|string|max:50',
         'materials'=>'required|string',
-        'color'=>'required|string',
+        'color'=>'required|string|max:50',
         'price'=>'required|numeric',
         'description'=>'nullable|string',
         'link_shopee'=>'nullable|string',
@@ -138,7 +138,7 @@ class ProductController extends Controller
     }
 
     public function deleteProduct(Product $product){
-        $product->wishlists->delete();
+        $product->wishlists()->delete();
         if ($product->delete()) {
             return redirect()->route('manage_product.all')->with('success', 'Product "'.$product->name.'" Deleted Successfully');
         }
@@ -149,9 +149,10 @@ class ProductController extends Controller
         $currentYear=date('Y');
         $data=[
             'title'=>'Khalis Bali Bamboo Annual Product Report '.$currentYear,
-            'products'=>Product::withCount(['wishlists' => function ($query) use ($currentYear) {
-                        $query->whereYear('created_at',$currentYear);
-                        }])->orderBy('wishlists_count','desc')->get(),
+            // 'products'=>Product::withCount(['wishlists' => function ($query) use ($currentYear) {
+            //             $query->whereYear('created_at',$currentYear);
+            //             }])->orderBy('wishlists_count','desc')->get(),
+            'products'=>Product::withCount('wishlists')->orderBy('wishlists_count','desc')->get()
         ];
         $pdf=PDF::loadView('admin.products.product-reporting',$data);
         return $pdf->setPaper('a4','potrait')->stream('product-report-'.$currentYear.'.pdf');

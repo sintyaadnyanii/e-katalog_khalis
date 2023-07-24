@@ -12,7 +12,6 @@ use Spatie\Analytics\Period;
 class DashboardController extends Controller
 {
     public function dashboard(){
-        // dd(Wishlist::latest()->count());
         $analytics=Analytics::fetchTotalVisitorsAndPageViews(Period::days(7));
         $totalVisitors=0;
         foreach ($analytics as $item) {
@@ -26,10 +25,7 @@ class DashboardController extends Controller
                         $query->whereYear('created_at',$year)->whereMonth('created_at',$month);
                         }])->orderBy('wishlists_count','desc')->take(5)->get();
         }else{
-            $year=date('Y');
-            $top_products=Product::withCount(['wishlists' => function ($query) use ($year) {
-                        $query->whereYear('created_at',$year);
-                        }])->orderBy('wishlists_count','desc')->take(5)->get();
+            $top_products=Product::withCount('wishlists')->orderBy('wishlists_count','desc')->take(5)->get();
         }
           
         $data=[
