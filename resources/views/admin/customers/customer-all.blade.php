@@ -8,7 +8,7 @@
                 Notification</a>
             <div class="rounded-md shadow text-slate-500 bg-white">
                 <form action="{{ route('manage_customer.all') }}" method="get" class="flex items-center">
-                    <input type="text" name="search"
+                    <input type="text" id="searchInput" name="search"
                         class="py-2 w-24 md:w-44 border-0 shadow-none rounded-l-md focus:ring-0" placeholder="Search...">
                     <button type="submit" class="py-2 px-1 border-s"><i data-lucide="search"
                             class="w-4 stroke-slate-700"></i></button>
@@ -91,6 +91,14 @@
     </div>
     <!-- END: Delete Confirmation Modal --> --}}
 @endsection
-{{-- @section('script')
-    <script src="{{ asset('dist/js/view/dashboard/manage-user.js') }}"></script>
-@endsection --}}
+@section('script')
+    {{-- <script src="{{ asset('dist/js/view/dashboard/manage-user.js') }}"></script> --}}
+    <script>
+        $(document).ready(function() {
+            var searchValue = "{{ request('search', null) }}";
+            if (searchValue !== 'null') {
+                $("#searchInput").val(searchValue);
+            }
+        })
+    </script>
+@endsection

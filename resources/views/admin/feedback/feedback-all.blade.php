@@ -87,10 +87,10 @@
                                 <div class="font-medium whitespace-nowrap inline-flex items-center">{{ $item->rating }}/5<i
                                         data-lucide="star" class="fill-yellow-300 stroke-none w-4 ml-0.5 -mt-0.5"></i>
                                 </div>
-                                <div class="text-slate-500 text-xs whitespace-nowrap mt-0.5">
+                                <div class="text-slate-500 text-xs whitespace-wrap mt-0.5">
                                     {{ Str::words(html_entity_decode(strip_tags($item->message)), 10, '...') }}</div>
                             </td>
-                            <td class="text-center">
+                            <td class="text-center whitespace-nowrap">
                                 {{ date_format($item->created_at, 'd M Y') }}
                             </td>
                             <td class="text-center capitalize">
