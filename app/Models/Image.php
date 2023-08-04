@@ -17,11 +17,11 @@ class Image extends Model
 
     public static function uploadImage($img_response,$resize=true){
         if($resize==true){
-            $thumbnail = InterventionImg::make($img_response->getPathname())->resize(390, 220, function ($constraint) {
+            $thumbnail = InterventionImg::make($img_response->getPathname())->resize(300, 225, function ($constraint) {
                 $constraint->aspectRatio();
             })->encode(null,60)->save(storage_path('app/public/thumbnails/' . $img_response->hashName()));
 
-            $image = InterventionImg::make($img_response->getPathname())->resize(800, 550, function ($constraint) {
+            $image = InterventionImg::make($img_response->getPathname())->resize(800, 600, function ($constraint) {
                 $constraint->aspectRatio();
             })->encode(null,90)->save(storage_path('app/public/images/' . $img_response->hashName()));
 

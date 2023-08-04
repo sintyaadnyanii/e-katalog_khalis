@@ -11,7 +11,7 @@
                 <!-- BEGIN: Form Layout -->
                 <form action="{{ route('manage_category.store') }}" method="post">
                     @csrf
-                    <input type="hidden" name="category_id" id="category_id" value="0">
+                    {{-- <input type="hidden" name="category_id" id="category_id" value="0"> --}}
                     <div class="intro-y box p-5">
                         <div>
                             <label for="name" class="form-label">Category Name</label>

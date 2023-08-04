@@ -60,7 +60,7 @@
                         </ul>
                     </div>
                 </div>
-                <a href="{{ route('manage_product.report') }}"
+                <a href="{{ route('manage_product.report') }}" target="_blank"
                     class="rounded-md ring-offset-transparent ring-transparent shadow text-slate-600 bg-white
                     sm:flex items-center justify-center p-2 md:py-2 md:px-3"><i
                         class="w-5 h-5" data-lucide="file-text"></i><span class="hidden md:flex md:ml-1">Export

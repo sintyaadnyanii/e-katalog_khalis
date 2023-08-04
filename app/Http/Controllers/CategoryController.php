@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -41,8 +42,8 @@ class CategoryController extends Controller
 
     public function storeCategory(Request $request){
         $validator=Validator::make($request->all(),[
-            'name'=>'required|string|max:50',
-            'slug'=>'required',
+            'name'=>'required|string|max:50|same_words:2',
+            'slug'=>'required|unique:categories,slug',
             'description'=>'nullable|string',
         ]);
         if($validator->fails()){
@@ -62,7 +63,7 @@ class CategoryController extends Controller
 
     public function patchCategory(Request $request, Category $category){
         $validator=Validator::make($request->all(),[
-            'name'=>'required|string|max:50',
+            'name'=>'required',
             'slug'=>'required',
             'description'=>'nullable|string',
         ]);
@@ -84,6 +85,9 @@ class CategoryController extends Controller
     public function deleteCategory(Category $category){
         $category->products->each(function ($product) {
             $product->wishlists()->delete();
+            foreach ($product->images as $image) {
+                $image->delete();
+            }
         });
         $category->products()->delete();
         if($category->delete()){
@@ -93,6 +97,6 @@ class CategoryController extends Controller
     }
 
     public function getSlug(Request $request){
-        return response()->json(['data'=>Category::sluged($request->name,$request->id)]);
+        return response()->json(['data'=>Category::sluged($request->name)]);
     }
 }

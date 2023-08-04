@@ -21,7 +21,7 @@
                             @enderror
                             <input id="category_name" name="name" type="text" class="new-form-control w-full"
                                 placeholder="Input Category Name *" value="{{ old('name') ?? $category->name }}"
-                                onchange="getSlug(this.value)" required>
+                                onchange="getSlug(this.value)" readonly>
                         </div>
                         <div>
                             <label for="slug" class="form-label mt-3">Slug</label>
@@ -29,7 +29,6 @@
                                 <small class="text-xs text-red-500 ml-1">{{ '*' . $message }}</small>
                             @enderror
                             <input id="category_slug" name="slug" type="text" class="new-form-control w-full"
-                                placeholder="Slug will be generated automatically"
                                 value="{{ old('slug') ?? $category->slug }}"readonly>
                         </div>
 
@@ -52,7 +51,4 @@
             </div>
         </div>
     </div>
-@endsection
-@section('script')
-    <script src="{{ asset('dist/js/view/dashboard/manage-category.js') }}"></script>
 @endsection

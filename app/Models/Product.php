@@ -55,12 +55,11 @@ class Product extends Model
         $code_numbers=[];
         if(Category::where('id',$category_id)->get()->count()){
             // mengambil slug berdasarkan berdasarkan category_id dan membuat inisial slug dalam format uppercase
-            $category=Category::where('id',$category_id)->first();
-            $slug_words=explode('-',$category->slug);
-            foreach ($slug_words as $word) {
-                $first_char[] = $word[0];
-            }
-            $slug_initial=Str::upper(implode('',$first_char));
+            $category=Category::where('id',$category_id)->first();//mengambil slug category terkait
+            $slug_words=explode('-',$category->slug);//mengambil masing-masing kata slug
+            $first_initial=substr($slug_words[0],0,1);//mengambil huruf pertama dari kata pertama
+            $second_initial=substr($slug_words[1],0,2);//mengambil 2 huruf pertama dari kata kedua
+            $slug_initial=Str::upper($first_initial.$second_initial);//menggabungkan kedua inisial dan mengubahnya menjadi Uppercase
 
             if(Product::where('category_id',$category_id)->get()->count()){
                 /*mengambil 3 digit terakhir dari product_code milik setiap produk

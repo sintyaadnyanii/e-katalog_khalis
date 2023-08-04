@@ -188,7 +188,7 @@ class UserController extends Controller
    }
 
    public function sendNotification(){
-    $users=User::where('level','user')->where('active',1)->get();
+    $users=User::where('level','user')->where('active',1)->whereNot('id',1)->whereNot('email','LIKE','%@testmail.com')->get();
         foreach($users as $user){
             ProcessEmail::dispatch($user);
         }

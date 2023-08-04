@@ -6,6 +6,7 @@ use App\Http\Controllers\FeedbackController;
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -94,4 +95,9 @@ Route::middleware(['auth','admin'])->controller(FeedbackController::class)->grou
     Route::get('/dashboard/feedback/{feedback:id}/detail', 'detailFeedback')->name('manage_feedback.detail');
     Route::delete('/dashboard/feedback/{feedback:id}/delete','deleteFeedback')->name('manage_feedback.delete');
     Route::post('/dashboard/feedback/{feedback:id}/reply', 'sendReply')->name('manage_feedback.send');
+});
+
+Route::get('/run-storage-link',function(){
+    Artisan::call('storage:link');
+    return "Storage link has been created.";
 });

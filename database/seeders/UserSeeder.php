@@ -28,7 +28,7 @@ class UserSeeder extends Seeder
         ]);
 
         $faker=Faker::create('id_ID');
-        for($i=1;$i<=30;$i++){
+        for($i=1;$i<=25;$i++){
             User::create([
                 'name'=>$faker->name,
                 'email'=>"userkhalis".$faker->unique()->numberBetween(00,30)."@testmail.com",

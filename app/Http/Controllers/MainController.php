@@ -17,7 +17,7 @@ class MainController extends Controller
         if(Product::with('wishlist')->count()){
             $top_products=Product::withCount('wishlists')->orderBy('wishlists_count','desc')->take(3)->get();
         }else{
-            $top_products=Product::random()->take(3)->get();
+            $top_products=Product::inRandomOrder()->take(3)->get();
         }
         $data=[
             'title'=>'Bamboo Furniture Wholesale Manufacturer & Exporter - Home | Khalis Bali Bamboo',

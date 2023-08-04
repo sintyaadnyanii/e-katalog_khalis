@@ -15,37 +15,45 @@
                 <div class="w-full flex flex-col gap-3">
                     <h2 class="font-semibold text-xl md:text-2xl mb-3">Contact Detail</h2>
                     <div class="flex flex-row gap-2">
-                        <div class="w-8 h-8 flex items-center justify-center bg-[#455452]">
-                            <i class="text-white fa-solid fa-shop"></i>
+                        <div class="w-[10%]">
+                            <div class="w-8 h-8 flex items-center justify-center bg-[#455452]">
+                                <i class="text-white fa-solid fa-shop text-lg"></i>
+                            </div>
                         </div>
-                        <div class="text-sm flex flex-col h-8 justify-center">
+                        <div class="w-[90%] text-sm flex flex-col h-8 justify-center">
                             <a href="https://goo.gl/maps/DcKMbkzUR31ixBV97">Jl. Kebo Iwa No.46, Belega, Kec. Blahbatuh,
                                 Kabupaten Gianyar, Bali 80581</a>
                         </div>
                     </div>
                     <div class="flex flex-row gap-2">
-                        <div class="w-8 h-8 flex items-center justify-center bg-[#455452]">
-                            <i class="text-white fa-solid fa-warehouse"></i>
+                        <div class="w-[10%]">
+                            <div class="w-8 h-8 flex items-center justify-center bg-[#455452]">
+                                <i class="text-white fa-solid fa-warehouse"></i>
+                            </div>
                         </div>
-                        <div class="text-sm flex flex-col h-8 justify-center">
+                        <div class="text-sm flex flex-col w-[90%] h-8 justify-center">
                             <a href="https://goo.gl/maps/pcXqU5Xg5pohguEQA">Jl. Padat Karya, Belega, Kec. Blahbatuh,
                                 Kabupaten Gianyar, Bali 80581</a>
                         </div>
                     </div>
                     <div class="flex flex-row gap-2">
-                        <div class="w-8 h-8 flex items-center justify-center bg-[#455452]">
-                            <i class="text-white fa-brands fa-whatsapp text-xl"></i>
+                        <div class="w-[10%]">
+                            <div class="w-8 h-8 flex items-center justify-center bg-[#455452]">
+                                <i class="text-white fa-brands fa-whatsapp text-xl"></i>
+                            </div>
                         </div>
-                        <div class="text-sm flex flex-col h-8 justify-center">
+                        <div class="w-[90%] text-sm flex flex-col h-8 justify-center">
                             <a href="https://wa.me/6281231065880/?text=Hello%20Khalis%20Bali%20Bamboo,">+62
                                 812-3106-5880</a>
                         </div>
                     </div>
                     <div class="flex flex-row gap-2">
-                        <div class="w-8 h-8 flex items-center justify-center bg-[#455452]">
-                            <i class="text-white fa-solid fa-envelope"></i>
+                        <div class="w-[10%]">
+                            <div class="w-8 h-8 flex items-center justify-center bg-[#455452]">
+                                <i class="text-white fa-solid fa-envelope text-lg"></i>
+                            </div>
                         </div>
-                        <div class="text-sm flex flex-col h-8 justify-center">
+                        <div class="w-[90%] text-sm flex flex-col h-8 justify-center">
                             <a href="mailto:anjasmarayogi64@gmail.com">anjasmarayogi64@gmail.com</a>
                         </div>
                     </div>

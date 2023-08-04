@@ -29,24 +29,8 @@ class Category extends Model
 
 
     // Slug
-    public static function slugable($category,$slug){
-        if($category>0){
-            $slug .= '-'.$category;
-        }
-        return $slug;
-    }
-
-    public static function sluged($name,$id){
+    public static function sluged($name){
         $slug=Str::slug($name);
-        $category=Category::where('slug',$slug)->get()->count();
-        if(intval($id)!=0){
-            if(Category::where('slug',$slug)->whereNot('id', $id)->get()->count()){
-                $slug=Category::slugable($category,$slug);
-            }
-        }else{
-            $slug=Category::slugable($category,$slug);
-        }
-
         return $slug;
     }
     // Slug

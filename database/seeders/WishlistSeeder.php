@@ -17,7 +17,7 @@ class WishlistSeeder extends Seeder
     public function run(): void
     {
         // Define the start and end dates for your desired period
-        $startDate = Carbon::parse('2023-06-15');
+        $startDate = Carbon::parse('2023-06-20');
         $endDate = Carbon::parse('2023-06-30');
 
         // Generate a random timestamp within the specified period
@@ -25,8 +25,8 @@ class WishlistSeeder extends Seeder
             mt_rand($startDate->timestamp, $endDate->timestamp)
         );
             // Loop to create multiple wishlist entries
-        for ($i = 1; $i <= 200; $i++) {
-            $userId = User::inRandomOrder()->first()->id;
+        for ($i=1; $i<50; $i++) {
+            $userId = User::whereNot('id',1)->inRandomOrder()->first()->id;
             $productCode = Product::inRandomOrder()->first()->product_code;
 
             // Check if the wishlist entry already exists for the user and product
