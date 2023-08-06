@@ -51,7 +51,6 @@ class Product extends Model
 
     // generate product code
     public static function generatedCode($category_id){
-        $first_char=[];
         $code_numbers=[];
         if(Category::where('id',$category_id)->get()->count()){
             // mengambil slug berdasarkan berdasarkan category_id dan membuat inisial slug dalam format uppercase
