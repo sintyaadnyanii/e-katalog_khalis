@@ -92,19 +92,20 @@
             <ul class="mt-2">
                 <li class="flex text-white"><a href="https://goo.gl/maps/DcKMbkzUR31ixBV97">Our Shop</a></li>
                 <li class="flex text-white"><a href="https://goo.gl/maps/pcXqU5Xg5pohguEQA">Our Warehouse</a></li>
-                <li class="flex text-white"> <a
+                <li class="flex text-white"><a
                         href="https://wa.me/6281231065880/?text=Hello%20Khalis%20Bali%20Bamboo,">Whatsapp</a></li>
-                <li class="flex text-white"> <a href="mailto:anjasmarayogi64@gmail.com">Email</a></li>
+                <li class="flex text-white"><a href="mailto:anjasmarayogi64@gmail.com">Email</a></li>
             </ul>
             <div class="flex gap-2 items-center w-full mt-3">
                 <ul class="mt-2 flex gap-1">
                     <li class="flex text-white border-2 rounded-full w-8 h-8 p-2 items-center justify-center"><a
-                            href="http://"><i class="fa-brands fa-instagram"></i></a></li>
+                            href="https://www.instagram.com/khalis_bali_bamboo/"><i
+                                class="fa-brands fa-instagram"></i></a></li>
                     <li class="flex text-white border-2 rounded-full w-8 h-8 p-2 items-center justify-center"><a
-                            href="http://"><i class="fa-brands fa-facebook"></i></a></li>
+                            href="https://www.facebook.com/khalisbali/"><i class="fa-brands fa-facebook"></i></a></li>
                     <li class="flex text-white border-2 rounded-full w-8 h-8 p-2 items-center justify-center"><a
-                            href="http://"><img class="w-full" src="{{ asset('dist/images/icon/shopee_logo.png') }}"
-                                alt="icon"></a></li>
+                            href="https://shopee.co.id/khalisbalibamboo"><img class="w-full"
+                                src="{{ asset('dist/images/icon/shopee_logo.png') }}" alt="icon"></a></li>
                 </ul>
             </div>
 
