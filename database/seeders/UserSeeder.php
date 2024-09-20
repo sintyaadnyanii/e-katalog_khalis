@@ -19,9 +19,9 @@ class UserSeeder extends Seeder
     {
         User::create([
             'name'=>'Administrator',
-            'email'=>'adminkhalis@gmail.com',
+            'email'=>'adminkhalis@testmail.com',
             'password'=>Hash::make('admin@12345'),
-            'phone'=>'081339317472',
+            'phone'=>'08133000000',
             'level'=>'admin',
             'active'=>1,
             'verification_token'=>Str::random(50)
